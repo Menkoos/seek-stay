@@ -123,15 +123,6 @@ margin-left: 30px;
 
 
 
-
-
-
-
-
-
-
-
-
 .slider{
     width: 100%;
     position: relative;
@@ -152,29 +143,104 @@ margin-left: 30px;
 }
 
 
+/* STRUCTURE GÉNÉRALE */
 
-/*  barre de rechereche  */
-
-.barre-recherche{
-  display: flex;
-  align-items: center;
-  gap: 35px;
-  margin: 30px 50px;
-
-  
+.page-recherche{
+    display:flex;
+    padding:20px 40px 20px 20px; /*Centre à l'intérieur de la page */
+    gap:40px; /* espace entre les deux colonnes filtre et recherche */
 }
 
-.barre-recherche h3{
-  margin: 0;
+/* colonne de gauche */
+.filters{
+    width:250px;  /* largeur fixe de la colonne */
+    border-right:1px solid #ddd; /* ligne de séparation à droite */
+    padding:10px; /* Sépare la ligne de séparation des filtres */
+}
+
+/* colonne de droite */
+.resultats{
+    flex:1; /* prend tout l’espace restant */
+}
+
+/* SECTION RECHERCHE */
+
+.search-section{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px; /* espace entre la barre de recherche et les boutons liste et map */
+    margin-bottom:30px; /* Espace entre les annonces et la barre de recherche */
+    margin-top:30px;
+}
+
+
+/* BARRE DE RECHERCHE */
+
+.search-bar{
+    flex:1; /* Prend tout l'espace disponible */
+    position:relative; /* Mettre l'icone à l'intérieur */
+}
+
+/* Champ de saisie */
+.search-bar input{
+    width:100%; /* Prend toute la largeur du conteneur */
+    padding:16px 50px 16px 18px;
+    border-radius:15px;
+    border:2px solid #3f5468;
+    font-size:18px;
+    outline:none;
+    box-sizing:border-box;
+}
+
+/* COLONNE FILTRES (pas fait juste mis la barre pour séparer) */
+
+/* style général des blocs de filtres */
+.bloc-filtre{
+    border-bottom:1px solid #ddd;
+}
+
+
+/* Grille des annonces */
+
+.annonces{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap:30px; /* espace entre chaque carte */
+}
+
+
+/* Contenu d'une annonce */
+
+.carte-contenu{
+    padding:20px 25px;
+    position:relative;
+    z-index:2;
+}
+
+.carte-haut{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.prix{
+    font-size:18px;
+    margin:18px 0 12px 0;
+}
+
+.description{
+    font-size:14px;
+    margin:0 0 13px 0;
+}
+
+.ville{
+    text-align:right;
+    font-size:14px;
 
 }
 
-.barre-recherche input{
-  flex: 1; /* prend toute la place */
-  padding: 12px;
-  font-size: 17px;
-  border: 1px solid #ccc;
-}
+
 /* =======================================  COLLOCATION ================================ */
 
 

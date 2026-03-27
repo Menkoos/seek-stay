@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <meta charset="utf-8" />
     <title>Seek & Stay | Location de Logements pour étudiants</title>
@@ -7,9 +8,8 @@
     <link rel="icon" type="image/x-icon" href="img/flavicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <link rel="stylesheet" href="styles/styles.css" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   </head>
-
-
 
 
   <body>
@@ -25,8 +25,8 @@
       <li><a href="Favoris.html">Favoris</a></li>
       <li><a href="#Contact">Contact</a></li>
      <li><a href="Authentification.html">Inscription / Connexion </a></li>
-    </ul>
- </div>
+      </ul>
+      </div>
     </header>
 
     <div class="slider" id ="home">
@@ -34,23 +34,227 @@
         <!-- <div class="slider-content">-->
             <!-- <h1>Seek & Stay</h1> -->
             <!-- <h2>Your place, your studies, your future </h2>-->
-
-        </div> 
-
-        
-        
     </div>
 
-    <div class="barre-recherche w25 w75 ">
-       <h3>Filtre Avancéess :</h3>
-      <div class="topnav">
-        <input type="text" placeholder="Rechercher..">
-       </div>
-      </div>
+    <!-- Filtres à gauche et résultats à droite -->
+    <section class="page-recherche">
+
+        <!-- Colonne de gauche : Filtres-->
+        <aside class="filters">
+            <h2>Filtres avancés</h2>
+
+        </aside>
+        <!-- Colonne de droite : Recherche et Annonces -->
+        <div class="resultats">
+
+            <!-- Barre de recherche et boutons d'affichage -->
+            <section class="search-section">
+
+                <!-- Barre de recherche -->
+                <div class="search-bar">
+                    <input type="text" placeholder="Search...">
+                    <!-- fa-solid = style de l’icône et fa-magnifying-glass = nom de l’icône -->
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+
+                <!-- Boutons de choix d'affichage -->
+                <div class="search-icons">
+                    <button class="icon-button">
+                        <i class="fa-solid fa-list"></i>
+                    </button>
+
+                    <button class="icon-button">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </button>
+                </div>
+
+            </section>
+
+            <!-- Liste des annonces -->
+            <section class="annonces">
+
+                <!-- Carte logement -->
+                <div class="carte-logement" >
+
+                    <!-- Partie Image -->
+                    <div class="carte-image">
+
+                        <!-- image du logement -->
+                        <img src="Images/studio1.jpg" alt="Photo d'un studio étudiant">
+
+                    </div>
+
+                    <!-- Partie Description -->
+                    <div class="carte-contenu">
+
+                        <div class="carte-haut">
+                            <h2>Studio Étudiant</h2>
+
+                        </div>
+
+                        <p class="prix">1167 € - 20m²</p>
+
+                        <p class="description">
+                            Chambre étudiante, aménagée et exposée plein nord avec vue sur le parc des Buttes-Chaumont
+                        </p>
+
+                        <p class="ville">Paris</p>
+
+                    </div>
+
+                </div>
+
+                <!-- Reste des cartes logements a supprimer quand il y aura la bdd -->
+                <div class="carte-logement">
+
+                    <div class="carte-image">
+
+                        <!-- image du logement -->
+                        <img src="Images/studio2.jpg" alt="Photo d'un studio étudiant">
+
+                    </div>
+
+                    <!-- contenu texte -->
+                    <div class="carte-contenu">
+
+                        <div class="carte-haut">
+                            <h2>Résidence étudiante</h2>
+                        </div>
+
+                        <p class="prix">1300 € - 23m²</p>
+
+                        <p class="description">
+                            Chambre étudiante, aménagée et exposée plein nord avec vue sur le parc des Buttes-Chaumont
+                        </p>
+
+                        <p class="ville">Paris</p>
+
+                    </div>
+
+                </div>
+
+                <div class="carte-logement">
+
+                    <div class="carte-image">
+
+                        <!-- image du logement -->
+                        <img src="Images/studio3.jpg" alt="Photo d'un studio étudiant">
+
+                    </div>
+
+                    <!-- contenu texte -->
+                    <div class="carte-contenu">
+
+                        <div class="carte-haut">
+                            <h2>Studio Étudiant</h2>
+                        </div>
+
+                        <p class="prix">886 € - 19m²</p>
+
+                        <p class="description">
+                            Nous vous proposons ce studio meublé de 19,4m², situé au 2ème étage, au sein d'un quartier dynamique
+                        </p>
+
+                        <p class="ville">Lille</p>
+
+                    </div>
+
+                </div>
+
+                <div class="carte-logement">
+
+                    <div class="carte-image">
+
+                        <!-- image du logement -->
+                        <img src="Images/studio4.jpg" alt="Photo d'un studio étudiant">
+
+                    </div>
+
+                    <!-- contenu texte -->
+                    <div class="carte-contenu">
+
+                        <div class="carte-haut">
+                            <h2>Jolie chambre</h2>
+
+                        </div>
+
+                        <p class="prix">450 € - 9m²</p>
+
+                        <p class="description">
+                            Chambre de particulier à louer sur Paris 18. Disponible immédiatement.C'est une location meublée.
+                        </p>
+
+                        <p class="ville">Paris</p>
+
+                    </div>
+
+                </div>
+
+                <div class="carte-logement">
+
+                    <div class="carte-image">
+
+                        <!-- image du logement -->
+                        <img src="Images/studio5.jpg" alt="Photo d'un studio étudiant">
+
+                    </div>
+
+                    <!-- contenu texte -->
+                    <div class="carte-contenu">
+
+                        <div class="carte-haut">
+
+                            <h2>Joli studio</h2>
+
+                        </div>
+
+                        <p class="prix">881 € - 25m²</p>
+
+                        <p class="description">
+                            Chambre étudiante, aménagée et exposée plein nord avec vue sur le parc des Buttes-Chaumont
+                        </p>
+
+                        <p class="ville">Paris</p>
+
+                    </div>
+
+                </div>
+
+                <div class="carte-logement">
+
+                    <div class="carte-image">
+
+                        <!-- image du logement -->
+                        <img src="Images/studio6.jpg" alt="Photo d'un studio étudiant">
+
+                    </div>
+
+                    <!-- contenu texte -->
+                    <div class="carte-contenu">
+
+                        <div class="carte-haut">
+
+                            <h2>Studio Étudiant</h2>
+
+                        </div>
+
+                        <p class="prix">530 € - 18m²</p>
+
+                        <p class="description">
+                            Chambre étudiante, aménagée et exposée plein nord avec vue sur le parc des Buttes-Chaumont
+                        </p>
+
+                        <p class="ville">Fleury</p>
+
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
 
     <footer>
     <p>Ce site a été conçu et développé par les élèves de l'ISEP du groupe G9A 2025/2026 en utilisant HTML, CSS, JavaScript et PHP.- Tous droits réservés</p>
-  </footer>
+    </footer>
   </body>
   
 </html>
