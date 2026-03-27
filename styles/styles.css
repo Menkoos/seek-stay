@@ -219,6 +219,17 @@ margin-left: 30px;
 
 /* Contenu d'une annonce */
 
+.carte-image{
+    width:100%;
+    height:230px;
+    overflow:hidden; /* cache ce qui dépasse si l'image est trop grande on peut enlever si on donne une taille défini quand on poste une annonce */
+
+}
+
+.carte-image img{
+    width:100%;
+}
+
 .carte-contenu{
     padding:20px 25px;
     position:relative;
