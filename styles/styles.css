@@ -155,7 +155,6 @@ margin-left: 30px;
 .filters{
     width:250px;  /* largeur fixe de la colonne */
     border-right:1px solid #ddd; /* ligne de séparation à droite */
-    padding:10px; /* Sépare la ligne de séparation des filtres */
 }
 
 /* colonne de droite */
@@ -179,7 +178,7 @@ margin-left: 30px;
 
 .search-bar{
     flex:1; /* Prend tout l'espace disponible */
-    position:relative; /* Mettre l'icone à l'intérieur */
+
 }
 
 /* Champ de saisie */
@@ -193,9 +192,9 @@ margin-left: 30px;
     box-sizing:border-box;
 }
 
-/* COLONNE FILTRES (pas fait juste mis la barre pour séparer) */
 
-/* style général des blocs de filtres */
+/* colonne filtre (pas fait juste mis la barre pour séparer) */
+
 .bloc-filtre{
     border-bottom:1px solid #ddd;
 }
