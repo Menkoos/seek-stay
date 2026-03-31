@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-html, body { overflow-x: hidden; }
+body { overflow-x: hidden; }
 
 /* =======================================  ACCUEIL ================================ */
 *{
     margin:0;
-    padding:0
+    padding:0;
     /*box-sizing: border-box;*/
 }
 
@@ -23,9 +23,9 @@ h1{
     font-size :5rem; 
 }
 h2{
-    color : #FFF;
+    color : #000000;
     font-size:2rem;  
-    font-weight : 300; 
+    font-weight : 700;
 }
 h3{ 
     color: #000000; 
@@ -34,17 +34,13 @@ h3{
     margin-top: 20px;
 }
 
-
-
-
 header{
-  position: sticky;
-  
+    position:sticky;  /* Permet a la barre de rester visible quand on scroll la page */
+    top:0; /* Permet a la barre de rester en haut de la page */
+    z-index:1000; /* Met la barre en haut de tous les autres éléments de la page */
+    background-color: white;
+    width: 100%;
 }
-
-
-
-
 
 .header-menu{
   display: flex;
@@ -52,7 +48,7 @@ header{
   list-style: none;
   gap: 10px;              /* optionnel mais pratique */
   margin: 0;              /* important */
-  padding: 0;             /* important */
+  padding: 10px;             /* important */
  
 }
 
@@ -65,15 +61,17 @@ header{
   transition: .2s ease;
   /*border-radius: 6px;*/     /* optionnel */
 }
+
 .flex{
-    display: flex;
+    display:flex;
+    align-items:center;
+    width:100%;
 }
 
 ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  overflow: hidden;
   background-color: white;
 }
 
