@@ -31,14 +31,27 @@
       </div>
     </header>
 
-    <form action="/authentification.php">
-      <label for="fname">E-mail/ numéro téléphone :</label><br />
-      <input type="text" id="fname" name="email" /><br />
-      <label for="lname">Mot de passe :</label><br />
-      <input type="password" id="lname" name="mot-de-passe" /><br /><br />
-      <input type="submit" value="Submit" />
-      <input type="reset" value="Reset" />
-    </form>
+    <main class="page-auth">
+      <section class="bloc-connexion">
+
+        <form class="form-connexion" action="/authentification.php">
+
+          <div class="champ">
+            <input type="text" name="email" placeholder="email">
+          </div>
+
+          <div class="champ">
+            <input type="password" name="mot-de-passe" placeholder="mot de passe">
+          </div>
+
+          <div class="boutons">
+            <button type="submit">CONNEXION</button>
+            <button type="button">INSCRIPTION</button>
+          </div>
+
+        </form>
+      </section>
+    </main>
 
     <footer>
       <p>
