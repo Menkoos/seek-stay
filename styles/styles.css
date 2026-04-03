@@ -1,71 +1,72 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-body { overflow-x: hidden; }
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+body {
+  overflow-x: hidden;
+}
 
 /* =======================================  ACCUEIL ================================ */
-*{
-    margin:0;
-    padding:0;
-    /*box-sizing: border-box;*/
+* {
+  margin: 0;
+  padding: 0;
+  /*box-sizing: border-box;*/
 }
 
-
-/* parametre pour le scroll dynamique */ 
-html { scroll-behavior: smooth; }
-
-body{
-
-    font-family: 'Inter', sans-serif;
-    /* cursor: crosshair;*/
+/* parametre pour le scroll dynamique */
+html {
+  scroll-behavior: smooth;
 }
 
-h1{ 
-    color: #FFF; 
-    font-size :5rem; 
-}
-h2{
-    color : #000000;
-    font-size:2rem;  
-    font-weight : 700;
-}
-h3{ 
-    color: #000000; 
-    font-size :2rem; 
-    margin-left: 50px; 
-    margin-top: 20px;
+body {
+  font-family: "Inter", sans-serif;
+  /* cursor: crosshair;*/
 }
 
-header{
-    position:sticky;  /* Permet a la barre de rester visible quand on scroll la page */
-    top:0; /* Permet a la barre de rester en haut de la page */
-    z-index:1000; /* Met la barre en haut de tous les autres éléments de la page */
-    background-color: white;
-    width: 100%;
+h1 {
+  color: #fff;
+  font-size: 5rem;
+}
+h2 {
+  color: #000000;
+  font-size: 2rem;
+  font-weight: 700;
+}
+h3 {
+  color: #000000;
+  font-size: 2rem;
+  margin-left: 50px;
+  margin-top: 20px;
 }
 
-.header-menu{
+header {
+  position: sticky; /* Permet a la barre de rester visible quand on scroll la page */
+  top: 0; /* Permet a la barre de rester en haut de la page */
+  z-index: 1000; /* Met la barre en haut de tous les autres éléments de la page */
+  background-color: white;
+  width: 100%;
+}
+
+.header-menu {
   display: flex;
   align-items: center;
   list-style: none;
-  gap: 10px;              /* optionnel mais pratique */
-  margin: 0;              /* important */
-  padding: 10px;             /* important */
- 
+  gap: 10px; /* optionnel mais pratique */
+  margin: 0; /* important */
+  padding: 10px; /* important */
 }
 
-.header-menu li a{
+.header-menu li a {
   text-decoration: none;
-  color: #0F1C2E;
+  color: #0f1c2e;
   padding: 10px 50px;
   display: block;
   box-sizing: border-box;
-  transition: .2s ease;
-  /*border-radius: 6px;*/     /* optionnel */
+  transition: 0.2s ease;
+  /*border-radius: 6px;*/ /* optionnel */
 }
 
-.flex{
-    display:flex;
-    align-items:center;
-    width:100%;
+.flex {
+  display: flex;
+  align-items: center;
+  width: 100%;
 }
 
 ul {
@@ -75,7 +76,6 @@ ul {
   background-color: white;
 }
 
-
 /*alignemeent vertical du menu */
 .header-menu li {
   float: none;
@@ -83,7 +83,7 @@ ul {
 
 ul li a {
   display: block;
-  color: #0F1C2E;
+  color: #0f1c2e;
   font-weight: bold;
   text-align: center;
   padding: 14px 16px;
@@ -92,343 +92,332 @@ ul li a {
 
 ul li a:hover {
   /*color: #0781B8; */
-  color: #30BAE6;
+  color: #30bae6;
   text-decoration: underline; /* soulignement */
   text-underline-offset: 4px; /* espace propre sous le texte */
-} 
-.header-logo{
+}
+.header-logo {
   display: block;
 }
 
-.header-logo img{
-  width:70px;
-margin-left: 30px;
+.header-logo img {
+  width: 70px;
+  margin-left: 30px;
 }
 
-.header-menu li:last-child a{
-  background-color: #0F1C2E;
-  color: #FFF;
-  border-radius: 15px;
- 
+.header-logo img {
+  transition: transform 0.2s ease;
 }
-.header-menu{
+
+.header-logo img:hover {
+  transform: scale(1.1);
+}
+
+.header-menu li:last-child a {
+  background-color: #0f1c2e;
+  color: #fff;
+  border-radius: 15px;
+}
+.header-menu {
   width: 100%;
 }
 
-.header-menu li:last-child{
+.header-menu li:last-child {
   margin-left: auto;
 }
 
-
-
-.slider{
-    width: 100%;
-    position: relative;
+.slider {
+  width: 100%;
+  position: relative;
 }
 
-.slider-background{
-    width: 100%;
-    height: auto;
-    display: block;
-    filter: brightness(0.8);
+.slider-background {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: brightness(0.8);
 }
-.slider-content{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
+.slider-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
-
 
 /* STRUCTURE GÉNÉRALE */
 
-.page-recherche{
-    display:flex;
-    padding:20px 40px 20px 20px; /*Centre à l'intérieur de la page */
-    gap:40px; /* espace entre les deux colonnes filtre et recherche */
+.page-recherche {
+  display: flex;
+  padding: 20px 40px 20px 20px; /*Centre à l'intérieur de la page */
+  gap: 40px; /* espace entre les deux colonnes filtre et recherche */
 }
 
 /* colonne de gauche */
-.filters{
-    width:250px;  /* largeur fixe de la colonne */
-    border-right:1px solid #ddd; /* ligne de séparation à droite */
+.filters {
+  width: 250px; /* largeur fixe de la colonne */
+  border-right: 1px solid #ddd; /* ligne de séparation à droite */
 }
 
 /* colonne de droite */
-.resultats{
-    flex:1; /* prend tout l’espace restant */
+.resultats {
+  flex: 1; /* prend tout l’espace restant */
 }
 
 /* SECTION RECHERCHE */
 
-.search-section{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:20px; /* espace entre la barre de recherche et les boutons liste et map */
-    margin-bottom:30px; /* Espace entre les annonces et la barre de recherche */
-    margin-top:30px;
+.search-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px; /* espace entre la barre de recherche et les boutons liste et map */
+  margin-bottom: 30px; /* Espace entre les annonces et la barre de recherche */
+  margin-top: 30px;
 }
-
 
 /* BARRE DE RECHERCHE */
 
-.search-bar{
-    flex:1; /* Prend tout l'espace disponible */
-    position:relative; /* Mettre l'icone à l'intérieur */
+.search-bar {
+  flex: 1; /* Prend tout l'espace disponible */
+  position: relative; /* Mettre l'icone à l'intérieur */
 }
 
 /* Champ de saisie */
-.search-bar input{
-    width:100%; /* Prend toute la largeur du conteneur */
-    padding:16px 50px 16px 18px;
-    border-radius:15px;
-    border:2px solid #3f5468;
-    font-size:18px;
-    outline:none;
-    box-sizing:border-box;
+.search-bar input {
+  width: 100%; /* Prend toute la largeur du conteneur */
+  padding: 16px 50px 16px 18px;
+  border-radius: 15px;
+  border: 2px solid #3f5468;
+  font-size: 18px;
+  outline: none;
+  box-sizing: border-box;
 }
 
 /* Positionne bien l'icone sinon elle va n'importe ou  */
-.search-bar i{
-    position:absolute;
-    right:18px;
-    top:30%;
-    font-size:24px;
+.search-bar i {
+  position: absolute;
+  right: 18px;
+  top: 30%;
+  font-size: 24px;
 }
 
 /* Bouton liste et carte */
 
-.search-icons{ /* Rectangle pour mettre icone dedans */
-    display:flex;
-    border:2px solid #6b6b6b;
+.search-icons {
+  /* Rectangle pour mettre icone dedans */
+  display: flex;
+  border: 2px solid #6b6b6b;
 }
 
-.icon-button{
-    width:60px;
-    height:50px;
-    border:none;
-    background:white;
-    font-size:28px;
-    cursor:pointer;
+.icon-button {
+  width: 60px;
+  height: 50px;
+  border: none;
+  background: white;
+  font-size: 28px;
+  cursor: pointer;
 }
 
-.icon-button:first-child{ /* Séparation deux icônes */
-    border-right:2px solid #6b6b6b;
+.icon-button:first-child {
+  /* Séparation deux icônes */
+  border-right: 2px solid #6b6b6b;
 }
-
 
 /* Grille des annonces */
 
-.annonces{
-    display:grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap:30px; /* espace entre chaque carte */
+.annonces {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 30px; /* espace entre chaque carte */
 }
-
 
 /* Contenu d'une annonce */
 
-.carte-logement{
-    position:relative;
-    width:100%;
-    max-width:360px; /* Largeur de l'annonce */
-    background-color:#f7f6fb;
-    border-radius:20px;
-    box-shadow:0 4px 10px rgba(0,0,0,0.15);
-    display:flex;
-    flex-direction:column; /* Met tout en colonne */
-    overflow:hidden; /*cache ce qui dépasse */
-    cursor:pointer; /* rend l'annonce cliquable */
+.carte-logement {
+  position: relative;
+  width: 100%;
+  max-width: 360px; /* Largeur de l'annonce */
+  background-color: #f7f6fb;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column; /* Met tout en colonne */
+  overflow: hidden; /*cache ce qui dépasse */
+  cursor: pointer; /* rend l'annonce cliquable */
 }
 
-
-.carte-haut h2{ /* titre de la carte (jsp pk c'est en blanc) */
-    margin:0;
-    font-size:18px;
+.carte-haut h2 {
+  /* titre de la carte (jsp pk c'est en blanc) */
+  margin: 0;
+  font-size: 18px;
 }
 
-.carte-image{
-    width:100%;
-    height:230px;
-    overflow:hidden; /* cache ce qui dépasse si l'image est trop grande on peut enlever si on donne une taille défini quand on poste une annonce */
+.carte-image {
+  width: 100%;
+  height: 230px;
+  overflow: hidden; /* cache ce qui dépasse si l'image est trop grande on peut enlever si on donne une taille défini quand on poste une annonce */
 }
 
-.carte-image img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
+.carte-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.carte-contenu{
-    padding:20px 25px;
-    position:relative;
-    z-index:2;
+.carte-contenu {
+  padding: 20px 25px;
+  position: relative;
+  z-index: 2;
 }
 
-.carte-haut{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+.carte-haut {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.prix{
-    font-size:18px;
-    margin:18px 0 12px 0;
+.prix {
+  font-size: 18px;
+  margin: 18px 0 12px 0;
 }
 
-.description{
-    font-size:14px;
-    margin:0 0 13px 0;
+.description {
+  font-size: 14px;
+  margin: 0 0 13px 0;
 }
 
-.ville{
-    text-align:right;
-    font-size:14px;
-
+.ville {
+  text-align: right;
+  font-size: 14px;
 }
-
-
 
 /* =======================================  AUTHENTIFICATION ================================ */
 
-
 /* ================= AUTHENTIFICATION ================= */
 
-.page-auth{
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:100px 20px;
+.page-auth {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 20px;
 }
 
-.bloc-connexion{
-    width:100%;
-    max-width:600px;
-    background-color:#e9ecf8;
-    padding:60px 80px;
+.bloc-connexion {
+  width: 100%;
+  max-width: 600px;
+  background-color: #e9ecf8;
+  padding: 60px 80px;
 }
 
-
-.form-connexion{
-    display:flex;
-    flex-direction:column;
-    gap:30px;
+.form-connexion {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
 
-.champ input{
-    width:100%;
-    border:none;
-    background-color:#dde1ee;
-    padding:16px;
-    font-size:14px;
-    outline:none;
+.champ input {
+  width: 100%;
+  border: none;
+  background-color: #dde1ee;
+  padding: 16px;
+  font-size: 14px;
+  outline: none;
 }
 
-.boutons{
-    display:flex;
-    gap:40px;
-    margin-top:20px;
+.boutons {
+  display: flex;
+  gap: 40px;
+  margin-top: 20px;
 }
 
-.boutons button{
-    flex:1;
-    padding:18px; /*Taille du bouton */
-    border:1px solid #d2d6e3;
-    background:transparent;
-    color:#2a2aff;
-    font-weight:600;
-    cursor:pointer;
+.boutons button {
+  flex: 1;
+  padding: 18px; /*Taille du bouton */
+  border: 1px solid #d2d6e3;
+  background: transparent;
+  color: #2a2aff;
+  font-weight: 600;
+  cursor: pointer;
 }
-
 
 /* =======================================  COLLOCATION ================================ */
 
-
-
-
-
-
-
-
-
-
-
 /* =======================================  FAQ ================================ */
-
 
 /* =======================================  FOOTER ================================ */
 
-footer{
-    width:100%;
-    background-color:#0F1C2E;
-    color:white;
-    padding:40px;
-    margin-top:50px;
+footer {
+  width: 100%;
+  background-color: #2f5c9b;
+  color: white;
+  padding: 40px;
+  margin-top: 50px;
 }
 
-.footer-top{
-    display:grid;
-    grid-template-columns:1fr 1fr 1fr;
-    align-items:center;
-    gap:30px;
+.footer-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  gap: 30px;
 }
 
 /* bloc gauche */
-.footer-left{
-    display:flex;
-    justify-content:flex-start;
-    padding-left:100px;
+.footer-left {
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 100px;
 }
 
 /* bloc centre */
-.footer-center{
-    text-align:center;
+.footer-center {
+  text-align: center;
 }
 
 /* bloc droite */
-.footer-right{
-    display:flex;
-    justify-content:flex-end;
-    padding-right:170px;
+.footer-right {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 170px;
 }
 
 /* logo */
-.logo-footer{
-    width:200px;
-    height:auto;
+.logo-footer {
+  width: 200px;
+  height: auto;
 }
 
 /* menu */
-.footer-menu{
-    list-style:none;
-    background-color:#0F1C2E;
-    display:flex;
-    flex-direction:column;
-    flex-wrap:wrap;
-    justify-content:flex-end;
-    margin:0;
-    padding:0;
+.footer-menu {
+  list-style: none;
+  background-color: #2f5c9b;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  margin: 0;
+  padding: 0;
 }
 
-.footer-menu a{
-    color:white;
-    text-decoration:none;
+.footer-menu a {
+  color: white;
+  text-decoration: none;
 }
 
 /* bas du footer */
-.footer-bottom{
-    display:flex;
-    justify-content:center;
-    gap:30px;
-    margin-top:30px;
+.footer-bottom {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 30px;
 }
 
-.footer-bottom a{
-    color:white;
-    text-decoration:none;
+.footer-bottom a {
+  color: white;
+  text-decoration: none;
 }
 
-
+.footer-bottom a:hover {
+  color: #30bae6;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
