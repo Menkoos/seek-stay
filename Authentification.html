@@ -22,73 +22,34 @@
           <img src="img/iconSite.png" class="header-logo" alt="logo" />
         </a>
         <ul class="header-menu">
-          <li><a href="Accueil.html">Accueil</a></li>
-          <li><a href="Colocation.html">Colocation</a></li>
+         <li><a href="Accueil.html" class="active">Accueil</a></li>
+          <!-- PAS ENCORE FAIT -->
+          <!--<li><a href="Colocation.html">Colocation</a></li>-->
+          <li><a href="Offres.html">Offres</a></li>
+          <li><a href="Publier.html">Publier</a></li>
           <li><a href="FAQ.html">FAQ</a></li>
           <li><a href="Favoris.html">Favoris</a></li>
           <li><a href="Contact.html">Contact</a></li>
-          <li><a href="Authentification.html" class="active">Inscription / Connexion </a></li>
+          <li><a href="Authentification.html">Inscription / Connexion </a></li>
         </ul>
       </div>
     </header>
 
-    <main class="page-auth">
-      <section class="bloc-connexion">
-        <form class="form-connexion" action="/authentification.php">
-          <div class="champ">
-            <input type="text" name="email" placeholder="email" />
-          </div>
-
-          <div class="champ">
-            <input
-              type="password"
-              name="mot-de-passe"
-              placeholder="mot de passe"
-            />
-          </div>
-
-          <div class="boutons">
-            <button type="submit">CONNEXION</button>
-            <button type="button">INSCRIPTION</button>
-          </div>
-        </form>
-      </section>
-    </main>
+    <form action="/authentification.php">
+      <label for="fname">E-mail/ numéro téléphone :</label><br />
+      <input type="text" id="fname" name="email" /><br />
+      <label for="lname">Mot de passe :</label><br />
+      <input type="password" id="lname" name="mot-de-passe" /><br /><br />
+      <input type="submit" value="Submit" />
+      <input type="reset" value="Reset" />
+    </form>
 
     <footer>
-      <div class="footer-top">
-        <div class="footer-left">
-          <img
-            src="img/iconSite_WhiteText.png"
-            class="logo-footer"
-            alt="Icône du site internet"
-          />
-        </div>
-
-        <div class="footer-center">
-          <p class="footer-text">
-            Ce site a été conçu et développé par les élèves de l'ISEP du groupe
-            G9A 2025/2026 en utilisant HTML, CSS, JavaScript et PHP - Tous
-            droits réservés
-          </p>
-        </div>
-
-        <div class="footer-right">
-          <ul class="footer-menu">
-            <li><a href="Accueil.html" class="active">Accueil</a></li>
-            <li><a href="Colocation.html">Colocation</a></li>
-            <li><a href="FAQ.html">FAQ</a></li>
-            <li><a href="Favoris.html">Favoris</a></li>
-            <li><a href="Contact.html">Contact</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <a href="Mentionlegales.html">Mentions légales</a>
-        <p>-</p>
-        <a href="GestionCookies.html">Gestion des cookies</a>
-      </div>
+      <p>O
+        Ce site a été conçu et développé par les élèves de l'ISEP du groupe G9A
+        2025/2026 en utilisant HTML, CSS, JavaScript et PHP.- Tous droits
+        réservés
+      </p>
     </footer>
   </body>
 </html>
