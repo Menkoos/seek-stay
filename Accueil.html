@@ -55,6 +55,77 @@
       <!-- Colonne de gauche : Filtres-->
       <aside class="filters">
         <h2>Filtres avancés</h2>
+
+
+ <div class="filter-group">
+        <form action="/action_page.php">
+  <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+  <label for="vehicle1"> I have a bike</label><br>
+  <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+  <label for="vehicle2"> I have a car</label><br>
+  <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+  <label for="vehicle3"> I have a boat</label><br><br>
+  <input type="submit" value="Submit">
+</form>
+<div>
+
+
+   
+
+
+
+  <!-- Prix -->
+  <div class="filter-group">
+    <label>Prix max</label>
+    <input type="range" min="300" max="1500">
+  </div>
+
+<div class="slidecontainer">
+  <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+</div>
+
+
+  <!-- Type de logement -->
+  <div class="filter-group">
+    <label>Type</label>
+    <select>
+      <option>Studio</option>
+      <option>Appartement</option>
+      <option>Colocation</option>
+    </select>
+  </div>
+
+  <!-- Ville -->
+  <div class="filter-group">
+    <label>Ville</label>
+    <input type="text" placeholder="Ex: Paris">
+  </div>
+
+  <!-- Surface -->
+  <div class="filter-group">
+    <label>Surface min</label>
+    <input type="number" placeholder="m²">
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       </aside>
       <!-- Colonne de droite : Recherche et Annonces -->
       <div class="resultats">
