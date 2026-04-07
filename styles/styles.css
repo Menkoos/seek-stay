@@ -344,6 +344,25 @@ ul li a:hover {
 
 /* =======================================  FAQ ================================ */
 
+.accordion-btn {
+  width: 100%;
+  text-align: left;
+  padding: 12px 16px;
+  background: #222;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.accordion-content {
+  display: none !important ;
+  padding: 12px 16px;
+  border: 1px solid #ddd;
+}
+
+.accordion-content.open {
+  display: block !important ;
+}
 /* =======================================  FOOTER ================================ */
 
 footer {

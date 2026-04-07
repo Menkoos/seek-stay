@@ -33,6 +33,30 @@
     </header>
 
     <h3>Filtre Avancée :</h3>
+    <div class="accordion">
+      <button class="accordion-btn">Question 1</button>
+      <div class="accordion-content">
+        <p>Le texte que je veux écrire</p>
+      </div>
+    </div>
+    <div class="accordion">
+      <button class="accordion-btn">Question 2</button>
+      <div class="accordion-content">
+        <p>C'est bon les accordéons marchent</p>
+      </div>
+    </div>
+    <div class="accordion">
+      <button class="accordion-btn">Question 3</button>
+      <div class="accordion-content">
+        <p>Let's go</p>
+      </div>
+    </div>
+    <div class="accordion">
+      <button class="accordion-btn">Question 4</button>
+      <div class="accordion-content">
+        <p>Maintenant faut du contenu</p>
+      </div>
+    </div>
 
     <footer>
       <div class="footer-top">
@@ -69,5 +93,13 @@
         <a href="GestionCookies.html">Gestion des cookies</a>
       </div>
     </footer>
+    <script>
+      document.querySelectorAll('.accordion-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const content = btn.nextElementSibling;
+          content.classList.toggle('open');
+        });
+      });
+    </script>
   </body>
 </html>
