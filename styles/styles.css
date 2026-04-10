@@ -1,18 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
 
-body {
-  overflow-x: hidden;
-}
+/* ======================================= GENERAL ================================ */
 
-.divider {
-  border: none;
-  border-top: 1px solid #e0e0e0;
-}
-
-/* =======================================  GENERAL ================================ */
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 html {
@@ -20,18 +13,26 @@ html {
 }
 
 body {
+  overflow-x: hidden;
   font-family: "Inter", sans-serif;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid #e0e0e0;
 }
 
 h1 {
   color: #fff;
   font-size: 5rem;
 }
+
 h2 {
   color: #000000;
   font-size: 2rem;
   font-weight: 700;
 }
+
 h3 {
   color: #000000;
   font-size: 2rem;
@@ -39,30 +40,14 @@ h3 {
   margin-top: 20px;
 }
 
+/* ======================================= HEADER ================================ */
+
 header {
   position: sticky;
   top: 0;
   z-index: 1000;
   background-color: white;
   width: 100%;
-}
-
-.header-menu {
-  display: flex;
-  align-items: center;
-  list-style: none;
-  gap: 10px;
-  margin: 0;
-  padding: 10px;
-}
-
-.header-menu li a {
-  text-decoration: none;
-  color: #0f1c2e;
-  padding: 10px 50px;
-  display: block;
-  box-sizing: border-box;
-  transition: 0.2s ease;
 }
 
 .flex {
@@ -78,23 +63,44 @@ ul {
   background-color: white;
 }
 
+.header-menu {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 10px;
+  margin: 0;
+  padding: 10px;
+  width: 100%;
+}
+
 .header-menu li {
   float: none;
 }
 
-ul li a {
-  display: block;
+.header-menu li a {
+  text-decoration: none;
   color: #0f1c2e;
+  padding: 10px 50px;
+  display: block;
+  transition: 0.2s ease;
   font-weight: bold;
   text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
 }
 
-ul li a:hover {
+.header-menu li a:hover {
   color: #30bae6;
   text-decoration: underline;
   text-underline-offset: 4px;
+}
+
+.header-menu li:last-child {
+  margin-left: auto;
+}
+
+.header-menu li:last-child a {
+  background-color: #244676;
+  color: #fff;
+  border-radius: 15px;
 }
 
 .header-logo {
@@ -104,9 +110,6 @@ ul li a:hover {
 .header-logo img {
   width: 70px;
   margin-left: 30px;
-}
-
-.header-logo img {
   transition: transform 0.2s ease;
 }
 
@@ -114,21 +117,7 @@ ul li a:hover {
   transform: scale(1.1);
 }
 
-.header-menu li:last-child a {
-  background-color: #244676;
-  color: #fff;
-  border-radius: 15px;
-}
-
-.header-menu {
-  width: 100%;
-}
-
-.header-menu li:last-child {
-  margin-left: auto;
-}
-
-/* =======================================  BANNIERE ================================ */
+/* ======================================= BANNIERE ================================ */
 
 .slider {
   width: 100%;
@@ -150,34 +139,35 @@ ul li a:hover {
   text-align: center;
 }
 
-/* =======================================  PAGE OFFRES ================================ */
+/* ======================================= PAGE OFFRES ================================ */
 
-/* Structure générale */
 .page-recherche {
   display: flex;
   padding: 20px 40px 20px 20px;
   gap: 40px;
 }
 
-/* Colonne de gauche - Filtres */
+/* Colonne filtres */
 .filters {
   width: 250px;
+  min-width: 250px;
   border-right: 1px solid #ddd;
+  padding-right: 20px;
 }
 
-/* Colonne de droite */
+/* Colonne résultats */
 .resultats {
   flex: 1;
+  min-width: 0;
 }
 
-/* Section recherche */
+/* -------- Haut de page : barre de recherche + boutons vue -------- */
+
 .search-section {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   gap: 20px;
-  margin-bottom: 30px;
-  margin-top: 30px;
+  margin: 30px 0;
 }
 
 /* Barre de recherche */
@@ -188,114 +178,68 @@ ul li a:hover {
 
 .search-bar input {
   width: 100%;
-  padding: 16px 50px 16px 18px;
-  border-radius: 15px;
-  border: 2px solid #3f5468;
+  height: 56px;
+  padding: 0 55px 0 18px;
+  border-radius: 14px;
+  border: 2px solid #425f79;
   font-size: 18px;
   outline: none;
-  box-sizing: border-box;
+  background-color: white;
 }
 
 .search-bar i {
   position: absolute;
   right: 18px;
-  top: 30%;
-  font-size: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 22px;
+  color: #333;
+  pointer-events: none;
 }
 
-/* Boutons liste / map */
-.search-icons {
+/* Boutons liste / carte */
+.view-switch {
   display: flex;
   border: 2px solid #6b6b6b;
-  border-radius: 6px;
+  border-radius: 12px;
   overflow: hidden;
+  background-color: white;
+  flex-shrink: 0;
 }
 
 .icon-button {
-  width: 60px;
-  height: 50px;
+  width: 78px;
+  height: 56px;
   border: none;
   background: white;
   font-size: 28px;
   cursor: pointer;
   color: #333;
-  transition: background 0.2s ease;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
 .icon-button:first-child {
   border-right: 2px solid #6b6b6b;
 }
 
-/* Bouton actif = grisé */
 .icon-button.active {
   background-color: #d0d0d0;
   color: #444;
 }
 
-/* -------  VUE GRILLE (défaut) ------- */
+/* -------- Liste des annonces -------- */
+
 #annonces {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 30px;
 }
 
-/* -------  VUE LISTE ------- */
-#annonces.vue-liste {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-#annonces.vue-liste .carte-logement {
-  flex-direction: row;
-  max-width: 100%;
-  height: 140px;
-}
-
-#annonces.vue-liste .carte-image {
-  width: 200px;
-  min-width: 200px;
-  height: 140px;
-}
-
-#annonces.vue-liste .carte-contenu {
-  padding: 12px 18px;
-}
-
-#annonces.vue-liste .carte-haut h2 {
-  font-size: 16px;
-}
-
-#annonces.vue-liste .prix {
-  font-size: 15px;
-  margin: 6px 0;
-}
-
-#annonces.vue-liste .description {
-  font-size: 13px;
-  margin: 0 0 6px;
-}
-
-/* Masquer les annonces en vue map */
 #annonces.annonces-hidden {
   display: none;
 }
 
-/* -------  VUE MAP ------- */
-#vue-map {
-  display: none;
-  width: 100%;
-  height: 550px;
-  border-radius: 20px;
-  overflow: hidden;
-  border: 2px solid #ddd;
-}
-
-#vue-map.vue-map-visible {
-  display: block;
-}
-
-/* Carte logement */
+/* Cartes logement */
 .carte-logement {
   position: relative;
   width: 100%;
@@ -309,11 +253,6 @@ ul li a:hover {
   cursor: pointer;
 }
 
-.carte-haut h2 {
-  margin: 0;
-  font-size: 18px;
-}
-
 .carte-image {
   width: 100%;
   height: 230px;
@@ -324,6 +263,7 @@ ul li a:hover {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
 .carte-contenu {
@@ -336,6 +276,11 @@ ul li a:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.carte-haut h2 {
+  margin: 0;
+  font-size: 18px;
 }
 
 .prix {
@@ -353,7 +298,86 @@ ul li a:hover {
   font-size: 14px;
 }
 
-/* =======================================  AUTHENTIFICATION ================================ */
+/* -------- Bloc carte Mapbox -------- */
+
+.map-wrapper {
+  position: relative;
+  display: none;
+  width: 100%;
+  height: 650px;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.map-wrapper.map-visible {
+  display: block;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+/* Boutons sur la carte */
+.map-toolbar {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.map-toolbar button {
+  border: none;
+  border-radius: 999px;
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* Popup logement sur la carte */
+.popup-logement {
+  min-width: 190px;
+  font-family: "Inter", sans-serif;
+}
+
+.popup-logement strong {
+  display: block;
+  font-size: 15px;
+  margin-bottom: 8px;
+  color: #0f1c2e;
+}
+
+.popup-logement p {
+  margin: 0 0 6px 0;
+  font-size: 14px;
+  color: #333;
+}
+
+.btn-itineraire {
+  margin-top: 10px;
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 14px;
+  background-color: #244676;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.btn-itineraire:hover {
+  background-color: #1a3358;
+}
+
+/* ======================================= AUTHENTIFICATION ================================ */
 
 .page-auth {
   display: flex;
@@ -400,7 +424,7 @@ ul li a:hover {
   cursor: pointer;
 }
 
-/* =======================================  FAQ ================================ */
+/* ======================================= FAQ ================================ */
 
 .accordion {
   background: none;
@@ -440,7 +464,7 @@ ul li a:hover {
   color: #555;
 }
 
-/* =======================================  MENTIONS LEGALES ================================ */
+/* ======================================= MENTIONS LEGALES ================================ */
 
 .mentions-hero {
   background-color: #2f5c9b;
@@ -516,7 +540,7 @@ ul li a:hover {
   margin-top: 6px;
 }
 
-/* =======================================  COOKIES ================================ */
+/* ======================================= COOKIES ================================ */
 
 .cookie-toggle-row {
   display: flex;
@@ -648,7 +672,7 @@ input:disabled + .slider-toggle {
   font-weight: 600;
 }
 
-/* =======================================  FOOTER ================================ */
+/* ======================================= FOOTER ================================ */
 
 footer {
   width: 100%;
@@ -720,38 +744,54 @@ footer {
   text-underline-offset: 4px;
 }
 
-.carte-popup {
-  width: 220px;
-  font-family: Arial, sans-serif;
+/* ======================================= RESPONSIVE ================================ */
+
+@media screen and (max-width: 1024px) {
+  #annonces {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
-.carte-popup-image img {
-  width: 100%;
-  height: 130px;
-  object-fit: cover;
-  border-radius: 10px;
-}
+@media screen and (max-width: 768px) {
+  .page-recherche {
+    flex-direction: column;
+    padding: 20px;
+  }
 
-.carte-popup-contenu {
-  padding-top: 10px;
-}
+  .filters {
+    width: 100%;
+    min-width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+    padding-right: 0;
+    padding-bottom: 20px;
+  }
 
-.carte-popup-contenu h3 {
-  margin: 0 0 8px 0;
-  font-size: 16px;
-}
+  .search-section {
+    flex-direction: column;
+    align-items: stretch;
+  }
 
-.carte-popup-contenu .prix {
-  font-weight: bold;
-  margin: 0 0 6px 0;
-}
+  .view-switch {
+    align-self: flex-start;
+  }
 
-.carte-popup-contenu .description {
-  font-size: 14px;
-  margin: 0 0 6px 0;
-}
+  #annonces {
+    grid-template-columns: 1fr;
+  }
 
-.carte-popup-contenu .ville {
-  margin: 0 0 10px 0;
-  color: #555;
+  .map-wrapper {
+    height: 500px;
+  }
+
+  .footer-top {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .footer-left,
+  .footer-right {
+    justify-content: center;
+    padding: 0;
+  }
 }

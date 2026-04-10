@@ -1,116 +1,192 @@
+mapboxgl.accessToken =
+  "pk.eyJ1IjoibWVua29vcyIsImEiOiJjbW5zeHkycXIwZTk2Mm9zOWptcmtkdjh2In0.v-2w8GRPwZaHopaowVlsFA";
 
-    var map = null;
+const logements = [
+  {
+    titre: "Studio Étudiant",
+    prix: "1167 €",
+    surface: "20m²",
+    ville: "Paris",
+    coords: [2.3522, 48.8566],
+  },
+  {
+    titre: "Résidence étudiante",
+    prix: "1300 €",
+    surface: "23m²",
+    ville: "Paris",
+    coords: [2.355, 48.86],
+  },
+  {
+    titre: "Studio Étudiant",
+    prix: "886 €",
+    surface: "19m²",
+    ville: "Lille",
+    coords: [3.0573, 50.6292],
+  },
+];
 
-    function setVue(vue) {
-    var annonces = document.getElementById('annonces');
-    var vueMap   = document.getElementById('vue-map');
-    var btnListe = document.getElementById('btn-liste');
-    var btnMap   = document.getElementById('btn-map');
+const mapWrapper = document.querySelector(".map-wrapper");
+const annonces = document.getElementById("annonces");
+const btnListe = document.getElementById("btn-liste");
+const btnMap = document.getElementById("btn-map");
 
-    if (vue === 'liste') {
-    /* --- Vue liste --- */
-    annonces.classList.remove('annonces-hidden');
-    annonces.classList.remove('vue-liste');
-    vueMap.classList.remove('vue-map-visible');
-    btnListe.classList.add('active');
-    btnMap.classList.remove('active');
+let map = null;
+let userPosition = null;
 
-} else {
-    /* --- Vue map --- */
-    annonces.classList.add('annonces-hidden');
-    vueMap.classList.add('vue-map-visible');
-    btnMap.classList.add('active');
-    btnListe.classList.remove('active');
+function setVue(vue) {
+  if (vue === "liste") {
+    annonces.classList.remove("annonces-hidden");
+    mapWrapper.classList.remove("map-visible");
+    btnListe.classList.add("active");
+    btnMap.classList.remove("active");
+  } else {
+    annonces.classList.add("annonces-hidden");
+    mapWrapper.classList.add("map-visible");
+    btnMap.classList.add("active");
+    btnListe.classList.remove("active");
 
-    /* Initialise Leaflet une seule fois */
     if (!map) {
-    map = L.map('vue-map').setView([46.6034, 1.8883], 6);
+      initialiserCarte();
+    }
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
-
-    /* --- Marqueurs des logements --- */
-        L.marker([48.8566, 2.3522]).addTo(map)
-            .bindPopup(`
-    <div class="carte-popup">
-      <div class="carte-popup-contenu">
-        <h3>Studio Étudiant</h3>
-        <p class="prix">1167 € - 20m²</p>
-        <p class="description">Chambre étudiante, aménagée et exposée plein nord avec vue sur le parc des Buttes-Chaumont</p>
-        <p class="ville">Paris</p>
-        <a href="DetailLogement.html" class="btn-popup">Voir l’annonce</a>
-      </div>
-    </div>
-  `);
-
-        L.marker([50.6292, 3.0573]).addTo(map)
-            .bindPopup(`
-    <div class="carte-popup">
-      <div class="carte-popup-contenu">
-        <h3>Studio Étudiant</h3>
-        <p class="prix">886 € - 19m²</p>
-        <p class="description">Nous vous proposons ce studio meublé de 19,4m², situé au 2ème étage, au sein d'un quartier dynamique</p>
-        <p class="ville">Lille</p>
-        <a href="DetailLogement.html" class="btn-popup">Voir l’annonce</a>
-      </div>
-    </div>
-  `);
-
-    L.marker([50.6292, 3.0573]).addTo(map)
-        .bindPopup(`
-    <div class="carte-popup">
-      <div class="carte-popup-contenu">
-        <h3>Studio Étudiant</h3>
-        <p class="prix">886 € - 19m²</p>
-        <p class="description">Nous vous proposons ce studio meublé de 19,4m², situé au 2ème étage, au sein d'un quartier dynamique</p>
-        <p class="ville">Lille</p>
-        <a href="DetailLogement.html" class="btn-popup">Voir l’annonce</a>
-      </div>
-    </div>
-  `);
-
-    L.marker([48.8700, 2.3300]).addTo(map)
-        .bindPopup(`
-    <div class="carte-popup">
-      <div class="carte-popup-contenu">
-        <h3>Studio Étudiant</h3>
-        <p class="prix">886 € - 19m²</p>
-        <p class="description">Nous vous proposons ce studio meublé de 19,4m², situé au 2ème étage, au sein d'un quartier dynamique</p>
-        <p class="ville">Lille</p>
-        <a href="DetailLogement.html" class="btn-popup">Voir l’annonce</a>
-      </div>
-    </div>
-  `);
-
-    L.marker([48.8550, 2.3600]).addTo(map)
-        .bindPopup(`
-    <div class="carte-popup">
-      <div class="carte-popup-contenu">
-        <h3>Studio Étudiant</h3>
-        <p class="prix">886 € - 19m²</p>
-        <p class="description">Nous vous proposons ce studio meublé de 19,4m², situé au 2ème étage, au sein d'un quartier dynamique</p>
-        <p class="ville">Lille</p>
-        <a href="DetailLogement.html" class="btn-popup">Voir l’annonce</a>
-      </div>
-    </div>
-  `);
-
-    L.marker([47.7000, 2.1800]).addTo(map)
-        .bindPopup(`
-    <div class="carte-popup">
-      <div class="carte-popup-contenu">
-        <h3>Studio Étudiant</h3>
-        <p class="prix">886 € - 19m²</p>
-        <p class="description">Nous vous proposons ce studio meublé de 19,4m², situé au 2ème étage, au sein d'un quartier dynamique</p>
-        <p class="ville">Lille</p>
-        <a href="DetailLogement.html" class="btn-popup">Voir l’annonce</a>
-      </div>
-    </div>
-  `);
+    setTimeout(() => {
+      map.resize();
+    }, 100);
+  }
 }
 
-    /* Corrige l'affichage quand la div était cachée */
-    setTimeout(function() { map.invalidateSize(); }, 100);
+window.setVue = setVue;
+
+function initialiserCarte() {
+  map = new mapboxgl.Map({
+    container: "map",
+    style: "mapbox://styles/mapbox/standard",
+    center: [2.3522, 48.8566],
+    zoom: 5.5,
+  });
+
+  map.addControl(new mapboxgl.NavigationControl(), "top-right");
+
+  const geolocate = new mapboxgl.GeolocateControl({
+    positionOptions: {
+      enableHighAccuracy: true,
+    },
+    trackUserLocation: false,
+    showUserHeading: true,
+  });
+
+  map.addControl(geolocate, "top-right");
+
+  geolocate.on("geolocate", (e) => {
+    userPosition = [e.coords.longitude, e.coords.latitude];
+  });
+
+  logements.forEach((logement) => {
+    const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(`
+      <div class="popup-logement">
+        <strong>${logement.titre}</strong>
+        <p>${logement.prix} · ${logement.surface}</p>
+        <p>${logement.ville}</p>
+        <button class="btn-itineraire" onclick="calculerItineraire(${logement.coords[0]}, ${logement.coords[1]})">
+          Itinéraire
+        </button>
+      </div>
+    `);
+
+    new mapboxgl.Marker().setLngLat(logement.coords).setPopup(popup).addTo(map);
+  });
+
+  map.on("style.load", () => {
+    if (!map.getSource("mapbox-dem")) {
+      map.addSource("mapbox-dem", {
+        type: "raster-dem",
+        url: "mapbox://mapbox.mapbox-terrain-dem-v1",
+        tileSize: 512,
+        maxzoom: 14,
+      });
+    }
+
+    map.setTerrain({
+      source: "mapbox-dem",
+      exaggeration: 1.2,
+    });
+  });
 }
+
+async function calculerItineraire(destLng, destLat) {
+  if (!navigator.geolocation) {
+    alert("La géolocalisation n'est pas disponible sur ce navigateur.");
+    return;
+  }
+
+  navigator.geolocation.getCurrentPosition(
+    async (position) => {
+      userPosition = [position.coords.longitude, position.coords.latitude];
+
+      const url = `https://api.mapbox.com/directions/v5/mapbox/driving/${userPosition[0]},${userPosition[1]};${destLng},${destLat}?geometries=geojson&access_token=${mapboxgl.accessToken}`;
+
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (!data.routes || !data.routes.length) {
+          alert("Aucun itinéraire trouvé.");
+          return;
+        }
+
+        const route = data.routes[0].geometry;
+
+        if (map.getSource("route")) {
+          map.getSource("route").setData({
+            type: "Feature",
+            properties: {},
+            geometry: route,
+          });
+        } else {
+          map.addSource("route", {
+            type: "geojson",
+            data: {
+              type: "Feature",
+              properties: {},
+              geometry: route,
+            },
+          });
+
+          map.addLayer({
+            id: "route",
+            type: "line",
+            source: "route",
+            layout: {
+              "line-join": "round",
+              "line-cap": "round",
+            },
+            paint: {
+              "line-color": "#244676",
+              "line-width": 6,
+              "line-opacity": 0.9,
+            },
+          });
+        }
+
+        const bounds = new mapboxgl.LngLatBounds();
+        bounds.extend(userPosition);
+        bounds.extend([destLng, destLat]);
+
+        map.fitBounds(bounds, {
+          padding: 60,
+        });
+      } catch (error) {
+        console.error(error);
+        alert("Erreur pendant le calcul de l'itinéraire.");
+      }
+    },
+    () => {
+      alert("Impossible de récupérer votre position.");
+    },
+    {
+      enableHighAccuracy: true,
+    },
+  );
 }
+
+window.calculerItineraire = calculerItineraire;
