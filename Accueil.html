@@ -10,11 +10,18 @@
   <link rel="stylesheet" href="styles/styles.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 
-  <!-- Leaflet CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <!-- Leaflet JS -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://api.mapbox.com/mapbox-gl-js/v3.20.0/mapbox-gl.css" rel="stylesheet">
+  <script src="https://api.mapbox.com/mapbox-gl-js/v3.20.0/mapbox-gl.js"></script>
   <script src="js/vue-map.js" defer></script>
+
+  <link
+          rel="stylesheet"
+          href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css"
+          type="text/css"
+  />
+  <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
 </head>
 
 <body>
@@ -220,6 +227,17 @@ minInput.addEventListener('input', () => {
         </button>
       </div>
     </section>
+
+    <div class="map-wrapper">
+      <div class="map-toolbar">
+        <button type="button" id="btn-plan">Plan</button>
+        <button type="button" id="btn-satellite">Satellite</button>
+        <button type="button" id="btn-3d">3D</button>
+        <button type="button" id="btn-route">Itinéraire</button>
+      </div>
+
+      <div id="map"></div>
+    </div>
 
     <!-- Liste des annonces -->
     <section class="annonces" id="annonces">
