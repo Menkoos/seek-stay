@@ -1,4 +1,4 @@
-mapboxgl.accessToken = "token_a_remplacer";
+mapboxgl.accessToken = "token_a_remplacer_par_le_notre";
 
 const logements = [
     {
