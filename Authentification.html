@@ -1,47 +1,163 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <meta charset="utf-8" />
     <title>Authentification à votre compte</title>
-    <meta name="description" content="Ceci est notre projet APP - site de location de logements pour étudiants" />
-    <link rel="icon" type="image/x-icon" href="img/iconSite-page.png">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <meta
+      name="description"
+      content="Ceci est notre projet APP - site de location de logements pour étudiants"
+    />
+    <link rel="icon" type="image/x-icon" href="img/flavicon.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="styles/styles.css" />
+
+    <style>
+      .auth-container {
+        width: 350px;
+        margin: 50px auto;
+        padding: 25px;
+        border-radius: 10px;
+        background: #f5f5f5;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .auth-switch {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .auth-switch button {
+        padding: 10px 20px;
+        border: none;
+        background: #ddd;
+        cursor: pointer;
+      }
+
+      .auth-switch button.active {
+        background: #4caf50;
+        color: white;
+      }
+
+      form {
+        display: none;
+      }
+
+      form.active {
+        display: block;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin: 8px 0;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+
+      input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        background: #03bcff;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+    </style>
+
+    <script>
+      function showForm(type) {
+        document.getElementById("loginForm").classList.remove("active");
+        document.getElementById("registerForm").classList.remove("active");
+        document.getElementById(type).classList.add("active");
+
+        document.getElementById("btn-login").classList.remove("active");
+        document.getElementById("btn-register").classList.remove("active");
+        document.getElementById("btn-" + type).classList.add("active");
+      }
+    </script>
   </head>
-
-
-
 
   <body>
     <header>
       <div class="flex">
-      <a href="" class="header-logo">
-                <img src="img/iconSite.png" class="header-logo" alt="logo">
-      </a>
-      <ul class ="header-menu">
-      <li><a href="Accueil.html" class="active">Accueil</a></li>
-      <li><a href="Colocation.html">Colocation</a></li>
-      <li><a href="FAQ.html">FAQ</a></li>
-      <li><a href="Favoris.html">Favoris</a></li>
-     <li><a href="Authentification.html">Inscription / Connexion </a></li>
-    </ul>
- </div>
+        <a href="Accueil.html" class="header-logo">
+          <img src="img/iconSite.png" class="header-logo" alt="logo" />
+        </a>
+        <ul class="header-menu">
+          <li><a href="Accueil.html" class="active">Accueil</a></li>
+          <li><a href="Offres.html">Offres</a></li>
+          <li><a href="Publier.html">Publier</a></li>
+          <li><a href="FAQ.html">FAQ</a></li>
+          <li><a href="Favoris.html">Favoris</a></li>
+          <li><a href="Contact.html">Contact</a></li>
+          <li><a href="Authentification.html">Inscription / Connexion</a></li>
+        </ul>
+      </div>
     </header>
 
-    <form action="/authentification.php">
-  <label for="fname">E-mail/ numéro téléphone :</label><br>
-  <input type="text" id="fname" name="email" ><br>
-  <label for="lname">Mot de passe :</label><br>
-  <input type="password" id="lname" name="mot-de-passe"><br><br>
-  <input type="submit" value="Submit">
-  <input type="reset" value="Reset">
-   </form>  
+    <div class="auth-container">
+      <div class="auth-switch">
+        <button id="btn-login" class="active" onclick="showForm('loginForm')">
+          Connexion
+        </button>
+        <button id="btn-register" onclick="showForm('registerForm')">
+          Inscription
+        </button>
+      </div>
 
- 
+      <!-- FORMULAIRE DE CONNEXION -->
+      <form id="loginForm" class="active" action="login.php" method="POST">
+        <label>Email :</label>
+        <input type="email" name="email" required />
+
+        <label>Mot de passe :</label>
+        <input type="password" name="password" required />
+
+        <input type="submit" value="Se connecter" />
+      </form>
+
+      <!-- FORMULAIRE D'INSCRIPTION -->
+      <form id="registerForm" action="register.php" method="POST">
+        <label>Email :</label>
+        <input type="email" name="email" required />
+
+        <label>Mot de passe :</label>
+        <input type="password" name="password" required />
+
+        <input type="submit" value="Créer un compte" />
+      </form>
+    </div>
 
     <footer>
-    <p>Ce site a été conçu et développé par les élèves de l'ISEP du groupe G9A 2025/2026 en utilisant HTML, CSS, JavaScript et PHP.- Tous droits réservés</p>
-  </footer>
+      <div class="footer-top">
+        <div class="footer-left">
+          <img
+            src="img/iconSite_WhiteText.png"
+            class="logo-footer"
+            alt="Icône du site internet"
+          />
+        </div>
+
+        <div class="footer-center">
+          <p class="footer-text">
+            Ce site a été conçu et développé par les élèves de l'ISEP du groupe
+            G9A 2025/2026 en utilisant HTML, CSS, JavaScript et PHP - Tous
+            droits réservés
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <a href="Mentionlegales.html">Mentions légales et CGU</a>
+        <p>-</p>
+        <a href="GestionCookies.html">Gestion des cookies</a>
+      </div>
+    </footer>
   </body>
-  
 </html>
