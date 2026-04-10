@@ -3,9 +3,15 @@
   <head>
     <meta charset="utf-8" />
     <title>Authentification à votre compte</title>
-    <meta name="description" content="Ceci est notre projet APP - site de location de logements pour étudiants" />
+    <meta
+      name="description"
+      content="Ceci est notre projet APP - site de location de logements pour étudiants"
+    />
     <link rel="icon" type="image/x-icon" href="img/flavicon.png" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="styles/styles.css" />
 
     <style>
@@ -15,7 +21,7 @@
         padding: 25px;
         border-radius: 10px;
         background: #f5f5f5;
-        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       }
 
       .auth-switch {
@@ -31,7 +37,7 @@
       }
 
       .auth-switch button.active {
-        background: #4CAF50;
+        background: #4caf50;
         color: white;
       }
 
@@ -43,7 +49,9 @@
         display: block;
       }
 
-      input[type="text"], input[type="email"], input[type="password"] {
+      input[type="text"],
+      input[type="email"],
+      input[type="password"] {
         width: 100%;
         padding: 10px;
         margin: 8px 0;
@@ -94,10 +102,13 @@
     </header>
 
     <div class="auth-container">
-
       <div class="auth-switch">
-        <button id="btn-login" class="active" onclick="showForm('loginForm')">Connexion</button>
-        <button id="btn-register" onclick="showForm('registerForm')">Inscription</button>
+        <button id="btn-login" class="active" onclick="showForm('loginForm')">
+          Connexion
+        </button>
+        <button id="btn-register" onclick="showForm('registerForm')">
+          Inscription
+        </button>
       </div>
 
       <!-- FORMULAIRE DE CONNEXION -->
@@ -121,14 +132,32 @@
 
         <input type="submit" value="Créer un compte" />
       </form>
-
     </div>
 
     <footer>
-      <p>
-        Ce site a été conçu et développé par les élèves de l'ISEP du groupe G9A
-        2025/2026 en utilisant HTML, CSS, JavaScript et PHP — Tous droits réservés.
-      </p>
+      <div class="footer-top">
+        <div class="footer-left">
+          <img
+            src="img/iconSite_WhiteText.png"
+            class="logo-footer"
+            alt="Icône du site internet"
+          />
+        </div>
+
+        <div class="footer-center">
+          <p class="footer-text">
+            Ce site a été conçu et développé par les élèves de l'ISEP du groupe
+            G9A 2025/2026 en utilisant HTML, CSS, JavaScript et PHP - Tous
+            droits réservés
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <a href="Mentionlegales.html">Mentions légales et CGU</a>
+        <p>-</p>
+        <a href="GestionCookies.html">Gestion des cookies</a>
+      </div>
     </footer>
   </body>
 </html>
