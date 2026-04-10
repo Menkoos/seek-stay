@@ -468,6 +468,140 @@ ul li a:hover {
 .accordion-content.open {
   display: block !important ;
 }
+/* =======================================  COOKIES ================================ */
+.cookie-toggle-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f7f9fc;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-top: 14px;
+}
+
+.cookie-toggle-info strong {
+  display: block;
+  font-size: 0.95rem;
+  color: #0f1c2e;
+  margin-bottom: 4px;
+}
+
+.cookie-toggle-info span {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+/* Switch toggle */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+  flex-shrink: 0;
+  margin-left: 16px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider-toggle {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  border-radius: 26px;
+  transition: 0.3s;
+}
+
+.slider-toggle:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+input:checked + .slider-toggle {
+  background-color: #30bae6;
+}
+
+input:checked + .slider-toggle:before {
+  transform: translateX(24px);
+}
+
+input:disabled + .slider-toggle {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Boutons d'action */
+.cookies-actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.btn-cookies {
+  padding: 13px 28px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: 0.2s ease;
+}
+
+.btn-accept-all {
+  background-color: #30bae6;
+  color: white;
+}
+
+.btn-accept-all:hover {
+  background-color: #1fa8d4;
+}
+
+.btn-refuse-all {
+  background-color: transparent;
+  color: #0f1c2e;
+  border: 2px solid #ccc;
+}
+
+.btn-refuse-all:hover {
+  border-color: #30bae6;
+  color: #30bae6;
+}
+
+.btn-save {
+  background-color: #244676;
+  color: white;
+  margin-left: auto;
+}
+
+.btn-save:hover {
+  background-color: #1a3358;
+}
+
+/* Badge confirmation */
+.save-confirmation {
+  display: none;
+  margin-top: 16px;
+  font-size: 0.88rem;
+  color: #2a9d5c;
+  font-weight: 600;
+}
+
 /* =======================================  FOOTER ================================ */
 
 footer {
