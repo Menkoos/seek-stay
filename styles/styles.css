@@ -343,32 +343,45 @@ ul li a:hover {
   cursor: pointer;
 }
 
-/* =======================================  COLLOCATION ================================ */
-
 /* =======================================  FAQ ================================ */
 .accordion {
+  background: none;
   background-color: #eee;
   color: #444;
   cursor: pointer;
-  padding: 18px;
+  display: flex;
+  padding: 16px 8px;
   width: 100%;
   border: none;
+  border-top: 0.5px solid #ccc;
   text-align: left;
-  outline: none;
+  outline: 0;
   font-size: 15px;
+  font-weight: 500;
   transition: 0.4s;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: space-between;
 }
 
 .accordion:hover {
-  background-color: #ccc;
+  background-color: #666;
 }
 
 .panel {
   padding: 0 18px;
-  display: none;
+  max-height: 0; 
   background-color: white;
   overflow: hidden;
+  transition: max-height 0.3s ease ;
 }
+
+.panel p {
+  padding: 0 8px 16px;
+  font-size: 14px;
+  color: #555;
+}
+
 /* =======================================  MENTIONS LEGALES ================================ */
 .mentions-hero {
   background-color: #2f5c9b;
