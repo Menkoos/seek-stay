@@ -1,8 +1,5 @@
 <!doctype html>
 <html>
-
-
-
   <head>
     <meta charset="utf-8" />
     <title>Seek & Stay | Location de Logements pour étudiants</title>
@@ -22,122 +19,76 @@
     />
   </head>
 
-
-
   <body>
-
-  <!-- Menu -->
     <header>
       <div class="flex">
         <a href="Accueil.html" class="header-logo">
-          <img src="img/iconSite.png" class="header-logo" alt="logo Seek & Stay" />
+          <img src="img/iconSite.png" class="header-logo" alt="logo" />
         </a>
         <ul class="header-menu">
           <li><a href="Accueil.html" class="active">Accueil</a></li>
-          <li><a href="Offres.html">Offres</a></li>
-          <li><a href="Publier.html">Publier</a></li>
+          <!-- PAS ENCORE FAIT -->
+          <li><a href="Colocation.html">Colocation</a></li>
           <li><a href="FAQ.html">FAQ</a></li>
           <li><a href="Favoris.html">Favoris</a></li>
-          <li><a href="Contact.html">Contact</a></li>
-          <li><a href="Authentification.html"> Inscription / Connexion </a></li>
+          <li><a href="#Contact">Contact</a></li>
+          <li><a href="Authentification.html">Inscription / Connexion </a></li>
         </ul>
       </div>
     </header>
 
-  <!-- Bannière -->
     <div class="slider" id="home">
-      <img src="img/banniere.png" class="slider-background" alt="bannière du site Seek & Stay slogan Trouve ton chez toi idéal location étudiante et sécurisée "/>
+      <img src="img/banniere.png" class="slider-background" />
+      <!-- <div class="slider-content">-->
+      <!-- <h1>Seek & Stay</h1> -->
+      <!-- <h2>Your place, your studies, your future </h2>-->
     </div>
 
-  <!-- Filtres à gauche et résultats à droite -->
+    <!-- Filtres à gauche et résultats à droite -->
     <section class="page-recherche">
-      <!-- Colonne de gauche : Filtres-->
+      <!-- Colonne de gauche : Filtres -->
       <aside class="filters">
         <h2>Filtres avancés</h2>
-
-       <div class="filter-group">
-
-              <form action="/action_page.php">
-        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-        <label for="vehicle1"> I have a bike</label><br>
-        <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
-        <label for="vehicle2"> I have a car</label><br>
-        <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
-        <label for="vehicle3"> I have a boat</label><br><br>
-
-        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-        <label for="vehicle1"> I have a bike</label><br>
-        <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
-        <label for="vehicle2"> I have a car</label><br>
-        <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
-        <label for="vehicle3"> I have a boat</label><br><br>
-              </form>
-       </div>
-
-      <!-- Prix -->
-      <div class="filter-group">
-        <label>Prix max</label>
-        <input type="range" min="300" max="1500">
-      </div>
-
-      <div class="slidecontainer">
-        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-      </div>
-
-      <!-- Type de logement -->
-      <div class="filter-group">
-        <label>Type</label>
-        <select>
-          <option>Studio</option>
-          <option>Appartement</option>
-          <option>Colocation</option>
-        </select>
-      </div>
-
-      <!-- Ville -->
-      <div class="filter-group">
-        <label>Ville</label>
-        <input type="text" placeholder="Ex: Paris">
-      </div>
-
-    <!-- Surface -->
-    <div class="filter-group">
-      <label>Surface min</label>
-      <input type="number" placeholder="m²">
-    </div>
+        <!-- Tu peux ajouter des filtres ici -->
       </aside>
 
       <!-- Colonne de droite : Recherche et Annonces -->
       <div class="resultats">
+
         <!-- Barre de recherche et boutons d'affichage -->
         <section class="search-section">
-          <!-- Barre de recherche -->
-          <div class="search-bar">
-            <input type="text" placeholder="Search..." />
-            <!-- fa-solid = style de l’icône et fa-magnifying-glass = nom de l’icône -->
+      
+          <form class="search-bar" role="search">
+        
+            <!-- Label caché pour accessibilité -->
+            <label for="search-input" class="visually-hidden">
+              Rechercher
+            </label>
+
+            <input 
+              id="search-input"
+              type="text" 
+              placeholder="Rechercher un produit..." 
+              aria-label="Rechercher"
+            />
+
+          <!-- Bouton de recherche -->
+          <button type="submit" class="search-button">
             <i class="fa-solid fa-magnifying-glass"></i>
-          </div>
+          </button>
+        </form>
+      </section>
 
-          <!-- Boutons de choix d'affichage -->
-          <div class="search-icons">
-            <button class="icon-button">
-              <i class="fa-solid fa-list"></i>
-            </button>
-
-            <button class="icon-button">
-              <i class="fa-solid fa-location-dot"></i>
-            </button>
-          </div>
-        </section>
+    </div>
+  </section>
 
         <!-- Liste des annonces -->
         <section class="annonces">
-
           <!-- Carte logement -->
           <div class="carte-logement">
-
             <!-- Partie Image -->
             <div class="carte-image">
+              <!-- image du logement -->
               <img src="img/studio1.jpg" alt="Photo d'un studio étudiant" />
             </div>
 
@@ -156,8 +107,8 @@
 
               <p class="ville">Paris</p>
             </div>
-
           </div>
+
           <!-- Reste des cartes logements a supprimer quand il y aura la bdd -->
           <div class="carte-logement">
             <div class="carte-image">
@@ -221,7 +172,7 @@
 
               <p class="description">
                 Chambre de particulier à louer sur Paris 18. Disponible
-                immédiatement. C'est une location meublée.
+                immédiatement.C'est une location meublée.
               </p>
 
               <p class="ville">Paris</p>
@@ -231,7 +182,7 @@
           <div class="carte-logement">
             <div class="carte-image">
               <!-- image du logement -->
-              <img src="img/studio5.jpg" alt="Photo d'un studio étudiant" />
+              <img src="Images/studio5.jpg" alt="Photo d'un studio étudiant" />
             </div>
 
             <!-- contenu texte -->
@@ -254,7 +205,7 @@
           <div class="carte-logement">
             <div class="carte-image">
               <!-- image du logement -->
-              <img src="img/studio6.jpg" alt="Photo d'un studio étudiant" />
+              <img src="Images/studio6.jpg" alt="Photo d'un studio étudiant" />
             </div>
 
             <!-- contenu texte -->
@@ -278,42 +229,11 @@
     </section>
 
     <footer>
-      <div class="footer-top">
-        <div class="footer-left">
-          <img
-            src="img/iconSite_WhiteText.png"
-            class="logo-footer"
-            alt="Icône du site internet"
-          />
-        </div>
-
-        <div class="footer-center">
-          <p class="footer-text">
-            Ce site a été conçu et développé par les élèves de l'ISEP du groupe
-            G9A 2025/2026 en utilisant HTML, CSS, JavaScript et PHP - Tous
-            droits réservés
-          </p>
-        </div>
-
-        <div class="footer-right">
-          <ul class="footer-menu">
-            <li><a href="Accueil.html" class="active">Accueil</a></li>
-          <li><a href="Offres.html">Offres</a></li>
-          <li><a href="Publier.html">Publier</a></li>
-          <li><a href="FAQ.html">FAQ</a></li>
-          <li><a href="Favoris.html">Favoris</a></li>
-          <li><a href="Contact.html">Contact</a></li>
-          <li><a href="Authentification.html">Inscription / Connexion </a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <a href="Mentionlegales.html">Mentions légales</a>
-        <p>-</p>
-        <a href="GestionCookies.html">Gestion des cookies</a>
-      </div>
+      <p>
+        Ce site a été conçu et développé par les élèves de l'ISEP du groupe G9A
+        2025/2026 en utilisant HTML, CSS, JavaScript et PHP.- Tous droits
+        réservés
+      </p>
     </footer>
   </body>
-
 </html>
