@@ -31,23 +31,83 @@
 }).addTo(map);
 
     /* --- Marqueurs des logements --- */
-    L.marker([48.8566, 2.3522]).addTo(map)
-    .bindPopup('<b>Studio Étudiant</b><br>1167 € · 20m² · Paris');
+        L.marker([48.8566, 2.3522]).addTo(map)
+            .bindPopup(`
+    <div class="carte-popup">
+      <div class="carte-popup-contenu">
+        <h3>Studio Étudiant</h3>
+        <p class="prix">1167 € - 20m²</p>
+        <p class="description">Chambre étudiante, aménagée et exposée plein nord avec vue sur le parc des Buttes-Chaumont</p>
+        <p class="ville">Paris</p>
+        <a href="DetailLogement.html" class="btn-popup">Voir l’annonce</a>
+      </div>
+    </div>
+  `);
 
-    L.marker([48.8600, 2.3550]).addTo(map)
-    .bindPopup('<b>Résidence étudiante</b><br>1300 € · 23m² · Paris');
+        L.marker([50.6292, 3.0573]).addTo(map)
+            .bindPopup(`
+    <div class="carte-popup">
+      <div class="carte-popup-contenu">
+        <h3>Studio Étudiant</h3>
+        <p class="prix">886 € - 19m²</p>
+        <p class="description">Nous vous proposons ce studio meublé de 19,4m², situé au 2ème étage, au sein d'un quartier dynamique</p>
+        <p class="ville">Lille</p>
+        <a href="DetailLogement.html" class="btn-popup">Voir l’annonce</a>
+      </div>
+    </div>
+  `);
 
     L.marker([50.6292, 3.0573]).addTo(map)
-    .bindPopup('<b>Studio Étudiant</b><br>886 € · 19m² · Lille');
+        .bindPopup(`
+    <div class="carte-popup">
+      <div class="carte-popup-contenu">
+        <h3>Studio Étudiant</h3>
+        <p class="prix">886 € - 19m²</p>
+        <p class="description">Nous vous proposons ce studio meublé de 19,4m², situé au 2ème étage, au sein d'un quartier dynamique</p>
+        <p class="ville">Lille</p>
+        <a href="DetailLogement.html" class="btn-popup">Voir l’annonce</a>
+      </div>
+    </div>
+  `);
 
     L.marker([48.8700, 2.3300]).addTo(map)
-    .bindPopup('<b>Jolie chambre</b><br>450 € · 9m² · Paris');
+        .bindPopup(`
+    <div class="carte-popup">
+      <div class="carte-popup-contenu">
+        <h3>Studio Étudiant</h3>
+        <p class="prix">886 € - 19m²</p>
+        <p class="description">Nous vous proposons ce studio meublé de 19,4m², situé au 2ème étage, au sein d'un quartier dynamique</p>
+        <p class="ville">Lille</p>
+        <a href="DetailLogement.html" class="btn-popup">Voir l’annonce</a>
+      </div>
+    </div>
+  `);
 
     L.marker([48.8550, 2.3600]).addTo(map)
-    .bindPopup('<b>Joli studio</b><br>881 € · 25m² · Paris');
+        .bindPopup(`
+    <div class="carte-popup">
+      <div class="carte-popup-contenu">
+        <h3>Studio Étudiant</h3>
+        <p class="prix">886 € - 19m²</p>
+        <p class="description">Nous vous proposons ce studio meublé de 19,4m², situé au 2ème étage, au sein d'un quartier dynamique</p>
+        <p class="ville">Lille</p>
+        <a href="DetailLogement.html" class="btn-popup">Voir l’annonce</a>
+      </div>
+    </div>
+  `);
 
     L.marker([47.7000, 2.1800]).addTo(map)
-    .bindPopup('<b>Studio Étudiant</b><br>530 € · 18m² · Fleury');
+        .bindPopup(`
+    <div class="carte-popup">
+      <div class="carte-popup-contenu">
+        <h3>Studio Étudiant</h3>
+        <p class="prix">886 € - 19m²</p>
+        <p class="description">Nous vous proposons ce studio meublé de 19,4m², situé au 2ème étage, au sein d'un quartier dynamique</p>
+        <p class="ville">Lille</p>
+        <a href="DetailLogement.html" class="btn-popup">Voir l’annonce</a>
+      </div>
+    </div>
+  `);
 }
 
     /* Corrige l'affichage quand la div était cachée */
