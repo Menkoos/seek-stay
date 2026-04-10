@@ -30,35 +30,42 @@
           <li><a href="FAQ.html">FAQ</a></li>
           <li><a href="Favoris.html">Favoris</a></li>
           <li><a href="Contact.html">Contact</a></li>
-          <li><a href="Authentification.html">Inscription / Connexion </a></li>li>
+          <li><a href="Authentification.html">Inscription / Connexion </a></li>
+          li>
         </ul>
       </div>
     </header>
 
-    <h3>Filtre Avancée :</h3>
-    <div class="accordion">
-      <button class="accordion-btn">Question 1</button>
-      <div class="accordion-content">
-        <p>Le texte que je veux écrire</p>
-      </div>
+    <h2>Accordion</h2>
+
+    <button class="accordion">Section 1</button>
+    <div class="panel">
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat.
+      </p>
     </div>
-    <div class="accordion">
-      <button class="accordion-btn">Question 2</button>
-      <div class="accordion-content">
-        <p>C'est bon les accordéons marchent</p>
-      </div>
+
+    <button class="accordion">Section 2</button>
+    <div class="panel">
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat.
+      </p>
     </div>
-    <div class="accordion">
-      <button class="accordion-btn">Question 3</button>
-      <div class="accordion-content">
-        <p>Let's go</p>
-      </div>
-    </div>
-    <div class="accordion">
-      <button class="accordion-btn">Question 4</button>
-      <div class="accordion-content">
-        <p>Maintenant faut du contenu</p>
-      </div>
+
+    <button class="accordion">Section 3</button>
+    <div class="panel">
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat.
+      </p>
     </div>
 
     <footer>
@@ -78,35 +85,13 @@
             droits réservés
           </p>
         </div>
-
-        <div class="footer-right">
-          <ul class="footer-menu">
-   <li><a href="Accueil.html" class="active">Accueil</a></li>
-          <!-- PAS ENCORE FAIT -->
-          <!--<li><a href="Colocation.html">Colocation</a></li>-->
-          <li><a href="Offres.html">Offres</a></li>
-          <li><a href="Publier.html">Publier</a></li>
-          <li><a href="FAQ.html">FAQ</a></li>
-          <li><a href="Favoris.html">Favoris</a></li>
-          <li><a href="Contact.html">Contact</a></li>
-          <li><a href="Authentification.html">Inscription / Connexion </a></li>
-          </ul>
-        </div>
       </div>
 
       <div class="footer-bottom">
-        <a href="Mentionlegales.html">Mentions légales</a>
+        <a href="Mentionlegales.html">Mentions légales et CGU</a>
         <p>-</p>
         <a href="GestionCookies.html">Gestion des cookies</a>
       </div>
     </footer>
-    <script>
-      document.querySelectorAll('.accordion-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const content = btn.nextElementSibling;
-          content.classList.toggle('open');
-        });
-      });
-    </script>
   </body>
 </html>

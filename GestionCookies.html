@@ -5,7 +5,7 @@
     <title>Gestion des cookies</title>
     <meta
       name="description"
-      content="Ceci est notre projet APP - site de location de logements pour étudiants"
+      content="Gestion des cookies du site de location de logements pour étudiants"
     />
     <link rel="icon" type="image/x-icon" href="img/flavicon.png" />
     <link
@@ -23,19 +23,167 @@
         </a>
         <ul class="header-menu">
           <li><a href="Accueil.html" class="active">Accueil</a></li>
-          <!-- PAS ENCORE FAIT -->
-          <!--<li><a href="Colocation.html">Colocation</a></li>-->
           <li><a href="Offres.html">Offres</a></li>
           <li><a href="Publier.html">Publier</a></li>
           <li><a href="FAQ.html">FAQ</a></li>
           <li><a href="Favoris.html">Favoris</a></li>
           <li><a href="Contact.html">Contact</a></li>
-          <li><a href="Authentification.html">Inscription / Connexion </a></li>
+          <li><a href="Authentification.html">Inscription / Connexion</a></li>
         </ul>
       </div>
     </header>
 
-    <p>A completer</p>
+    <!-- Hero -->
+    <section class="mentions-hero">
+      <h1>Gestion des cookies</h1>
+      <p>Contrôlez vos préférences de cookies sur ce site</p>
+      <span class="badge-date">Dernière mise à jour : avril 2026</span>
+    </section>
+
+    <!-- Contenu -->
+    <div class="mentions-container">
+      <div class="mentions-section">
+        <h2>1. Qu'est-ce qu'un cookie ?</h2>
+        <p>
+          Un cookie est un petit fichier texte déposé sur votre appareil
+          (ordinateur, tablette, smartphone) lors de votre visite sur un site
+          web. Il permet au site de mémoriser des informations sur votre
+          navigation afin d'améliorer votre expérience utilisateur.
+        </p>
+        <p>
+          Les cookies ne peuvent pas endommager votre appareil et ne contiennent
+          pas de virus. Conformément au
+          <strong
+            >Règlement Général sur la Protection des Données (RGPD)</strong
+          >
+          et à la directive ePrivacy, votre consentement est requis pour
+          l'utilisation de certains types de cookies.
+        </p>
+      </div>
+
+      <hr class="divider" />
+
+      <div class="mentions-section">
+        <h2>2. Les cookies que nous utilisons</h2>
+        <p>
+          Ce site utilise différentes catégories de cookies. Vous pouvez activer
+          ou désactiver chaque catégorie ci-dessous (à l'exception des cookies
+          strictement nécessaires).
+        </p>
+
+        <div class="cookie-toggle-row">
+          <div class="cookie-toggle-info">
+            <strong>🔒 Cookies strictement nécessaires</strong>
+            <span
+              >Indispensables au fonctionnement du site (session, sécurité,
+              navigation). Ils ne peuvent pas être désactivés.</span
+            >
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="cookie-necessaires" checked disabled />
+            <span class="slider-toggle"></span>
+          </label>
+        </div>
+
+        <div class="cookie-toggle-row">
+          <div class="cookie-toggle-info">
+            <strong>⚙️ Cookies fonctionnels</strong>
+            <span
+              >Permettent de mémoriser vos préférences (langue, favoris,
+              paramètres de recherche).</span
+            >
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="cookie-fonctionnels" checked />
+            <span class="slider-toggle"></span>
+          </label>
+        </div>
+
+        <div class="cookie-toggle-row">
+          <div class="cookie-toggle-info">
+            <strong>📊 Cookies analytiques</strong>
+            <span
+              >Nous aident à comprendre comment les visiteurs utilisent le site
+              (pages vues, durée de visite). Les données sont anonymisées.</span
+            >
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="cookie-analytiques" />
+            <span class="slider-toggle"></span>
+          </label>
+        </div>
+
+        <div class="cookies-actions">
+          <button class="btn-cookies btn-accept-all" onclick="acceptAll()">
+            Tout accepter
+          </button>
+          <button class="btn-cookies btn-refuse-all" onclick="refuseAll()">
+            Tout refuser
+          </button>
+          <button class="btn-cookies btn-save" onclick="savePreferences()">
+            Enregistrer mes préférences
+          </button>
+        </div>
+        <p class="save-confirmation" id="save-msg">
+          ✅ Vos préférences ont bien été enregistrées.
+        </p>
+      </div>
+
+      <hr class="divider" />
+
+      <div class="mentions-section">
+        <h2>3. Durée de conservation</h2>
+        <p>
+          Les cookies déposés sur votre appareil ont une durée de vie limitée.
+          Les cookies de session sont supprimés à la fermeture de votre
+          navigateur. Les autres cookies sont conservés pour une durée maximale
+          de <strong>13 mois</strong>, conformément aux recommandations de la
+          CNIL.
+        </p>
+      </div>
+
+      <hr class="divider" />
+
+      <div class="mentions-section">
+        <h2>4. Gestion via votre navigateur</h2>
+        <p>
+          Vous pouvez également gérer ou supprimer les cookies directement
+          depuis les paramètres de votre navigateur. Voici comment accéder aux
+          réglages des principaux navigateurs :
+        </p>
+        <ul>
+          <li>
+            <strong>Google Chrome</strong> : Paramètres → Confidentialité et
+            sécurité → Cookies
+          </li>
+          <li>
+            <strong>Mozilla Firefox</strong> : Options → Vie privée et sécurité
+          </li>
+          <li><strong>Safari</strong> : Préférences → Confidentialité</li>
+          <li>
+            <strong>Microsoft Edge</strong> : Paramètres → Cookies et
+            autorisations de site
+          </li>
+        </ul>
+        <p>
+          Notez que la désactivation de certains cookies peut affecter le bon
+          fonctionnement du site.
+        </p>
+      </div>
+
+      <hr class="divider" />
+
+      <div class="mentions-section">
+        <h2>5. Contact</h2>
+        <p>
+          Pour toute question relative à l'utilisation des cookies sur ce site,
+          vous pouvez nous contacter via
+          <a href="Contact.html">notre formulaire de contact</a>. Pour en savoir
+          plus sur vos droits, consultez également nos
+          <a href="Mentionlegales.html">Mentions légales</a>.
+        </p>
+      </div>
+    </div>
 
     <footer>
       <div class="footer-top">
@@ -54,27 +202,39 @@
             droits réservés
           </p>
         </div>
-
-        <div class="footer-right">
-          <ul class="footer-menu">
-    <li><a href="Accueil.html" class="active">Accueil</a></li>
-          <!-- PAS ENCORE FAIT -->
-          <!--<li><a href="Colocation.html">Colocation</a></li>-->
-          <li><a href="Offres.html">Offres</a></li>
-          <li><a href="Publier.html">Publier</a></li>
-          <li><a href="FAQ.html">FAQ</a></li>
-          <li><a href="Favoris.html">Favoris</a></li>
-          <li><a href="Contact.html">Contact</a></li>
-          <li><a href="Authentification.html">Inscription / Connexion </a></li>
-          </ul>
-        </div>
       </div>
 
       <div class="footer-bottom">
-        <a href="Mentionlegales.html">Mentions légales</a>
+        <a href="Mentionlegales.html">Mentions légales et CGU</a>
         <p>-</p>
         <a href="GestionCookies.html">Gestion des cookies</a>
       </div>
     </footer>
+
+    <script>
+      function acceptAll() {
+        document.getElementById("cookie-fonctionnels").checked = true;
+        document.getElementById("cookie-analytiques").checked = true;
+        showConfirmation();
+      }
+
+      function refuseAll() {
+        document.getElementById("cookie-fonctionnels").checked = false;
+        document.getElementById("cookie-analytiques").checked = false;
+        showConfirmation();
+      }
+
+      function savePreferences() {
+        showConfirmation();
+      }
+
+      function showConfirmation() {
+        const msg = document.getElementById("save-msg");
+        msg.style.display = "block";
+        setTimeout(() => {
+          msg.style.display = "none";
+        }, 3000);
+      }
+    </script>
   </body>
 </html>

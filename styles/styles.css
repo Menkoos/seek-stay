@@ -359,8 +359,8 @@ ul li a:hover {
   transition: 0.4s;
 }
 
-.active, .accordion:hover {
-  background-color: #ccc; 
+.accordion:hover {
+  background-color: #ccc;
 }
 
 .panel {
