@@ -1,5 +1,8 @@
 <!doctype html>
 <html>
+
+
+
   <head>
     <meta charset="utf-8" />
     <title>Seek & Stay | Location de Logements pour étudiants</title>
@@ -19,7 +22,11 @@
     />
   </head>
 
+
+
   <body>
+
+  <!-- Menu -->
     <header>
       <div class="flex">
         <a href="Accueil.html" class="header-logo">
@@ -27,35 +34,79 @@
         </a>
         <ul class="header-menu">
           <li><a href="Accueil.html" class="active">Accueil</a></li>
-          <!-- PAS ENCORE FAIT -->
-          <!--<li><a href="Colocation.html">Colocation</a></li>-->
           <li><a href="Offres.html">Offres</a></li>
           <li><a href="Publier.html">Publier</a></li>
           <li><a href="FAQ.html">FAQ</a></li>
           <li><a href="Favoris.html">Favoris</a></li>
           <li><a href="Contact.html">Contact</a></li>
-          <li><a href="Authentification.html">Inscription / Connexion </a></li>
+          <li><a href="Authentification.html"> Inscription / Connexion </a></li>
         </ul>
       </div>
     </header>
 
+  <!-- Bannière -->
     <div class="slider" id="home">
-      <img
-        src="img/banniere.png"
-        class="slider-background"
-        alt="bannière du site"
-      />
-      <!-- <div class="slider-content">-->
-      <!-- <h1>Seek & Stay</h1> -->
-      <!-- <h2>Your place, your studies, your future </h2>-->
+      <img src="img/banniere.png" class="slider-background" alt="bannière du site"/>
     </div>
 
-    <!-- Filtres à gauche et résultats à droite -->
+  <!-- Filtres à gauche et résultats à droite -->
     <section class="page-recherche">
       <!-- Colonne de gauche : Filtres-->
       <aside class="filters">
         <h2>Filtres avancés</h2>
+
+       <div class="filter-group">
+
+              <form action="/action_page.php">
+        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+        <label for="vehicle1"> I have a bike</label><br>
+        <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+        <label for="vehicle2"> I have a car</label><br>
+        <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+        <label for="vehicle3"> I have a boat</label><br><br>
+
+        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+        <label for="vehicle1"> I have a bike</label><br>
+        <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+        <label for="vehicle2"> I have a car</label><br>
+        <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+        <label for="vehicle3"> I have a boat</label><br><br>
+              </form>
+       </div>
+
+      <!-- Prix -->
+      <div class="filter-group">
+        <label>Prix max</label>
+        <input type="range" min="300" max="1500">
+      </div>
+
+      <div class="slidecontainer">
+        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+      </div>
+
+      <!-- Type de logement -->
+      <div class="filter-group">
+        <label>Type</label>
+        <select>
+          <option>Studio</option>
+          <option>Appartement</option>
+          <option>Colocation</option>
+        </select>
+      </div>
+
+      <!-- Ville -->
+      <div class="filter-group">
+        <label>Ville</label>
+        <input type="text" placeholder="Ex: Paris">
+      </div>
+
+    <!-- Surface -->
+    <div class="filter-group">
+      <label>Surface min</label>
+      <input type="number" placeholder="m²">
+    </div>
       </aside>
+
       <!-- Colonne de droite : Recherche et Annonces -->
       <div class="resultats">
         <!-- Barre de recherche et boutons d'affichage -->
@@ -81,11 +132,12 @@
 
         <!-- Liste des annonces -->
         <section class="annonces">
+
           <!-- Carte logement -->
           <div class="carte-logement">
+
             <!-- Partie Image -->
             <div class="carte-image">
-              <!-- image du logement -->
               <img src="img/studio1.jpg" alt="Photo d'un studio étudiant" />
             </div>
 
@@ -104,8 +156,8 @@
 
               <p class="ville">Paris</p>
             </div>
-          </div>
 
+          </div>
           <!-- Reste des cartes logements a supprimer quand il y aura la bdd -->
           <div class="carte-logement">
             <div class="carte-image">
@@ -246,8 +298,6 @@
         <div class="footer-right">
           <ul class="footer-menu">
             <li><a href="Accueil.html" class="active">Accueil</a></li>
-          <!-- PAS ENCORE FAIT -->
-          <!--<li><a href="Colocation.html">Colocation</a></li>-->
           <li><a href="Offres.html">Offres</a></li>
           <li><a href="Publier.html">Publier</a></li>
           <li><a href="FAQ.html">FAQ</a></li>
@@ -265,4 +315,5 @@
       </div>
     </footer>
   </body>
+
 </html>
