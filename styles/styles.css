@@ -1,6 +1,8 @@
+
+/* Police Inter depuis Google Fonts (utilisée sur tout le site) */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
 
-/* ======================================= GENERAL ================================ */
+/* Mise en page générale */
 
 * {
   margin: 0;
@@ -8,30 +10,30 @@
   box-sizing: border-box;
 }
 
+
 html {
   scroll-behavior: smooth;
 }
+
 
 body {
   overflow-x: hidden;
   font-family: "Inter", sans-serif;
 }
 
-.divider {
-  border: none;
-  border-top: 1px solid #e0e0e0;
-}
 
 h1 {
   color: #fff;
   font-size: 5rem;
 }
 
+
 h2 {
   color: #000000;
   font-size: 2rem;
   font-weight: 700;
 }
+
 
 h3 {
   color: #000000;
@@ -40,43 +42,41 @@ h3 {
   margin-top: 20px;
 }
 
-/* ======================================= HEADER ================================ */
+/* Header */
 
+/* Barre de navigation fixe en haut de la page même si on scroll */
 header {
   position: sticky;
   top: 0;
-  z-index: 1000;
+  z-index: 1000; /* z-index élevé pour rester au-dessus du contenu */
   background-color: white;
   width: 100%;
 }
 
+/* Aligne le logo et le menu sur une ligne */
 .flex {
   display: flex;
   align-items: center;
   width: 100%;
 }
 
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  background-color: white;
-}
-
+/* Menu de navigation */
 .header-menu {
   display: flex;
   align-items: center;
   list-style: none;
   gap: 10px;
   margin: 0;
-  padding: 10px;
+  padding: 22px;
   width: 100%;
 }
 
+/* Chaque élément du menu */
 .header-menu li {
   float: none;
 }
 
+/* Bouton du menu */
 .header-menu li a {
   text-decoration: none;
   color: #0f1c2e;
@@ -87,43 +87,51 @@ ul {
   text-align: center;
 }
 
+/* Survol des boutons */
 .header-menu li a:hover {
   color: #30bae6;
-  text-decoration: underline;
+  text-decoration: none;
   text-underline-offset: 4px;
 }
 
+/* Met bouton Inscription/Connexion complètement à droite */
 .header-menu li:last-child {
   margin-left: auto;
 }
 
+/* style du Bouton "Inscription / Connexion"  */
 .header-menu li:last-child a {
   background-color: #244676;
   color: #fff;
   border-radius: 15px;
 }
 
+/* Logo cliquable renvoyant vers accueil */
 .header-logo {
   display: block;
 }
 
+/* Taille du logo dans le header */
 .header-logo img {
-  width: 70px;
+  width: 80px;
   margin-left: 30px;
   transition: transform 0.2s ease;
 }
 
+/* Zoom quand on survol le logo */
 .header-logo img:hover {
   transform: scale(1.1);
 }
 
-/* ======================================= BANNIERE ================================ */
+/* Bannière */
 
+/* Bannière prend toute la largeur de la page */
 .slider {
   width: 100%;
   position: relative;
 }
 
+/* Image de la bannière */
 .slider-background {
   width: 100%;
   height: auto;
@@ -131,37 +139,30 @@ ul {
   filter: brightness(0.8);
 }
 
-.slider-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-}
+/* Reste de la page d'accueil */
 
-/* ======================================= PAGE OFFRES ================================ */
-
+/* Colonne filtres à gauche, colonne résultats à droite */
 .page-recherche {
   display: flex;
   padding: 20px 40px 20px 20px;
   gap: 40px;
 }
 
-/* Colonne filtres */
+/* Colonne de gauche : filtres avancés */
 .filters {
   width: 250px;
   min-width: 250px;
-  border-right: 1px solid #ddd;
+  border-right: 1px solid #ddd; /* Ligne entre filtres et résultats */
   padding-right: 20px;
 }
 
-/* Colonne résultats */
+/* Colonne de droite : résultats */
+
 .resultats {
-  flex: 1;
-  min-width: 0;
+  flex: 1;      /* Prend tout l'espace restant */
 }
 
-/* -------- Haut de page : barre de recherche + boutons vue -------- */
+/* Barre de recherche + boutons liste/map */
 
 .search-section {
   display: flex;
@@ -170,16 +171,17 @@ ul {
   margin: 30px 0;
 }
 
-/* Barre de recherche */
+/* Conteneur de la barre de recherche (prend toute la largeur disponible) */
 .search-bar {
   flex: 1;
-  position: relative;
+  position: relative; /* Sert à positionner l'icône de loupe en absolu */
 }
 
+/* Champ de saisie de la barre de recherche */
 .search-bar input {
   width: 100%;
   height: 56px;
-  padding: 0 55px 0 18px;
+  padding: 0 55px 0 18px; /* Espace à droite pour l'icône loupe */
   border-radius: 14px;
   border: 2px solid #425f79;
   font-size: 18px;
@@ -187,59 +189,63 @@ ul {
   background-color: white;
 }
 
+/* Icône loupe à droite dans la barre de recherche */
 .search-bar i {
   position: absolute;
   right: 18px;
   top: 50%;
   transform: translateY(-50%);
   font-size: 22px;
-  color: #333;
-  pointer-events: none;
+  color: #425f79;
 }
 
-/* Boutons liste / carte */
-.view-switch {
+/* Boutons liste et map */
+.icon-button {
+  width: 72px;
+  height: 53px;
+  border: none;
+  background: white;
+  font-size: 26px;
+  cursor: pointer;
+  color: #425f79;
+}
+
+/* intérieur des boutons liste/carte */
+.icon-button:first-child {
+  border-right: 2px solid #425f79;
+}
+
+/* Bordures des boutons liste/carte */
+.search-icons {
   display: flex;
-  border: 2px solid #6b6b6b;
+  border: 2px solid #425f79;
   border-radius: 12px;
   overflow: hidden;
   background-color: white;
   flex-shrink: 0;
 }
 
-.icon-button {
-  width: 78px;
-  height: 56px;
-  border: none;
-  background: white;
-  font-size: 28px;
-  cursor: pointer;
-  color: #333;
-  transition: background 0.2s ease, color 0.2s ease;
-}
-
-.icon-button:first-child {
-  border-right: 2px solid #6b6b6b;
-}
-
+/* Quand une vue est sélectionner */
 .icon-button.active {
-  background-color: #d0d0d0;
-  color: #444;
+  background-color: #e6e4e4;
+  color: #425f79;
 }
 
-/* -------- Liste des annonces -------- */
+/* Liste des annonces */
 
+/* Grille 3 colonnes pour afficher les cartes de logement */
 #annonces {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 30px;
 }
 
+/* masquer liste des logements quand on choisit la map */
 #annonces.annonces-hidden {
   display: none;
 }
 
-/* Cartes logement */
+/* Carte d'un logement */
 .carte-logement {
   position: relative;
   width: 100%;
@@ -253,12 +259,14 @@ ul {
   cursor: pointer;
 }
 
+/* Zone image de la carte  */
 .carte-image {
   width: 100%;
   height: 230px;
   overflow: hidden;
 }
 
+/* image de la carte */
 .carte-image img {
   width: 100%;
   height: 100%;
@@ -266,39 +274,38 @@ ul {
   display: block;
 }
 
+/* Zone de texte sous l'image */
 .carte-contenu {
   padding: 20px 25px;
   position: relative;
   z-index: 2;
 }
 
-.carte-haut {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
+/* Titre de la carte (plus petit que le h2 général) */
 .carte-haut h2 {
   margin: 0;
   font-size: 18px;
 }
 
+/* Prix et surface de la carte */
 .prix {
   font-size: 18px;
   margin: 18px 0 12px 0;
 }
 
+/* Description de la carte */
 .description {
   font-size: 14px;
   margin: 0 0 13px 0;
 }
 
+/* Ville de la carte*/
 .ville {
   text-align: right;
   font-size: 14px;
 }
 
-/* -------- Bloc carte Mapbox -------- */
+/* carte Mapbox */
 
 .map-wrapper {
   position: relative;
@@ -310,21 +317,23 @@ ul {
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
 }
 
+/* Affiche la carte quand on clique sur le bouton map */
 .map-wrapper.map-visible {
   display: block;
 }
 
+/* carte Mapbox occupe tout l'espace */
 #map {
   width: 100%;
   height: 100%;
 }
 
-/* Boutons sur la carte */
+/* boutons Plan/Satellite/3D */
 .map-toolbar {
   position: absolute;
   top: 20px;
   left: 20px;
-  z-index: 10;
+  z-index: 10; /* Au-dessus de la carte Mapbox */
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
@@ -341,12 +350,13 @@ ul {
   font-weight: 600;
 }
 
-/* Popup logement sur la carte */
+/* information du logement quand on clique sur un pin */
 .popup-logement {
   min-width: 190px;
   font-family: "Inter", sans-serif;
 }
 
+/* Titre du logement dans le popup */
 .popup-logement strong {
   display: block;
   font-size: 15px;
@@ -354,12 +364,14 @@ ul {
   color: #0f1c2e;
 }
 
+/* prix, surface, ville dans le popup */
 .popup-logement p {
   margin: 0 0 6px 0;
   font-size: 14px;
   color: #333;
 }
 
+/* bouton Itinéraire dans le popup  */
 .btn-itineraire {
   margin-top: 10px;
   width: 100%;
@@ -373,11 +385,7 @@ ul {
   transition: 0.2s ease;
 }
 
-.btn-itineraire:hover {
-  background-color: #1a3358;
-}
-
-/* ======================================= AUTHENTIFICATION ================================ */
+/* Authentification */
 
 .page-auth {
   display: flex;
@@ -393,27 +401,21 @@ ul {
   padding: 60px 80px;
 }
 
+/* Formulaire en colonne */
 .form-connexion {
   display: flex;
   flex-direction: column;
   gap: 30px;
 }
 
-.champ input {
-  width: 100%;
-  border: none;
-  background-color: #dde1ee;
-  padding: 16px;
-  font-size: 14px;
-  outline: none;
-}
-
+/* boutons Connexion / Inscription */
 .boutons {
   display: flex;
   gap: 40px;
   margin-top: 20px;
 }
 
+/* style boutons */
 .boutons button {
   flex: 1;
   padding: 18px;
@@ -424,7 +426,7 @@ ul {
   cursor: pointer;
 }
 
-/* ======================================= FAQ ================================ */
+/* FAQ */
 
 .accordion {
   background-color: #eee;
@@ -439,19 +441,21 @@ ul {
   transition: 0.4s;
 }
 
+/* survol d'une question */
 .accordion:hover {
   background-color: #ccc;
 }
 
-.panel {
-  padding: 0 18px;
-  display: none;
-  background-color: white;
-  overflow: hidden;
+
+/* Mentions légales */
+
+/* Ligne horizontale grise (utilisée dans les pages légales et cookies) */
+.divider {
+  border: none;
+  border-top: 1px solid #e0e0e0;
 }
 
-/* ======================================= MENTIONS LEGALES ================================ */
-
+/* Bandeau en haut de la page */
 .mentions-hero {
   background-color: #2f5c9b;
   color: white;
@@ -459,62 +463,21 @@ ul {
   text-align: center;
 }
 
+/* Titre de la page */
 .mentions-hero h1 {
   font-size: 2.8rem;
   font-weight: 800;
   margin-bottom: 10px;
 }
 
+/* Sous-titre de la page */
 .mentions-hero p {
   color: #b2c2d2;
   font-size: 1rem;
   margin-top: 8px;
 }
 
-.mentions-container {
-  max-width: 860px;
-  margin: 60px auto;
-  padding: 0 30px 60px;
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-}
-
-.mentions-section {
-  border-left: 4px solid #30bae6;
-  padding-left: 24px;
-}
-
-.mentions-section h2 {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #0f1c2e;
-  margin-bottom: 12px;
-}
-
-.mentions-section p,
-.mentions-section li {
-  font-size: 0.95rem;
-  color: #444;
-  line-height: 1.75;
-}
-
-.mentions-section ul {
-  list-style: disc;
-  padding-left: 20px;
-  background-color: transparent;
-}
-
-.mentions-section ul li {
-  padding: 2px 0;
-}
-
-.mentions-section a {
-  color: #30bae6;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
+/* date de mise à jour */
 .badge-date {
   display: inline-block;
   background-color: #e9ecf8;
@@ -526,7 +489,51 @@ ul {
   margin-top: 6px;
 }
 
-/* ======================================= COOKIES ================================ */
+.mentions-container {
+  max-width: 860px;
+  margin: 60px auto;
+  padding: 0 30px 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* trait bleu à gauche */
+.mentions-section {
+  border-left: 4px solid #30bae6;
+  padding-left: 24px;
+}
+
+/* Titre d'une section*/
+.mentions-section h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f1c2e;
+  margin-bottom: 12px;
+}
+
+/* Texte de la section */
+.mentions-section p,
+.mentions-section li {
+  font-size: 0.95rem;
+  color: #444;
+  line-height: 1.75;
+}
+
+/* Espace entre les sections */
+.mentions-section ul li {
+  padding: 2px 0;
+}
+
+/* Liens dans les sections */
+.mentions-section a {
+  color: #30bae6;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+
+/*  Gestion des cookies */
 
 .cookie-toggle-row {
   display: flex;
@@ -539,6 +546,7 @@ ul {
   margin-top: 14px;
 }
 
+/* Nom de la catégorie de cookie */
 .cookie-toggle-info strong {
   display: block;
   font-size: 0.95rem;
@@ -546,6 +554,7 @@ ul {
   margin-bottom: 4px;
 }
 
+/* Description de la catégorie de cookie */
 .cookie-toggle-info span {
   font-size: 0.85rem;
   color: #666;
@@ -578,6 +587,7 @@ ul {
   transition: 0.3s;
 }
 
+/* curseur de l'interrupteur */
 .slider-toggle:before {
   position: absolute;
   content: "";
@@ -590,6 +600,7 @@ ul {
   transition: 0.3s;
 }
 
+/* Quand l'interrupteur est allumé couleur se transforme */
 input:checked + .slider-toggle {
   background-color: #30bae6;
 }
@@ -598,11 +609,13 @@ input:checked + .slider-toggle:before {
   transform: translateX(24px);
 }
 
+/* Interrupteur non modifiable */
 input:disabled + .slider-toggle {
   cursor: not-allowed;
   opacity: 0.6;
 }
 
+/* boutons Tout accepter, Tout refuser, Enregistrer */
 .cookies-actions {
   display: flex;
   gap: 16px;
@@ -620,6 +633,7 @@ input:disabled + .slider-toggle {
   transition: 0.2s ease;
 }
 
+/* Bouton Tout accepter*/
 .btn-accept-all {
   background-color: #30bae6;
   color: white;
@@ -629,6 +643,7 @@ input:disabled + .slider-toggle {
   background-color: #1fa8d4;
 }
 
+/* Bouton Tout refuser */
 .btn-refuse-all {
   background-color: transparent;
   color: #0f1c2e;
@@ -640,6 +655,7 @@ input:disabled + .slider-toggle {
   color: #30bae6;
 }
 
+/* Bouton Enregistrer mes préférences */
 .btn-save {
   background-color: #244676;
   color: white;
@@ -650,6 +666,7 @@ input:disabled + .slider-toggle {
   background-color: #1a3358;
 }
 
+/* Message de confirmation après l'enregistrement des préférences */
 .save-confirmation {
   display: none;
   margin-top: 16px;
@@ -658,16 +675,17 @@ input:disabled + .slider-toggle {
   font-weight: 600;
 }
 
-/* ======================================= FOOTER ================================ */
+/*  Footer */
 
 footer {
   width: 100%;
-  background-color: #2f5c9b;
+  background-color: #1A3358FF;
   color: white;
   padding: 40px;
   margin-top: 50px;
 }
 
+/* logo à gauche, texte au centre : grille 3 colonnes */
 .footer-top {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -675,43 +693,25 @@ footer {
   gap: 30px;
 }
 
+/* Colonne gauche du footer */
 .footer-left {
   display: flex;
   justify-content: flex-start;
   padding-left: 100px;
 }
 
-.footer-center {
-  text-align: center;
-}
-
-.footer-right {
-  display: flex;
-  justify-content: flex-end;
-  padding-right: 170px;
-}
-
+/* Logo dans le footer */
 .logo-footer {
   width: 200px;
   height: auto;
 }
 
-.footer-menu {
-  list-style: none;
-  background-color: #2f5c9b;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  margin: 0;
-  padding: 0;
+/* Colonne centrale du footer */
+.footer-center {
+  text-align: center;
 }
 
-.footer-menu a {
-  color: white;
-  text-decoration: none;
-}
-
+/* Mentions légales et Gestion des cookies */
 .footer-bottom {
   display: flex;
   justify-content: center;
@@ -728,56 +728,4 @@ footer {
   color: #30bae6;
   text-decoration: underline;
   text-underline-offset: 4px;
-}
-
-/* ======================================= RESPONSIVE ================================ */
-
-@media screen and (max-width: 1024px) {
-  #annonces {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .page-recherche {
-    flex-direction: column;
-    padding: 20px;
-  }
-
-  .filters {
-    width: 100%;
-    min-width: 100%;
-    border-right: none;
-    border-bottom: 1px solid #ddd;
-    padding-right: 0;
-    padding-bottom: 20px;
-  }
-
-  .search-section {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .view-switch {
-    align-self: flex-start;
-  }
-
-  #annonces {
-    grid-template-columns: 1fr;
-  }
-
-  .map-wrapper {
-    height: 500px;
-  }
-
-  .footer-top {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .footer-left,
-  .footer-right {
-    justify-content: center;
-    padding: 0;
-  }
 }
