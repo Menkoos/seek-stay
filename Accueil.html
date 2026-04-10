@@ -52,60 +52,133 @@
   <!-- Filtres à gauche et résultats à droite -->
     <section class="page-recherche">
       <!-- Colonne de gauche : Filtres-->
+      <form action="/filtres_offres.php">
       <aside class="filters">
         <h2>Filtres avancés</h2>
+       <div class="filter-group1">
 
-       <div class="filter-group">
+                <h4>Types de logement</h4>
 
-              <form action="/action_page.php">
-        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-        <label for="vehicle1"> I have a bike</label><br>
-        <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
-        <label for="vehicle2"> I have a car</label><br>
-        <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
-        <label for="vehicle3"> I have a boat</label><br><br>
-
-        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-        <label for="vehicle1"> I have a bike</label><br>
-        <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
-        <label for="vehicle2"> I have a car</label><br>
-        <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
-        <label for="vehicle3"> I have a boat</label><br><br>
-              </form>
+                 <input type="radio" name="logement" value="studio"> Studio<br>
+                 <input type="radio" name="logement" value="appartement"> Appartement<br>
+                 <input type="radio" name="logement" value="colocation"> Colocation<br>
+                 <input type="radio" name="logement" value="chambre"> Chambre<br>
        </div>
 
       <!-- Prix -->
       <div class="filter-group">
-        <label>Prix max</label>
-        <input type="range" min="300" max="1500">
-      </div>
+      <h4> Prix du logement  </h4>
+       <label>  min  :      </label>
+       <input type="number" name="surface_min" min="150" max="3000" placeholder="€"><br>
 
-      <div class="slidecontainer">
-        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-      </div>
+       <label>  max :  </label>
+      <input type="number" name="surface_max" min="150" max="3000" placeholder="€">
+    </div>
 
-      <!-- Type de logement -->
-      <div class="filter-group">
-        <label>Type</label>
+      <!-- Superfecie 
+      <div class="filter-group3">
+      <label>Superfecie</label>
         <select>
           <option>Studio</option>
           <option>Appartement</option>
           <option>Colocation</option>
         </select>
-      </div>
+      </div> -->
 
-      <!-- Ville -->
+
+
+
+
+      <!-- Ville 
       <div class="filter-group">
         <label>Ville</label>
         <input type="text" placeholder="Ex: Paris">
-      </div>
+      </div>-->
 
     <!-- Surface -->
     <div class="filter-group">
-      <label>Surface min</label>
-      <input type="number" placeholder="m²">
+      <h4>Surperfécie </h4>
+       <label>Surface minimale  : </label>
+       <input type="number" name="surface_min" min="9" max="300" placeholder="m²"> 
+       <p>   </p>
+
+       <label>Surface maximale :  </label>
+      <input type="number" name="surface_max" min="9" max="300" placeholder="m²">
     </div>
+
+
+    <script>
+const minInput = document.querySelector('input[name="surface_min"]');
+const maxInput = document.querySelector('input[name="surface_max"]');
+
+minInput.addEventListener('input', () => {
+  const minValue = parseInt(minInput.value);
+
+  if (!isNaN(minValue)) {
+    maxInput.min = minValue;
+
+    // si max < min → on corrige automatiquement
+    if (parseInt(maxInput.value) < minValue) {
+      maxInput.value = minValue;
+    }
+  }
+});
+</script>
+
+    <div class="filter-group">
+
+         
+                <h4>Equipement</h4>
+                <input type="checkbox" id="wifi" name="equipements[]" value="wifi">
+                <label for="wifi">Wi-Fi</label><br>
+
+                <input type="checkbox" id="lave-linge" name="equipements[]" value="machine_a_laver">
+                <label for="lave-linge">Machine à laver</label><br>
+
+                <input type="checkbox" id="micro-onde" name="equipements[]" value="micro_onde">
+               <label for="micro-onde">Micro-ondes</label><br>
+
+                <input type="checkbox" id="four" name="equipements[]" value="four">
+                <label for="four">Four</label><br>
+
+                <input type="checkbox" id="frigo" name="equipements[]" value="frigo">
+                <label for="frigo">Frigo</label><br>
+
+                <input type="checkbox" id="ustensiles" name="equipements[]" value="ustensiles_cuisine">
+                <label for="ustensiles">Ustensiles de cuisine</label><br>
+
+              <input type="checkbox" id="ascenseur" name="equipements[]" value="ascenseur">
+              <label for="ascenseur">Ascenseur</label><br>
+
+              <input type="checkbox" id="parking" name="equipements[]" value="parking">
+              <label for="parking">Parking</label><br>
+            
+       </div>
+
+       <div class="filter-group1">
+
+                <h4>Type de propiétaire </h4>
+
+                 <input type="radio" name="propriétaire" value="particulier"> Particulier<br>
+                 <input type="radio" name="propriétaire" value="agence "> Agence<br>
+       </div>
+
+
+       <div class="filter-group">
+
+         
+                <h4>Aide</h4>
+                <input type="checkbox" id="wifi" name="equipements[]" value="wifi">
+                <label for="wifi">CAF accepté</label><br>
+
+                <input type="checkbox" id="lave-linge" name="equipements[]" value="machine_a_laver">
+                <label for="lave-linge">APL accpeté</label><br>
+            
+       </div>
+
+
       </aside>
+      </form>
 
       <!-- Colonne de droite : Recherche et Annonces -->
       <div class="resultats">

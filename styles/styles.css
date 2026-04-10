@@ -41,6 +41,14 @@ h3 {
   margin-top: 20px;
 }
 
+h4 {
+  color: #0f1c2e;;
+  font-size: 20px;
+  margin-left: 5px;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
 header {
   position: sticky; /* Permet a la barre de rester visible quand on scroll la page */
   top: 0; /* Permet a la barre de rester en haut de la page */
