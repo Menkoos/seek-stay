@@ -328,6 +328,35 @@ ALTER TABLE `signalements_annonces`
   ADD CONSTRAINT `signalements_annonces_ibfk_2` FOREIGN KEY (`annonce_id`) REFERENCES `annonces` (`id_annonce`);
 COMMIT;
 
+
+-- Table `pages_contenu`
+-- Stocke les textes modifiables des pages Mentions légales et CGU
+-- Chaque ligne = une section d'une page (ex: "editeur_site" de la page "mentions")
+--
+CREATE TABLE `pages_contenu` (
+                                 `id` int(11) NOT NULL AUTO_INCREMENT,
+                                 `page` varchar(50) NOT NULL,        -- 'mentions' ou 'cgu'
+                                 `section` varchar(100) NOT NULL,    -- identifiant de la section (ex: 'editeur_site')
+                                 `titre` varchar(255) NOT NULL,      -- titre affiché (ex: "1. Éditeur du site")
+                                 `contenu` text NOT NULL,            -- texte de la section
+                                 `date_modification` datetime DEFAULT NULL,
+                                 PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Données initiales : sections de la page Mentions légales
+--
+INSERT INTO `pages_contenu` (`page`, `section`, `titre`, `contenu`, `date_modification`) VALUES
+                                                                                             ('mentions', 'editeur_site', '1. Éditeur du site', 'Ce site a été conçu et développé dans le cadre d\'un projet académique par les étudiants du groupe G9A de l\'ISEP (Institut Supérieur d\'Électronique de Paris), promotion 2025/2026.\nAdresse : 28 rue Notre-Dame-des-Champs, 75006 Paris, France', NOW()),
+('mentions', 'hebergement', '2. Hébergement', 'Ce site est hébergé dans le cadre du projet pédagogique de l\'ISEP. Pour toute question relative à l\'hébergement, veuillez contacter l\'équipe via le formulaire de contact.', NOW()),
+('mentions', 'propriete_intellectuelle', '3. Propriété intellectuelle', 'L\'ensemble des contenus présents sur ce site (textes, images, logos, icônes, structure) sont la propriété exclusive des étudiants du groupe G9A ou sont utilisés avec les autorisations nécessaires.\nToute reproduction, distribution ou modification sans autorisation préalable est interdite.', NOW()),
+('mentions', 'donnees_personnelles', '4. Données personnelles', 'Dans le cadre de l\'utilisation de ce site, certaines données personnelles peuvent être collectées (adresse e-mail, nom, préférences de recherche). Ces données sont utilisées uniquement dans le cadre du fonctionnement de la plateforme et ne sont pas transmises à des tiers.', NOW()),
+('mentions', 'cookies', '5. Cookies', 'Ce site peut utiliser des cookies à des fins techniques et de mémorisation de vos préférences. Vous pouvez gérer vos préférences à tout moment depuis la page Gestion des cookies.', NOW()),
+('mentions', 'responsabilite', '6. Responsabilité', 'Les informations contenues sur ce site sont fournies à titre indicatif. L\'équipe du projet G9A ne saurait être tenue responsable des erreurs, omissions ou résultats qui pourraient être obtenus suite à l\'utilisation de ces informations.\nCe site est un projet étudiant réalisé à des fins pédagogiques. Certaines fonctionnalités peuvent être simulées ou incomplètes.', NOW()),
+('mentions', 'droit_applicable', '7. Droit applicable', 'Les présentes mentions légales sont soumises au droit français. En cas de litige, les tribunaux compétents seront ceux du ressort de Paris.', NOW());
+
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

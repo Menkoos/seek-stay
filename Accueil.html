@@ -2,337 +2,283 @@
 <html>
 
 <head>
-  <meta charset="utf-8" />
-  <title>Seek & Stay | Location de Logements pour étudiants</title>
-  <meta name="description" content="Ceci est notre projet APP - site de location de logements pour étudiants" />
-  <link rel="icon" type="image/x-icon" href="img/flavicon.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-  <link rel="stylesheet" href="styles/styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+      <meta charset="utf-8" />
+      <title>Seek & Stay | Location de Logements pour étudiants</title>
+      <meta name="description" content="Ceci est notre projet APP - site de location de logements pour étudiants" />
+      <link rel="icon" type="image/x-icon" href="img/flavicon.png" />
+      <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+      <link rel="stylesheet" href="styles/styles.css" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!-- Mapbox GL JS : Carte  -->
+      <link href="https://api.mapbox.com/mapbox-gl-js/v3.20.0/mapbox-gl.css" rel="stylesheet">
+      <script src="https://api.mapbox.com/mapbox-gl-js/v3.20.0/mapbox-gl.js"></script>
+      <script src="js/vue-map.js" defer></script>
 
-  <link href="https://api.mapbox.com/mapbox-gl-js/v3.20.0/mapbox-gl.css" rel="stylesheet">
-  <script src="https://api.mapbox.com/mapbox-gl-js/v3.20.0/mapbox-gl.js"></script>
-  <script src="js/vue-map.js" defer></script>
-
-  <link
-          rel="stylesheet"
-          href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css"
-          type="text/css"
-  />
-  <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
+      <!-- Plugin Mapbox Geocoder : recherche d'adresse sur la carte -->
+      <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" type="text/css" />
+      <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
 </head>
+
 
 <body>
 
-<!-- Menu -->
+<!-- Menu de navigation -->
 <header>
-  <div class="flex">
-    <a href="Accueil.html" class="header-logo">
-      <img src="img/iconSite.png" class="header-logo" alt="logo Seek & Stay" />
-    </a>
-    <ul class="header-menu">
-      <li><a href="Accueil.html" class="active">Accueil</a></li>
-      <li><a href="Offres.html">Offres</a></li>
-      <li><a href="Publier.html">Publier</a></li>
-      <li><a href="FAQ.html">FAQ</a></li>
-      <li><a href="Favoris.html">Favoris</a></li>
-      <li><a href="Contact.html">Contact</a></li>
-      <li><a href="Authentification.html"> Inscription / Connexion </a></li>
-    </ul>
-  </div>
+      <div class="flex">
+
+        <a href="Accueil.html" class="header-logo">
+          <img src="img/iconSite.png" class="header-logo" alt="logo Seek & Stay" />
+        </a>
+
+        <ul class="header-menu">
+          <li><a href="Accueil.html" class="active">Accueil</a></li>
+          <li><a href="Offres.html">Offres</a></li>
+          <li><a href="Publier.html">Publier</a></li>
+          <li><a href="FAQ.html">FAQ</a></li>
+          <li><a href="Favoris.html">Favoris</a></li>
+          <li><a href="Contact.html">Contact</a></li>
+          <li><a href="Authentification.html">Inscription / Connexion</a></li>
+        </ul>
+
+      </div>
 </header>
 
 <!-- Bannière -->
 <div class="slider" id="home">
-  <img src="img/banniere.png" class="slider-background" alt="bannière du site Seek & Stay avec slogan Trouve ton chez toi idéal location étudiante et sécurisée" />
+      <img src="img/banniere.png" class="slider-background" alt="bannière du site Seek & Stay avec slogan Trouve ton chez toi idéal location étudiante et sécurisée" />
 </div>
 
-<!-- Filtres à gauche et résultats à droite -->
+<!-- Filtres à gauche, résultats à droite -->
 <section class="page-recherche">
 
-  <!-- Colonne de gauche : Filtres -->
+      <!-- Colonne de gauche : Filtres avancés -->
       <form action="/filtres_offres.php">
-      <aside class="filters">
-        <h2>Filtres avancés</h2>
-       <div class="filter-group1">
+        <aside class="filters">
+          <h2>Filtres avancés</h2>
 
-                <h4>Types de logement</h4>
+          <!-- Type de logement -->
+          <div class="filter-group1">
+            <h4>Types de logement</h4>
+            <input type="radio" name="logement" value="studio"> Studio<br>
+            <input type="radio" name="logement" value="appartement"> Appartement<br>
+            <input type="radio" name="logement" value="colocation"> Colocation<br>
+            <input type="radio" name="logement" value="chambre"> Chambre<br>
+          </div>
 
-                 <input type="radio" name="logement" value="studio"> Studio<br>
-                 <input type="radio" name="logement" value="appartement"> Appartement<br>
-                 <input type="radio" name="logement" value="colocation"> Colocation<br>
-                 <input type="radio" name="logement" value="chambre"> Chambre<br>
-       </div>
+          <!-- Fourchette de prix -->
+          <div class="filter-group">
+            <h4>Prix du logement</h4>
+            <label>Min :</label>
+            <input type="number" name="prix_min" min="150" max="3000" placeholder="€"><br>
+            <label>Max :</label>
+            <input type="number" name="prix_max" min="150" max="3000" placeholder="€">
+          </div>
 
-      <!-- Prix -->
-      <div class="filter-group">
-      <h4> Prix du logement  </h4>
-       <label>  min  :      </label>
-       <input type="number" name="surface_min" min="150" max="3000" placeholder="€"><br>
+          <!-- Superficie -->
+          <div class="filter-group">
+            <h4>Superficie</h4>
+            <label>Surface minimale :</label>
+            <input type="number" id="surface_min" name="surface_min" min="9" max="300" placeholder="m²">
+            <label>Surface maximale :</label>
+            <input type="number" id="surface_max" name="surface_max" min="9" max="300" placeholder="m²">
+          </div>
 
-       <label>  max :  </label>
-      <input type="number" name="surface_max" min="150" max="3000" placeholder="€">
-    </div>
+          <!-- Équipements -->
+          <div class="filter-group">
+            <h4>Équipements</h4>
+            <input type="checkbox" id="wifi" name="equipements[]" value="wifi">
+            <label for="wifi">Wi-Fi</label><br>
 
-      <!-- Superfecie 
-      <div class="filter-group3">
-      <label>Superfecie</label>
-        <select>
-          <option>Studio</option>
-          <option>Appartement</option>
-          <option>Colocation</option>
-        </select>
-      </div> -->
+            <input type="checkbox" id="machine_a_laver" name="equipements[]" value="machine_a_laver">
+            <label for="machine_a_laver">Machine à laver</label><br>
 
+            <input type="checkbox" id="micro-onde" name="equipements[]" value="micro_onde">
+            <label for="micro-onde">Micro-ondes</label><br>
 
+            <input type="checkbox" id="four" name="equipements[]" value="four">
+            <label for="four">Four</label><br>
 
+            <input type="checkbox" id="frigo" name="equipements[]" value="frigo">
+            <label for="frigo">Frigo</label><br>
 
+            <input type="checkbox" id="ustensiles" name="equipements[]" value="ustensiles_cuisine">
+            <label for="ustensiles">Ustensiles de cuisine</label><br>
 
-      <!-- Ville 
-      <div class="filter-group">
-        <label>Ville</label>
-        <input type="text" placeholder="Ex: Paris">
-      </div>-->
+            <input type="checkbox" id="ascenseur" name="equipements[]" value="ascenseur">
+            <label for="ascenseur">Ascenseur</label><br>
 
-    <!-- Surface -->
-    <div class="filter-group">
-      <h4>Surperfécie </h4>
-       <label>Surface minimale  : </label>
-       <input type="number" name="surface_min" min="9" max="300" placeholder="m²"> 
-       <p>   </p>
+            <input type="checkbox" id="parking" name="equipements[]" value="parking">
+            <label for="parking">Parking</label><br>
+          </div>
 
-       <label>Surface maximale :  </label>
-      <input type="number" name="surface_max" min="9" max="300" placeholder="m²">
-    </div>
+          <!-- Type de propriétaire -->
+          <div class="filter-group1">
+            <h4>Type de propriétaire</h4>
+            <input type="radio" name="proprietaire" value="particulier"> Particulier<br>
+            <input type="radio" name="proprietaire" value="agence"> Agence<br>
+          </div>
 
+          <!-- Aides au logement -->
+          <div class="filter-group">
+            <h4>Aide</h4>
+            <input type="checkbox" id="CAF" name="aides[]" value="CAF">
+            <label for="CAF">CAF accepté</label><br>
 
-    <script>
-const minInput = document.querySelector('input[name="surface_min"]');
-const maxInput = document.querySelector('input[name="surface_max"]');
+            <input type="checkbox" id="APL" name="aides[]" value="APL">
+            <label for="APL">APL accepté</label><br>
+          </div>
 
-minInput.addEventListener('input', () => {
-  const minValue = parseInt(minInput.value);
-
-  if (!isNaN(minValue)) {
-    maxInput.min = minValue;
-
-    // si max < min → on corrige automatiquement
-    if (parseInt(maxInput.value) < minValue) {
-      maxInput.value = minValue;
-    }
-  }
-});
-</script>
-
-    <div class="filter-group">
-
-         
-                <h4>Equipement</h4>
-                <input type="checkbox" id="wifi" name="equipements[]" value="wifi">
-                <label for="wifi">Wi-Fi</label><br>
-
-                <input type="checkbox" id="lave-linge" name="equipements[]" value="machine_a_laver">
-                <label for="lave-linge">Machine à laver</label><br>
-
-                <input type="checkbox" id="micro-onde" name="equipements[]" value="micro_onde">
-               <label for="micro-onde">Micro-ondes</label><br>
-
-                <input type="checkbox" id="four" name="equipements[]" value="four">
-                <label for="four">Four</label><br>
-
-                <input type="checkbox" id="frigo" name="equipements[]" value="frigo">
-                <label for="frigo">Frigo</label><br>
-
-                <input type="checkbox" id="ustensiles" name="equipements[]" value="ustensiles_cuisine">
-                <label for="ustensiles">Ustensiles de cuisine</label><br>
-
-              <input type="checkbox" id="ascenseur" name="equipements[]" value="ascenseur">
-              <label for="ascenseur">Ascenseur</label><br>
-
-              <input type="checkbox" id="parking" name="equipements[]" value="parking">
-              <label for="parking">Parking</label><br>
-            
-       </div>
-
-       <div class="filter-group1">
-
-                <h4>Type de propiétaire </h4>
-
-                 <input type="radio" name="propriétaire" value="particulier"> Particulier<br>
-                 <input type="radio" name="propriétaire" value="agence "> Agence<br>
-       </div>
-
-
-       <div class="filter-group">
-
-         
-                <h4>Aide</h4>
-                <input type="checkbox" id="wifi" name="equipements[]" value="wifi">
-                <label for="wifi">CAF accepté</label><br>
-
-                <input type="checkbox" id="lave-linge" name="equipements[]" value="machine_a_laver">
-                <label for="lave-linge">APL accpeté</label><br>
-            
-       </div>
-
-
-      </aside>
+        </aside>
       </form>
 
-  <!-- Colonne de droite : Recherche et Annonces -->
-  <div class="resultats">
+      <!-- Colonne de droite : barre de recherche et annonces -->
+      <div class="resultats">
 
-    <!-- Barre de recherche et boutons d'affichage -->
-    <section class="search-section">
+        <!-- Barre de recherche et boutons d'affichage (liste / carte) -->
+        <section class="search-section">
+          <div class="search-bar">
+            <input type="text" placeholder="Rechercher..." />
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </div>
 
-      <!-- Barre de recherche -->
-      <div class="search-bar">
-        <input type="text" placeholder="Search..." />
-        <i class="fa-solid fa-magnifying-glass"></i>
-      </div>
+          <div class="search-icons">
+            <button class="icon-button active" id="btn-liste" onclick="setVue('liste')" title="Vue liste">
+              <i class="fa-solid fa-list"></i>
+            </button>
+            <button class="icon-button" id="btn-map" onclick="setVue('map')" title="Vue carte">
+              <i class="fa-solid fa-location-dot"></i>
+            </button>
+          </div>
+        </section>
 
-      <!-- Boutons de choix d'affichage -->
-      <div class="search-icons">
-        <button class="icon-button active" id="btn-liste" onclick="setVue('liste')" title="Vue liste">
-          <i class="fa-solid fa-list"></i>
-        </button>
-        <button class="icon-button" id="btn-map" onclick="setVue('map')" title="Vue carte">
-          <i class="fa-solid fa-location-dot"></i>
-        </button>
+        <div class="map-wrapper">
+          <div class="map-toolbar">
+            <button type="button" id="btn-plan">Plan</button>
+            <button type="button" id="btn-satellite">Satellite</button>
+            <button type="button" id="btn-3d">3D</button>
+            <button type="button" id="btn-route">Itinéraire</button>
+
+          </div>
+          <div id="map"></div>
+        </div>
+
+        <!-- Vue liste des annonces -->
+        <section class="annonces" id="annonces">
+
+          <!-- Carte logement 1 (les cartes logements sont mises en dure pour l'instant, car bdd pas reliée encore-->
+          <div class="carte-logement">
+            <div class="carte-image">
+              <img src="img/studio1.jpg" alt="Photo d'un studio étudiant" />
+            </div>
+            <div class="carte-contenu">
+              <div class="carte-haut">
+                <h2>Studio Étudiant</h2>
+              </div>
+              <p class="prix">1167 € - 20m²</p>
+              <p class="description">Chambre étudiante, aménagée et exposée plein nord avec vue sur le parc des Buttes-Chaumont</p>
+              <p class="ville">Paris</p>
+            </div>
+          </div>
+
+          <!-- Carte logement 2 -->
+          <div class="carte-logement">
+            <div class="carte-image">
+              <img src="img/studio2.jpg" alt="Photo d'un studio étudiant" />
+            </div>
+            <div class="carte-contenu">
+              <div class="carte-haut">
+                <h2>Résidence étudiante</h2>
+              </div>
+              <p class="prix">1300 € - 23m²</p>
+              <p class="description">Chambre étudiante, aménagée et exposée plein nord avec vue sur le parc des Buttes-Chaumont</p>
+              <p class="ville">Paris</p>
+            </div>
+          </div>
+
+          <!-- Carte logement 3 -->
+          <div class="carte-logement">
+            <div class="carte-image">
+              <img src="img/studio3.jpg" alt="Photo d'un studio étudiant" />
+            </div>
+            <div class="carte-contenu">
+              <div class="carte-haut">
+                <h2>Studio Étudiant</h2>
+              </div>
+              <p class="prix">886 € - 19m²</p>
+              <p class="description">Nous vous proposons ce studio meublé de 19,4m², situé au 2e étage, au sein d'un quartier dynamique</p>
+              <p class="ville">Lille</p>
+            </div>
+          </div>
+
+          <!-- Carte logement 4 -->
+          <div class="carte-logement">
+            <div class="carte-image">
+              <img src="img/studio4.jpg" alt="Photo d'un studio étudiant" />
+            </div>
+            <div class="carte-contenu">
+              <div class="carte-haut">
+                <h2>Jolie chambre</h2>
+              </div>
+              <p class="prix">450 € - 9m²</p>
+              <p class="description">Chambre de particulier à louer sur Paris 18. Disponible immédiatement. C'est une location meublée.</p>
+              <p class="ville">Paris</p>
+            </div>
+          </div>
+
+          <!-- Carte logement 5 -->
+          <div class="carte-logement">
+            <div class="carte-image">
+              <img src="img/studio5.jpg" alt="Photo d'un studio étudiant" />
+            </div>
+            <div class="carte-contenu">
+              <div class="carte-haut">
+                <h2>Joli studio</h2>
+              </div>
+              <p class="prix">881 € - 25m²</p>
+              <p class="description">Chambre étudiante, aménagée et exposée plein nord avec vue sur le parc des Buttes-Chaumont</p>
+              <p class="ville">Paris</p>
+            </div>
+          </div>
+
+          <!-- Carte logement 6 -->
+          <div class="carte-logement">
+            <div class="carte-image">
+              <img src="img/studio6.jpg" alt="Photo d'un studio étudiant" />
+            </div>
+            <div class="carte-contenu">
+              <div class="carte-haut">
+                <h2>Studio Étudiant</h2>
+              </div>
+              <p class="prix">530 € - 18m²</p>
+              <p class="description">Chambre étudiante, aménagée et exposée plein nord avec vue sur le parc des Buttes-Chaumont</p>
+              <p class="ville">Fleury</p>
+            </div>
+          </div>
+
+        </section>
       </div>
     </section>
 
-    <div class="map-wrapper">
-      <div class="map-toolbar">
-        <button type="button" id="btn-plan">Plan</button>
-        <button type="button" id="btn-satellite">Satellite</button>
-        <button type="button" id="btn-3d">3D</button>
-        <button type="button" id="btn-route">Itinéraire</button>
-      </div>
-
-      <div id="map"></div>
-    </div>
-
-    <!-- Liste des annonces -->
-    <section class="annonces" id="annonces">
-
-      <!-- Carte logement 1 -->
-      <div class="carte-logement">
-        <div class="carte-image">
-          <img src="img/studio1.jpg" alt="Photo d'un studio étudiant" />
-        </div>
-        <div class="carte-contenu">
-          <div class="carte-haut">
-            <h2>Studio Étudiant</h2>
-          </div>
-          <p class="prix">1167 € - 20m²</p>
-          <p class="description">Chambre étudiante, aménagée et exposée plein nord avec vue sur le parc des Buttes-Chaumont</p>
-          <p class="ville">Paris</p>
-        </div>
-      </div>
-
-      <!-- Carte logement 2 -->
-      <div class="carte-logement">
-        <div class="carte-image">
-          <img src="img/studio2.jpg" alt="Photo d'un studio étudiant" />
-        </div>
-        <div class="carte-contenu">
-          <div class="carte-haut">
-            <h2>Résidence étudiante</h2>
-          </div>
-          <p class="prix">1300 € - 23m²</p>
-          <p class="description">Chambre étudiante, aménagée et exposée plein nord avec vue sur le parc des Buttes-Chaumont</p>
-          <p class="ville">Paris</p>
-        </div>
-      </div>
-
-      <!-- Carte logement 3 -->
-      <div class="carte-logement">
-        <div class="carte-image">
-          <img src="img/studio3.jpg" alt="Photo d'un studio étudiant" />
-        </div>
-        <div class="carte-contenu">
-          <div class="carte-haut">
-            <h2>Studio Étudiant</h2>
-          </div>
-          <p class="prix">886 € - 19m²</p>
-          <p class="description">Nous vous proposons ce studio meublé de 19,4m², situé au 2ème étage, au sein d'un quartier dynamique</p>
-          <p class="ville">Lille</p>
-        </div>
-      </div>
-
-      <!-- Carte logement 4 -->
-      <div class="carte-logement">
-        <div class="carte-image">
-          <img src="img/studio4.jpg" alt="Photo d'un studio étudiant" />
-        </div>
-        <div class="carte-contenu">
-          <div class="carte-haut">
-            <h2>Jolie chambre</h2>
-          </div>
-          <p class="prix">450 € - 9m²</p>
-          <p class="description">Chambre de particulier à louer sur Paris 18. Disponible immédiatement. C'est une location meublée.</p>
-          <p class="ville">Paris</p>
-        </div>
-      </div>
-
-      <!-- Carte logement 5 -->
-      <div class="carte-logement">
-        <div class="carte-image">
-          <img src="img/studio5.jpg" alt="Photo d'un studio étudiant" />
-        </div>
-        <div class="carte-contenu">
-          <div class="carte-haut">
-            <h2>Joli studio</h2>
-          </div>
-          <p class="prix">881 € - 25m²</p>
-          <p class="description">Chambre étudiante, aménagée et exposée plein nord avec vue sur le parc des Buttes-Chaumont</p>
-          <p class="ville">Paris</p>
-        </div>
-      </div>
-
-      <!-- Carte logement 6 -->
-      <div class="carte-logement">
-        <div class="carte-image">
-          <img src="img/studio6.jpg" alt="Photo d'un studio étudiant" />
-        </div>
-        <div class="carte-contenu">
-          <div class="carte-haut">
-            <h2>Studio Étudiant</h2>
-          </div>
-          <p class="prix">530 € - 18m²</p>
-          <p class="description">Chambre étudiante, aménagée et exposée plein nord avec vue sur le parc des Buttes-Chaumont</p>
-          <p class="ville">Fleury</p>
-        </div>
-      </div>
-
-    </section>
-
-    <!-- Carte Leaflet (cachée par défaut) -->
-    <div id="vue-map"></div>
-
-  </div>
-</section>
-
+<!-- Pied de page -->
 <footer>
-  <div class="footer-top">
-    <div class="footer-left">
-      <img src="img/iconSite_WhiteText.png" class="logo-footer" alt="Icône du site internet" />
-    </div>
-    <div class="footer-center">
-      <p class="footer-text">
-        Ce site a été conçu et développé par les élèves de l'ISEP du groupe G9A 2025/2026 en utilisant HTML, CSS, JavaScript et PHP - Tous droits réservés
-      </p>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <a href="Mentionlegales.html">Mentions légales</a>
-    <p>-</p>
-    <a href="GestionCookies.html">Gestion des cookies</a>
-  </div>
-</footer>
+      <div class="footer-top">
+        <div class="footer-left">
+          <img src="img/iconSite_WhiteText.png" class="logo-footer" alt="Icône du site internet" />
+        </div>
+        <div class="footer-center">
+          <p class="footer-text">
+            Ce site a été conçu et développé par les élèves de l'ISEP du groupe G9A 2025/2026 en utilisant HTML, CSS, JavaScript et PHP - Tous droits réservés
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <a href="Mentionlegales.php">Mentions légales</a>
+        <p>-</p>
+        <a href="GestionCookies.html">Gestion des cookies</a>
+      </div>
+    </footer>
 
 </body>
 </html>
