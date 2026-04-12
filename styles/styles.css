@@ -744,3 +744,8 @@ footer {
   text-decoration: underline;
   text-underline-offset: 4px;
 }
+
+/* Contact */
+.error {
+  color: red;
+}

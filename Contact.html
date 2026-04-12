@@ -36,54 +36,66 @@
     </header>
 
 <h2>Un problème ? Contacter notre équipe ! </h2>
-<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
-  Name: <input type="text" name="nom">
-  <br><br>
-  E-mail: <input type="text" name="email">
-  <br><br>
-  Telephone: <input type="text" id="telephone" maxlength="20">
 
-<script>
-document.getElementById("telephone").addEventListener("input", function () {
-  this.value = this.value.replace(/[^0-9]/g, '');
-});
-</script>
+<p><span class="error">* champ obligatoire</span></p>
+
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+
+  Name:
+  <input type="text" name="nom">
+  <span class="error">* <?php echo $nomErr;?></span>
   <br><br>
-  <textarea name="message" rows="5" cols="40" maxlength="1000" placeholder="Votre message (1000 caractères max)"></textarea>
+
+  E-mail:
+  <input type="text" name="email">
+  <span class="error">* <?php echo $emailErr;?></span>
   <br><br>
+
+  Telephone:
+  <input type="text" name="telephone" id="telephone" maxlength="20">
+  <span class="error">* <?php echo $telephoneErr;?></span>
+
+  <script>
+  document.getElementById("telephone").addEventListener("input", function () {
+    this.value = this.value.replace(/[^0-9]/g, '');
+  });
+  </script>
+
+  <br><br>
+
+  Message:
+  <textarea name="message" rows="5" cols="40" maxlength="1000"
+    placeholder="Votre message (1000 caractères max)"></textarea>
+  <br><br>
+
   Genre:
   <input type="radio" name="gender" value="madame">Madame
   <input type="radio" name="gender" value="monsieur">Monsieur
-  <input type="radio" name="gender" value="autre">Autres
+  <input type="radio" name="gender" value="autre">Autre
+  <span class="error">* <?php echo $genderErr;?></span>
+
   <br><br>
-  Type de demande : 
+
+  Type de demande:<br>
+
   <input type="radio" name="typeDemande" value="demandeInformation">Demande d'information
-  <br><br>
+  <br>
   <input type="radio" name="typeDemande" value="supportClient">Support client
-  <br><br>
-
+  <br>
   <input type="radio" name="typeDemande" value="partenariat">Partenariat
-  <br><br>
+  <br>
   <input type="radio" name="typeDemande" value="reclamation">Réclamation
-  <br><br>
-  <input type="radio" name="typeDemande" value="signalerProbleme">Signaler un problème 
+  <br>
+  <input type="radio" name="typeDemande" value="signalerProbleme">Signaler un problème
+
+  <span class="error">* <?php echo $typeErr;?></span>
 
   <br><br>
-  <input type="submit" name="submit" value="Submit">  
+
+  <input type="submit" name="submit" value="Submit">
+
 </form>
 
-<?php
-echo "<h2>Your Input:</h2>";
-echo $name;
-echo "<br>";
-echo $email;
-echo "<br>";
-echo $website;
-echo "<br>";
-echo $comment;
-echo "<br>";
-echo $gender;
-?>
 
 </body>
 
@@ -93,7 +105,7 @@ echo $gender;
           <img
             src="img/iconSite_WhiteText.png"
             class="logo-footer"
-            alt="Icône du site internet"
+            alt="Icône du site internet" 
           />
         </div>
 
