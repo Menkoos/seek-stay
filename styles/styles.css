@@ -21,6 +21,11 @@ body {
   font-family: "Inter", sans-serif;
 }
 
+.header-menu {
+  max-height: 60px;     /* hauteur du menu */
+  overflow: hidden;     /* coupe si dépasse */
+}
+
 
 h1 {
   color: #fff;
