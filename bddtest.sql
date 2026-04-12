@@ -190,13 +190,13 @@ CREATE TABLE `contact` (
   nom VARCHAR(100) NOT NULL,
   email VARCHAR(150) NOT NULL,
   telephone VARCHAR(20) NOT NULL,
-  genre ENUM('homme', 'femme', 'autre') NOT NULL,
+  genre ENUM('madame', 'monsieur', 'autre') NOT NULL,
   type_demande ENUM(
-    'information',
-    'support',
-    'reclamation',
+    'demandeInformation',
+    'supportClient',
     'partenariat',
-    'autre'
+    'reclamation',
+    'signalerProbleme'
   ) NOT NULL,
   message TEXT,
   date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP

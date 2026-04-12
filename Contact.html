@@ -35,7 +35,57 @@
       </div>
     </header>
 
-    <p>A completer</p>
+<h2>Un problème ? Contacter notre équipe ! </h2>
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
+  Name: <input type="text" name="nom">
+  <br><br>
+  E-mail: <input type="text" name="email">
+  <br><br>
+  Telephone: <input type="text" id="telephone" maxlength="20">
+
+<script>
+document.getElementById("telephone").addEventListener("input", function () {
+  this.value = this.value.replace(/[^0-9]/g, '');
+});
+</script>
+  <br><br>
+  <textarea name="message" rows="5" cols="40" maxlength="1000" placeholder="Votre message (1000 caractères max)"></textarea>
+  <br><br>
+  Genre:
+  <input type="radio" name="gender" value="madame">Madame
+  <input type="radio" name="gender" value="monsieur">Monsieur
+  <input type="radio" name="gender" value="autre">Autres
+  <br><br>
+  Type de demande : 
+  <input type="radio" name="typeDemande" value="demandeInformation">Demande d'information
+  <br><br>
+  <input type="radio" name="typeDemande" value="supportClient">Support client
+  <br><br>
+
+  <input type="radio" name="typeDemande" value="partenariat">Partenariat
+  <br><br>
+  <input type="radio" name="typeDemande" value="reclamation">Réclamation
+  <br><br>
+  <input type="radio" name="typeDemande" value="signalerProbleme">Signaler un problème 
+
+  <br><br>
+  <input type="submit" name="submit" value="Submit">  
+</form>
+
+<?php
+echo "<h2>Your Input:</h2>";
+echo $name;
+echo "<br>";
+echo $email;
+echo "<br>";
+echo $website;
+echo "<br>";
+echo $comment;
+echo "<br>";
+echo $gender;
+?>
+
+</body>
 
     <footer>
       <div class="footer-top">
