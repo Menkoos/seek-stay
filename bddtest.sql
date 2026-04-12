@@ -182,7 +182,31 @@ CREATE TABLE `utilisateur_` (
   `date_inscription` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+
+
+
+CREATE TABLE `contact` (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nom VARCHAR(100) NOT NULL,
+  email VARCHAR(150) NOT NULL,
+  telephone VARCHAR(20) NOT NULL,
+  genre ENUM('homme', 'femme', 'autre') NOT NULL,
+  type_demande ENUM(
+    'information',
+    'support',
+    'reclamation',
+    'partenariat',
+    'autre'
+  ) NOT NULL,
+  message TEXT,
+  date_creation TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 --
+
+
+
+
+
 -- Index pour les tables déchargées
 --
 
