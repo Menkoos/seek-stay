@@ -1,6 +1,7 @@
 mapboxgl.accessToken =
     "pk.eyJ1IjoibWVua29vcyIsImEiOiJjbW5zeHkycXIwZTk2Mm9zOWptcmtkdjh2In0.v-2w8GRPwZaHopaowVlsFA";
 
+// Données des logements affichés sur la carte
 const logements = [
   {
     titre: "Studio Étudiant",
@@ -31,8 +32,8 @@ const btnListe = document.getElementById("btn-liste");
 const btnMap = document.getElementById("btn-map");
 
 let map = null;
-let userPosition = null;
 
+// Bascule entre la vue liste et la vue carte
 function setVue(vue) {
   if (vue === "liste") {
     annonces.classList.remove("annonces-hidden");
@@ -65,39 +66,31 @@ function initialiserCarte() {
     zoom: 5.5,
   });
 
+  // Contrôles de navigation (zoom, rotation)
   map.addControl(new mapboxgl.NavigationControl(), "top-right");
 
-  const geolocate = new mapboxgl.GeolocateControl({
-    positionOptions: {
-      enableHighAccuracy: true,
-    },
+  // Contrôle de géolocalisation
+  map.addControl(new mapboxgl.GeolocateControl({
+    positionOptions: { enableHighAccuracy: true },
     trackUserLocation: false,
     showUserHeading: true,
-  });
+  }), "top-right");
 
-  map.addControl(geolocate, "top-right");
-
-  geolocate.on("geolocate", (e) => {
-    userPosition = [e.coords.longitude, e.coords.latitude];
-  });
-
+  // Ajout des marqueurs avec popup pour chaque logement
   logements.forEach((logement) => {
     const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(`
       <div class="popup-logement">
         <strong>${logement.titre}</strong>
         <p>${logement.prix} · ${logement.surface}</p>
         <p>${logement.ville}</p>
-        <button class="btn-itineraire" onclick="calculerItineraire(${logement.coords[0]}, ${logement.coords[1]})">
-          Itinéraire
-        </button>
       </div>
     `);
 
     new mapboxgl.Marker().setLngLat(logement.coords).setPopup(popup).addTo(map);
   });
 
+  // Ajout du relief 3D après chargement du style
   map.on("style.load", () => {
-    // Ajoute la source de relief pour le mode 3D
     if (!map.getSource("mapbox-dem")) {
       map.addSource("mapbox-dem", {
         type: "raster-dem",
@@ -106,11 +99,7 @@ function initialiserCarte() {
         maxzoom: 14,
       });
     }
-
-    map.setTerrain({
-      source: "mapbox-dem",
-      exaggeration: 1.2,
-    });
+    map.setTerrain({ source: "mapbox-dem", exaggeration: 1.2 });
   });
 
   // ===== BOUTONS TOOLBAR =====
@@ -132,19 +121,13 @@ function initialiserCarte() {
     map.easeTo({ pitch: 60, bearing: -20, duration: 800 });
     setActiveToolbar("btn-3d");
   });
-
-  // Bouton Itinéraire : remet la caméra à plat
-  document.getElementById("btn-route").addEventListener("click", () => {
-    map.easeTo({ pitch: 0, bearing: 0, duration: 800 });
-    setActiveToolbar("btn-route");
-  });
 }
 
 // Met en surbrillance le bouton toolbar actif
 function setActiveToolbar(id) {
   document.querySelectorAll(".map-toolbar button").forEach((btn) => {
     btn.style.background = "rgba(255,255,255,0.92)";
-    btn.style.fontWeight = "600";
+    btn.style.color = "#333";
   });
   const active = document.getElementById(id);
   if (active) {
@@ -152,81 +135,3 @@ function setActiveToolbar(id) {
     active.style.color = "white";
   }
 }
-
-async function calculerItineraire(destLng, destLat) {
-  if (!navigator.geolocation) {
-    alert("La géolocalisation n'est pas disponible sur ce navigateur.");
-    return;
-  }
-
-  navigator.geolocation.getCurrentPosition(
-      async (position) => {
-        userPosition = [position.coords.longitude, position.coords.latitude];
-
-        const url = `https://api.mapbox.com/directions/v5/mapbox/driving/${userPosition[0]},${userPosition[1]};${destLng},${destLat}?geometries=geojson&access_token=${mapboxgl.accessToken}`;
-
-        try {
-          const response = await fetch(url);
-          const data = await response.json();
-
-          if (!data.routes || !data.routes.length) {
-            alert("Aucun itinéraire trouvé.");
-            return;
-          }
-
-          const route = data.routes[0].geometry;
-
-          if (map.getSource("route")) {
-            map.getSource("route").setData({
-              type: "Feature",
-              properties: {},
-              geometry: route,
-            });
-          } else {
-            map.addSource("route", {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                properties: {},
-                geometry: route,
-              },
-            });
-
-            map.addLayer({
-              id: "route",
-              type: "line",
-              source: "route",
-              layout: {
-                "line-join": "round",
-                "line-cap": "round",
-              },
-              paint: {
-                "line-color": "#244676",
-                "line-width": 6,
-                "line-opacity": 0.9,
-              },
-            });
-          }
-
-          const bounds = new mapboxgl.LngLatBounds();
-          bounds.extend(userPosition);
-          bounds.extend([destLng, destLat]);
-
-          map.fitBounds(bounds, {
-            padding: 60,
-          });
-        } catch (error) {
-          console.error(error);
-          alert("Erreur pendant le calcul de l'itinéraire.");
-        }
-      },
-      () => {
-        alert("Impossible de récupérer votre position.");
-      },
-      {
-        enableHighAccuracy: true,
-      },
-  );
-}
-
-window.calculerItineraire = calculerItineraire;
