@@ -49,6 +49,14 @@ h3 {
   margin-top: 20px;
 }
 
+h4 {
+  color: #1a3358;
+  font-size: 20px;
+  margin-left: 15px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
 /* ======================================= HEADER ================================ */
 
 /* Barre de navigation fixe en haut de l'écran, toujours visible au scroll */
@@ -1000,3 +1008,11 @@ footer {
   .dashboard-grid { grid-template-columns: 1fr; }
   .admin-header { padding: 14px 20px; }
 }
+
+
+/* ======================================= CONtact  ================================ */
+.error {
+  color: red;
+}
+
+/* ======================================= acceuil ================================ */
