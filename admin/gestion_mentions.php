@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ");
         $stmt->execute([$data['titre'], $data['contenu'], $section]);
     }
-    $message_succes = "✅ Les mentions légales ont bien été mises à jour.";
+    $message_succes = "Les mentions légales ont bien été mises à jour.";
 }
 
 // Récupération des sections actuelles depuis la BDD
