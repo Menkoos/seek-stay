@@ -1,45 +1,47 @@
-
-/* Police Inter depuis Google Fonts (utilisée sur tout le site) */
+/* Import de la police Inter depuis Google Fonts (utilisée sur tout le site) */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
 
-/* Mise en page générale */
+/* ======================================= GÉNÉRAL ================================ */
 
+/* Supprime les marges et paddings par défaut de tous les éléments,
+   et inclut la bordure dans le calcul de la largeur/hauteur */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-
+/* Défilement fluide lors des ancres (ex: #home) */
 html {
   scroll-behavior: smooth;
 }
 
-
+/* Empêche le défilement horizontal non voulu, applique la police globale */
 body {
   overflow-x: hidden;
   font-family: "Inter", sans-serif;
 }
 
-.header-menu {
-  max-height: 60px;     /* hauteur du menu */
-  overflow: hidden;     /* coupe si dépasse */
+/* Ligne de séparation horizontale grise (utilisée dans les pages légales et cookies) */
+.divider {
+  border: none;
+  border-top: 1px solid #e0e0e0;
 }
 
-
+/* Titre principal blanc (utilisé sur la bannière et les pages hero) */
 h1 {
   color: #fff;
   font-size: 5rem;
 }
 
-
+/* Titre de section noir (utilisé pour les titres de cartes, filtres, etc.) */
 h2 {
   color: #000000;
-  font-size: 30px;
+  font-size: 2rem;
   font-weight: 700;
 }
 
-
+/* Sous-titre de section */
 h3 {
   color: #000000;
   font-size: 2rem;
@@ -47,19 +49,9 @@ h3 {
   margin-top: 20px;
 }
 
+/* ======================================= HEADER ================================ */
 
-h4 {
-  color: #0f1c2e;
-  font-size: 20px;
-  margin-left: 10px;
-  margin-top: 7px;
-  margin-bottom :7px;
-}
-
-
-/* Header */
-
-/* Barre de navigation fixe en haut de la page même si on scroll */
+/* Barre de navigation fixe en haut de l'écran, toujours visible au scroll */
 header {
   position: sticky;
   top: 0;
@@ -68,21 +60,29 @@ header {
   width: 100%;
 }
 
-/* Aligne le logo et le menu sur une ligne */
+/* Conteneur flexbox du header : aligne le logo et le menu sur une ligne */
 .flex {
   display: flex;
   align-items: center;
   width: 100%;
 }
 
-/* Menu de navigation */
+/* Supprime les puces et marges des listes en général */
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+}
+
+/* Menu de navigation horizontal dans le header */
 .header-menu {
   display: flex;
   align-items: center;
   list-style: none;
   gap: 10px;
   margin: 0;
-  padding: 22px;
+  padding: 10px;
   width: 100%;
 }
 
@@ -91,7 +91,7 @@ header {
   float: none;
 }
 
-/* Bouton du menu */
+/* Liens du menu : sans soulignement, couleur sombre, padding pour la zone de clic */
 .header-menu li a {
   text-decoration: none;
   color: #0f1c2e;
@@ -102,51 +102,51 @@ header {
   text-align: center;
 }
 
-/* Survol des boutons */
+/* Survol d'un lien du menu : passe en bleu cyan avec soulignement */
 .header-menu li a:hover {
   color: #30bae6;
-  text-decoration: none;
+  text-decoration: underline;
   text-underline-offset: 4px;
 }
 
-/* Met bouton Inscription/Connexion complètement à droite */
+/* Pousse le dernier élément (bouton Connexion) complètement à droite */
 .header-menu li:last-child {
   margin-left: auto;
 }
 
-/* style du Bouton "Inscription / Connexion"  */
+/* Bouton "Inscription / Connexion" : fond bleu foncé, texte blanc, coins arrondis */
 .header-menu li:last-child a {
   background-color: #244676;
   color: #fff;
   border-radius: 15px;
 }
 
-/* Logo cliquable renvoyant vers accueil */
+/* Conteneur du logo (lien cliquable vers l'accueil) */
 .header-logo {
   display: block;
 }
 
 /* Taille du logo dans le header */
 .header-logo img {
-  width: 80px;
+  width: 70px;
   margin-left: 30px;
   transition: transform 0.2s ease;
 }
 
-/* Zoom quand on survol le logo */
+/* Légère mise à l'échelle au survol du logo */
 .header-logo img:hover {
   transform: scale(1.1);
 }
 
-/* Bannière */
+/* ======================================= BANNIÈRE ================================ */
 
-/* Bannière prend toute la largeur de la page */
+/* Conteneur de la bannière pleine largeur */
 .slider {
   width: 100%;
   position: relative;
 }
 
-/* Image de la bannière */
+/* Image de bannière : pleine largeur, légèrement assombrie */
 .slider-background {
   width: 100%;
   height: auto;
@@ -154,31 +154,32 @@ header {
   filter: brightness(0.8);
 }
 
-/* Reste de la page d'accueil */
+/* ======================================= PAGE OFFRES ================================ */
 
-/* Colonne filtres à gauche, colonne résultats à droite */
+/* Mise en page principale : colonne filtres à gauche + colonne résultats à droite */
 .page-recherche {
   display: flex;
   padding: 20px 40px 20px 20px;
   gap: 40px;
 }
 
-/* Colonne de gauche : filtres avancés */
+/* Colonne de gauche : panneau des filtres avancés */
 .filters {
   width: 250px;
   min-width: 250px;
-  border-right: 1px solid #ddd; /* Ligne entre filtres et résultats */
+  border-right: 1px solid #ddd; /* Séparateur vertical entre filtres et résultats */
   padding-right: 20px;
 }
 
-/* Colonne de droite : résultats */
-
+/* Colonne de droite : barre de recherche + annonces/carte */
 .resultats {
   flex: 1;      /* Prend tout l'espace restant */
+  min-width: 0; /* Empêche le débordement dans un contexte flex */
 }
 
-/* Barre de recherche + boutons liste/map */
+/* -------- Barre de recherche + boutons de vue -------- */
 
+/* Ligne horizontale contenant la barre de recherche et les boutons liste/carte */
 .search-section {
   display: flex;
   align-items: center;
@@ -189,7 +190,7 @@ header {
 /* Conteneur de la barre de recherche (prend toute la largeur disponible) */
 .search-bar {
   flex: 1;
-  position: relative; /* Sert à positionner l'icône de loupe en absolu */
+  position: relative; /* Nécessaire pour positionner l'icône de loupe en absolu */
 }
 
 /* Champ de saisie de la barre de recherche */
@@ -204,49 +205,41 @@ header {
   background-color: white;
 }
 
-/* Icône loupe à droite dans la barre de recherche */
+/* Icône loupe positionnée à droite dans la barre de recherche */
 .search-bar i {
   position: absolute;
   right: 18px;
   top: 50%;
   transform: translateY(-50%);
   font-size: 22px;
-  color: #425f79;
+  color: #333;
+  pointer-events: none; /* L'icône ne bloque pas les clics sur l'input */
 }
 
-/* Boutons liste et map */
+/* Boutons de bascule entre la vue liste et la vue carte */
 .icon-button {
-  width: 72px;
-  height: 53px;
+  width: 78px;
+  height: 56px;
   border: none;
   background: white;
-  font-size: 26px;
+  font-size: 28px;
   cursor: pointer;
-  color: #425f79;
+  color: #333;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
-/* intérieur des boutons liste/carte */
+/* Séparateur entre les deux boutons (liste | carte) */
 .icon-button:first-child {
-  border-right: 2px solid #425f79;
+  border-right: 2px solid #6b6b6b;
 }
 
-/* Bordures des boutons liste/carte */
-.search-icons {
-  display: flex;
-  border: 2px solid #425f79;
-  border-radius: 12px;
-  overflow: hidden;
-  background-color: white;
-  flex-shrink: 0;
-}
-
-/* Quand une vue est sélectionner */
+/* État actif d'un bouton vue (fond gris clair) */
 .icon-button.active {
-  background-color: #e6e4e4;
-  color: #425f79;
+  background-color: #d0d0d0;
+  color: #444;
 }
 
-/* Liste des annonces */
+/* -------- Liste des annonces -------- */
 
 /* Grille 3 colonnes pour afficher les cartes de logement */
 #annonces {
@@ -255,12 +248,12 @@ header {
   gap: 30px;
 }
 
-/* masquer liste des logements quand on choisit la map */
+/* Classe ajoutée dynamiquement en JS (vue-map.js) pour masquer la liste quand la carte est active */
 #annonces.annonces-hidden {
   display: none;
 }
 
-/* Carte d'un logement */
+/* Carte individuelle d'un logement : fond clair, coins arrondis, ombre légère */
 .carte-logement {
   position: relative;
   width: 100%;
@@ -274,14 +267,14 @@ header {
   cursor: pointer;
 }
 
-/* Zone image de la carte  */
+/* Zone photo de la carte : hauteur fixe avec rognage de l'image */
 .carte-image {
   width: 100%;
   height: 230px;
   overflow: hidden;
 }
 
-/* image de la carte */
+/* Photo du logement : couvre toute la zone sans déformation */
 .carte-image img {
   width: 100%;
   height: 100%;
@@ -289,11 +282,18 @@ header {
   display: block;
 }
 
-/* Zone de texte sous l'image */
+/* Zone de texte sous la photo (titre, prix, description, ville) */
 .carte-contenu {
   padding: 20px 25px;
   position: relative;
   z-index: 2;
+}
+
+/* Ligne du haut : titre du logement (et potentiellement un bouton favori) */
+.carte-haut {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 /* Titre de la carte (plus petit que le h2 général) */
@@ -302,26 +302,28 @@ header {
   font-size: 18px;
 }
 
-/* Prix et surface de la carte */
+/* Prix et surface affichés en gras lisible */
 .prix {
   font-size: 18px;
   margin: 18px 0 12px 0;
 }
 
-/* Description de la carte */
+/* Description courte du logement */
 .description {
   font-size: 14px;
   margin: 0 0 13px 0;
 }
 
-/* Ville de la carte*/
+/* Ville du logement, alignée à droite */
 .ville {
   text-align: right;
   font-size: 14px;
 }
 
-/* carte Mapbox */
+/* -------- Bloc carte Mapbox -------- */
 
+/* Conteneur de la carte interactive.
+   Masqué par défaut ; la classe "map-visible" est ajoutée en JS pour l'afficher. */
 .map-wrapper {
   position: relative;
   display: none;
@@ -332,18 +334,18 @@ header {
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
 }
 
-/* Affiche la carte quand on clique sur le bouton map */
+/* Affiche la carte quand l'utilisateur clique sur le bouton "Vue carte" */
 .map-wrapper.map-visible {
   display: block;
 }
 
-/* carte Mapbox occupe tout l'espace */
+/* La carte Mapbox occupe tout le conteneur */
 #map {
   width: 100%;
   height: 100%;
 }
 
-/* boutons Plan/Satellite/3D */
+/* Barre de boutons flottante en haut à gauche de la carte (Plan, Satellite, 3D, Itinéraire) */
 .map-toolbar {
   position: absolute;
   top: 20px;
@@ -354,6 +356,7 @@ header {
   flex-wrap: wrap;
 }
 
+/* Style commun des boutons de la toolbar : fond blanc semi-transparent avec flou */
 .map-toolbar button {
   border: none;
   border-radius: 999px;
@@ -365,13 +368,13 @@ header {
   font-weight: 600;
 }
 
-/* information du logement quand on clique sur un pin */
+/* Popup qui s'affiche sur la carte quand on clique sur un marqueur */
 .popup-logement {
   min-width: 190px;
   font-family: "Inter", sans-serif;
 }
 
-/* Titre du logement dans le popup */
+/* Titre du logement dans la popup */
 .popup-logement strong {
   display: block;
   font-size: 15px;
@@ -379,14 +382,14 @@ header {
   color: #0f1c2e;
 }
 
-/* prix, surface, ville dans le popup */
+/* Informations secondaires (prix, surface, ville) dans la popup */
 .popup-logement p {
   margin: 0 0 6px 0;
   font-size: 14px;
   color: #333;
 }
 
-/* bouton Itinéraire dans le popup  */
+/* Bouton "Itinéraire" dans la popup : déclenche le calcul d'itinéraire via Mapbox Directions */
 .btn-itineraire {
   margin-top: 10px;
   width: 100%;
@@ -400,8 +403,14 @@ header {
   transition: 0.2s ease;
 }
 
-/* Authentification */
+/* Assombrit le bouton itinéraire au survol */
+.btn-itineraire:hover {
+  background-color: #1a3358;
+}
 
+/* ======================================= AUTHENTIFICATION ================================ */
+
+/* Centrage vertical et horizontal du bloc de connexion/inscription */
 .page-auth {
   display: flex;
   justify-content: center;
@@ -409,6 +418,7 @@ header {
   padding: 100px 20px;
 }
 
+/* Carte du formulaire (fond bleu clair, largeur limitée) */
 .bloc-connexion {
   width: 100%;
   max-width: 600px;
@@ -416,21 +426,31 @@ header {
   padding: 60px 80px;
 }
 
-/* Formulaire en colonne */
+/* Formulaire en colonne avec espacement entre les champs */
 .form-connexion {
   display: flex;
   flex-direction: column;
   gap: 30px;
 }
 
-/* boutons Connexion / Inscription */
+/* Champ de saisie du formulaire : fond légèrement plus foncé, sans bordure */
+.champ input {
+  width: 100%;
+  border: none;
+  background-color: #dde1ee;
+  padding: 16px;
+  font-size: 14px;
+  outline: none;
+}
+
+/* Rangée de boutons (Connexion / Inscription) */
 .boutons {
   display: flex;
   gap: 40px;
   margin-top: 20px;
 }
 
-/* style boutons */
+/* Chaque bouton prend la même largeur, style transparent avec bordure */
 .boutons button {
   flex: 1;
   padding: 18px;
@@ -441,8 +461,9 @@ header {
   cursor: pointer;
 }
 
-/* FAQ */
+/* ======================================= FAQ ================================ */
 
+/* Bouton accordion cliquable pour ouvrir/fermer une question */
 .accordion {
   background-color: #eee;
   color: #444;
@@ -456,21 +477,22 @@ header {
   transition: 0.4s;
 }
 
-/* survol d'une question */
+/* Fond plus foncé au survol d'une question */
 .accordion:hover {
   background-color: #ccc;
 }
 
-
-/* Mentions légales */
-
-/* Ligne horizontale grise (utilisée dans les pages légales et cookies) */
-.divider {
-  border: none;
-  border-top: 1px solid #e0e0e0;
+/* Panneau de réponse : masqué par défaut, affiché en JS quand on clique sur l'accordion */
+.panel {
+  padding: 0 18px;
+  display: none;
+  background-color: white;
+  overflow: hidden;
 }
 
-/* Bandeau en haut de la page */
+/* ======================================= MENTIONS LÉGALES ================================ */
+
+/* Bandeau hero en haut de la page : fond bleu foncé, texte centré */
 .mentions-hero {
   background-color: #2f5c9b;
   color: white;
@@ -478,21 +500,72 @@ header {
   text-align: center;
 }
 
-/* Titre de la page */
+/* Titre du hero (plus petit que h1 général car pas de bannière photo ici) */
 .mentions-hero h1 {
   font-size: 2.8rem;
   font-weight: 800;
   margin-bottom: 10px;
 }
 
-/* Sous-titre de la page */
+/* Sous-titre grisé sous le titre du hero */
 .mentions-hero p {
   color: #b2c2d2;
   font-size: 1rem;
   margin-top: 8px;
 }
 
-/* date de mise à jour */
+/* Conteneur centré du contenu des mentions légales et cookies */
+.mentions-container {
+  max-width: 860px;
+  margin: 60px auto;
+  padding: 0 30px 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* Bloc d'une section légale : bordure bleue à gauche pour la mise en valeur */
+.mentions-section {
+  border-left: 4px solid #30bae6;
+  padding-left: 24px;
+}
+
+/* Titre de chaque section (ex: "1. Éditeur du site") */
+.mentions-section h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f1c2e;
+  margin-bottom: 12px;
+}
+
+/* Texte courant et items de liste des sections légales */
+.mentions-section p,
+.mentions-section li {
+  font-size: 0.95rem;
+  color: #444;
+  line-height: 1.75; /* Interligne confortable pour la lecture */
+}
+
+/* Liste à puces dans les sections légales */
+.mentions-section ul {
+  list-style: disc;
+  padding-left: 20px;
+  background-color: transparent;
+}
+
+/* Espacement vertical entre les items de liste */
+.mentions-section ul li {
+  padding: 2px 0;
+}
+
+/* Liens dans les sections légales : couleur cyan, soulignés */
+.mentions-section a {
+  color: #30bae6;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Badge affichant la date de mise à jour (ex: "Dernière mise à jour : avril 2026") */
 .badge-date {
   display: inline-block;
   background-color: #e9ecf8;
@@ -504,52 +577,9 @@ header {
   margin-top: 6px;
 }
 
-.mentions-container {
-  max-width: 860px;
-  margin: 60px auto;
-  padding: 0 30px 60px;
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-}
+/* ======================================= GESTION DES COOKIES ================================ */
 
-/* trait bleu à gauche */
-.mentions-section {
-  border-left: 4px solid #30bae6;
-  padding-left: 24px;
-}
-
-/* Titre d'une section*/
-.mentions-section h2 {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #0f1c2e;
-  margin-bottom: 12px;
-}
-
-/* Texte de la section */
-.mentions-section p,
-.mentions-section li {
-  font-size: 0.95rem;
-  color: #444;
-  line-height: 1.75;
-}
-
-/* Espace entre les sections */
-.mentions-section ul li {
-  padding: 2px 0;
-}
-
-/* Liens dans les sections */
-.mentions-section a {
-  color: #30bae6;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-
-/*  Gestion des cookies */
-
+/* Ligne contenant le nom d'une catégorie de cookie et son interrupteur ON/OFF */
 .cookie-toggle-row {
   display: flex;
   justify-content: space-between;
@@ -561,7 +591,7 @@ header {
   margin-top: 14px;
 }
 
-/* Nom de la catégorie de cookie */
+/* Nom de la catégorie de cookie (en gras) */
 .cookie-toggle-info strong {
   display: block;
   font-size: 0.95rem;
@@ -569,12 +599,13 @@ header {
   margin-bottom: 4px;
 }
 
-/* Description de la catégorie de cookie */
+/* Description courte de la catégorie de cookie */
 .cookie-toggle-info span {
   font-size: 0.85rem;
   color: #666;
 }
 
+/* Conteneur de l'interrupteur ON/OFF (toggle switch) */
 .switch {
   position: relative;
   display: inline-block;
@@ -584,12 +615,14 @@ header {
   margin-left: 16px;
 }
 
+/* Cache la checkbox native (remplacée visuellement par .slider-toggle) */
 .switch input {
   opacity: 0;
   width: 0;
   height: 0;
 }
 
+/* Piste de l'interrupteur (fond gris par défaut) */
 .slider-toggle {
   position: absolute;
   cursor: pointer;
@@ -602,7 +635,7 @@ header {
   transition: 0.3s;
 }
 
-/* curseur de l'interrupteur */
+/* Rond blanc (curseur) de l'interrupteur */
 .slider-toggle:before {
   position: absolute;
   content: "";
@@ -615,22 +648,23 @@ header {
   transition: 0.3s;
 }
 
-/* Quand l'interrupteur est allumé couleur se transforme */
+/* Quand la checkbox est cochée : piste devient bleue cyan */
 input:checked + .slider-toggle {
   background-color: #30bae6;
 }
 
+/* Quand la checkbox est cochée : le rond glisse vers la droite */
 input:checked + .slider-toggle:before {
   transform: translateX(24px);
 }
 
-/* Interrupteur non modifiable */
+/* Interrupteur désactivé (cookies strictement nécessaires, non modifiables) */
 input:disabled + .slider-toggle {
   cursor: not-allowed;
   opacity: 0.6;
 }
 
-/* boutons Tout accepter, Tout refuser, Enregistrer */
+/* Rangée des boutons d'action : Tout accepter, Tout refuser, Enregistrer */
 .cookies-actions {
   display: flex;
   gap: 16px;
@@ -638,6 +672,7 @@ input:disabled + .slider-toggle {
   flex-wrap: wrap;
 }
 
+/* Style de base commun à tous les boutons d'action cookies */
 .btn-cookies {
   padding: 13px 28px;
   border-radius: 10px;
@@ -648,7 +683,7 @@ input:disabled + .slider-toggle {
   transition: 0.2s ease;
 }
 
-/* Bouton Tout accepter*/
+/* Bouton "Tout accepter" : fond bleu cyan */
 .btn-accept-all {
   background-color: #30bae6;
   color: white;
@@ -658,7 +693,7 @@ input:disabled + .slider-toggle {
   background-color: #1fa8d4;
 }
 
-/* Bouton Tout refuser */
+/* Bouton "Tout refuser" : transparent avec bordure grise */
 .btn-refuse-all {
   background-color: transparent;
   color: #0f1c2e;
@@ -670,7 +705,7 @@ input:disabled + .slider-toggle {
   color: #30bae6;
 }
 
-/* Bouton Enregistrer mes préférences */
+/* Bouton "Enregistrer mes préférences" : fond bleu foncé, poussé à droite */
 .btn-save {
   background-color: #244676;
   color: white;
@@ -681,26 +716,27 @@ input:disabled + .slider-toggle {
   background-color: #1a3358;
 }
 
-/* Message de confirmation après l'enregistrement des préférences */
+/* Message vert de confirmation affiché 3 secondes après l'enregistrement des préférences */
 .save-confirmation {
-  display: none;
+  display: none; /* Affiché temporairement via JS (GestionCookies.html) */
   margin-top: 16px;
   font-size: 0.88rem;
   color: #2a9d5c;
   font-weight: 600;
 }
 
-/*  Footer */
+/* ======================================= FOOTER ================================ */
 
+/* Pied de page bleu foncé, présent sur toutes les pages */
 footer {
   width: 100%;
-  background-color: #1A3358FF;
+  background-color: #2f5c9b;
   color: white;
   padding: 40px;
   margin-top: 50px;
 }
 
-/* logo à gauche, texte au centre : grille 3 colonnes */
+/* Partie haute du footer : logo à gauche, texte au centre (grille 3 colonnes) */
 .footer-top {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -708,25 +744,25 @@ footer {
   gap: 30px;
 }
 
-/* Colonne gauche du footer */
+/* Colonne gauche du footer : contient le logo blanc */
 .footer-left {
   display: flex;
   justify-content: flex-start;
   padding-left: 100px;
 }
 
-/* Logo dans le footer */
+/* Colonne centrale du footer : texte de copyright */
+.footer-center {
+  text-align: center;
+}
+
+/* Logo blanc dans le footer */
 .logo-footer {
   width: 200px;
   height: auto;
 }
 
-/* Colonne centrale du footer */
-.footer-center {
-  text-align: center;
-}
-
-/* Mentions légales et Gestion des cookies */
+/* Partie basse du footer : liens "Mentions légales" et "Gestion des cookies" */
 .footer-bottom {
   display: flex;
   justify-content: center;
@@ -734,18 +770,233 @@ footer {
   margin-top: 30px;
 }
 
+/* Liens du footer : blancs, sans soulignement */
 .footer-bottom a {
   color: white;
   text-decoration: none;
 }
 
+/* Survol des liens du footer : passe en bleu cyan avec soulignement */
 .footer-bottom a:hover {
   color: #30bae6;
   text-decoration: underline;
   text-underline-offset: 4px;
 }
 
-/* Contact */
-.error {
-  color: red;
+/* ======================================= RESPONSIVE ================================ */
+
+/* Tablette (écrans <= 1024px) : passage de 3 à 2 colonnes pour les annonces */
+@media screen and (max-width: 1024px) {
+  #annonces {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Mobile (écrans <= 768px) : tout passe en colonne unique */
+@media screen and (max-width: 768px) {
+
+  /* Filtres et résultats s'empilent verticalement */
+  .page-recherche {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  /* Les filtres prennent toute la largeur avec une bordure basse à la place de droite */
+  .filters {
+    width: 100%;
+    min-width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+    padding-right: 0;
+    padding-bottom: 20px;
+  }
+
+  /* La barre de recherche et les boutons passent en colonne */
+  .search-section {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  /* Une seule colonne d'annonces sur mobile */
+  #annonces {
+    grid-template-columns: 1fr;
+  }
+
+  /* Carte plus basse sur mobile pour ne pas prendre trop de place */
+  .map-wrapper {
+    height: 500px;
+  }
+
+  /* Footer en colonne unique, centré */
+  .footer-top {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  /* Logo du footer centré sur mobile */
+  .footer-left {
+    justify-content: center;
+    padding: 0;
+  }
+}
+
+/* ======================================= BACKOFFICE ADMIN ================================ */
+/* Styles utilisés par : admin/dashboard.php, admin/gestion_mentions.php, admin/gestion_cgu.php */
+
+/* Barre de navigation en haut de chaque page admin */
+.admin-header {
+  background-color: #244676;
+  color: white;
+  padding: 18px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.admin-header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.admin-header img { width: 45px; }
+.admin-header h1 { font-size: 1.2rem; font-weight: 700; color: white; }
+.admin-header a { font-size: 0.85rem; color: #30bae6; text-decoration: none; }
+.admin-header a:hover { text-decoration: underline; }
+
+/* Zone de contenu principale (centrée, max 900px) */
+.admin-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px 60px;
+}
+.admin-container h2 { font-size: 1.6rem; font-weight: 800; margin-bottom: 8px; }
+.admin-container .subtitle { color: #666; font-size: 0.95rem; margin-bottom: 30px; }
+
+/* Message de confirmation affiché après un enregistrement réussi */
+.alert-succes {
+  background-color: #e6f9ee;
+  border: 1px solid #2a9d5c;
+  color: #2a9d5c;
+  padding: 14px 20px;
+  border-radius: 10px;
+  margin-bottom: 24px;
+  font-weight: 600;
+}
+
+/* Carte d'une section éditable (mentions légales / CGU) */
+.section-card {
+  background-color: white;
+  border-radius: 14px;
+  padding: 28px 32px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  border-left: 4px solid #30bae6;
+}
+.section-card .section-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #30bae6;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 10px;
+}
+.section-card label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #444;
+  margin-top: 14px;
+  margin-bottom: 6px;
+}
+.section-card input[type="text"],
+.section-card textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1.5px solid #dde1ee;
+  border-radius: 10px;
+  font-family: "Inter", sans-serif;
+  font-size: 0.92rem;
+  color: #0f1c2e;
+  background-color: #fafbff;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.section-card input[type="text"]:focus,
+.section-card textarea:focus { border-color: #30bae6; }
+.section-card textarea { min-height: 120px; resize: vertical; }
+
+/* Bouton principal d'enregistrement du formulaire */
+.btn-save {
+  display: block;
+  width: 100%;
+  margin-top: 30px;
+  padding: 16px;
+  background-color: #244676;
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.btn-save:hover { background-color: #1a3358; }
+
+/* Grille des cartes du dashboard (2 colonnes) */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+/* Carte cliquable du dashboard (lien vers une section admin) */
+.dashboard-card {
+  background-color: white;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+  text-decoration: none;
+  color: #0f1c2e;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-left: 4px solid #30bae6;
+}
+.dashboard-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.12); }
+
+/* Carte grisée pour les fonctionnalités non encore disponibles */
+.dashboard-card.disabled { opacity: 0.5; pointer-events: none; border-left-color: #ddd; }
+
+/* Icône ronde à gauche de chaque carte */
+.card-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background-color: #e9f6fd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  color: #244676;
+  flex-shrink: 0;
+}
+.card-title { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+.card-desc { font-size: 0.82rem; color: #888; }
+
+/* Badge "Bientôt disponible" sur les cartes désactivées */
+.badge-soon {
+  display: inline-block;
+  background-color: #f0f2f8;
+  color: #aaa;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-top: 6px;
+}
+
+/* Responsive admin : 1 colonne sur mobile */
+@media (max-width: 600px) {
+  .dashboard-grid { grid-template-columns: 1fr; }
+  .admin-header { padding: 14px 20px; }
 }
