@@ -465,43 +465,29 @@ ul {
 
 /* Bouton accordion cliquable pour ouvrir/fermer une question */
 .accordion {
-  background: none;
   background-color: #eee;
   color: #444;
   cursor: pointer;
-  display: flex;
-  padding: 16px 8px;
+  padding: 18px;
   width: 100%;
   border: none;
-  border-top: 0.5px solid #ccc;
   text-align: left;
-  outline: 0;
+  outline: none;
   font-size: 15px;
-  font-weight: 500;
   transition: 0.4s;
-  margin-left: auto;
-  margin-right: auto;
-  justify-content: space-between;
 }
 
 /* Fond plus foncé au survol d'une question */
 .accordion:hover {
-  background-color: #666;
+  background-color: #ccc;
 }
 
 /* Panneau de réponse : masqué par défaut, affiché en JS quand on clique sur l'accordion */
 .panel {
   padding: 0 18px;
-  max-height: 0; 
+  display: none;
   background-color: white;
   overflow: hidden;
-  transition: max-height 0.3s ease ;
-}
-
-.panel p {
-  padding: 0 8px 16px;
-  font-size: 14px;
-  color: #555;
 }
 
 /* ======================================= MENTIONS LÉGALES ================================ */
@@ -1013,4 +999,109 @@ footer {
 @media (max-width: 600px) {
   .dashboard-grid { grid-template-columns: 1fr; }
   .admin-header { padding: 14px 20px; }
+}
+
+/* ======================================= PAGE AUTHENTIFICATION ================================ */
+/* Styles utilisés par : Authentification.html */
+
+/* Carte centrale du formulaire connexion/inscription */
+.auth-container {
+  width: 350px;
+  margin: 50px auto;
+  padding: 25px;
+  border-radius: 10px;
+  background: #f5f5f5;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Boutons de bascule Connexion / Inscription */
+.auth-switch {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.auth-switch button {
+  padding: 10px 20px;
+  border: none;
+  background: #ddd;
+  cursor: pointer;
+}
+.auth-switch button.active {
+  background: #4caf50;
+  color: white;
+}
+
+/* Formulaires : cachés par défaut, affichés quand la classe .active est présente */
+.auth-container form { display: none; }
+.auth-container form.active { display: block; }
+
+/* Champs de saisie du formulaire */
+.auth-container input[type="text"],
+.auth-container input[type="email"],
+.auth-container input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+/* Bouton de soumission */
+.auth-container input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background: #03bcff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+/* Lien discret "Espace Admin" en bas du formulaire */
+.admin-link {
+  text-align: center;
+  margin-top: 20px;
+}
+.admin-link a {
+  font-size: 0.75rem;
+  color: #bbb;
+  text-decoration: none;
+}
+.admin-link a:hover { color: #888; }
+
+/* Panneau de saisie du code secret admin (caché par défaut, affiché via JS) */
+.admin-panel {
+  display: none;
+  margin-top: 15px;
+  padding: 15px;
+  background: #f0f0f0;
+  border-radius: 8px;
+  text-align: center;
+}
+.admin-panel input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  text-align: center;
+  letter-spacing: 3px;
+}
+.admin-panel button {
+  width: 100%;
+  padding: 10px;
+  background: #244676;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.admin-panel button:hover { background: #1a3358; }
+
+/* Message d'erreur si le code admin est incorrect */
+.admin-error {
+  display: none;
+  color: #e74c3c;
+  font-size: 0.82rem;
+  margin-top: 6px;
 }
