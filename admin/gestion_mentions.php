@@ -54,7 +54,7 @@ $sections = $stmt->fetchAll();
         <div class="section-card">
           <div class="section-label">Section — <?php echo htmlspecialchars($section['section']); ?></div>
 
-          <label>Titre</label>
+          <label> Titre </label>
           <input
             type="text"
             name="sections[<?php echo htmlspecialchars($section['section']); ?>][titre]"
