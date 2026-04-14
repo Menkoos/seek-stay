@@ -36,7 +36,7 @@ $sections = $stmt->fetchAll();
       <img src="../img/iconSite_WhiteText.png" alt="logo" />
       <h1>Backoffice – Mentions légales</h1>
     </div>
-    <a href="dashboard.php">← Retour au dashboard</a>
+    <a href="dashboard.html">← Retour au dashboard</a>
   </div>
 
   <div class="admin-container">
