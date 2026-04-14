@@ -12,8 +12,8 @@ $stmtDate = $pdo->query("SELECT MAX(date_modification) as derniere_maj FROM page
 $dateBrute = $stmtDate->fetchColumn(); // format : "2026-04-10 22:52:01"
 
 // Formate la date en français : "10 avril 2026 à 22h52"
-$mois = ['01'=>'janvier','02'=>'février','03'=>'mars','04'=>'avril','05'=>'mai','06'=>'juin',
-         '07'=>'juillet','08'=>'août','09'=>'septembre','10'=>'octobre','11'=>'novembre','12'=>'décembre'];
+$mois = ['01'=>'Janvier','02'=>'Février','03'=>'Mars','04'=>'Avril','05'=>'Mai','06'=>'Juin',
+         '07'=>'Juillet','08'=>'Août','09'=>'Septembre','10'=>'Octobre','11'=>'Novembre','12'=>'Décembre'];
 $dt = new DateTime($dateBrute);
 $dateMaj = $dt->format('d') . ' ' . $mois[$dt->format('m')] . ' ' . $dt->format('Y') . ' à ' . $dt->format('H\hi');
 

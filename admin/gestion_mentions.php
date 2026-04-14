@@ -40,7 +40,7 @@ $sections = $stmt->fetchAll();
   </div>
 
   <div class="admin-container">
-    <h2>Modifier les Mentions légales</h2>
+    <h2>Modifier les Mentions Légales</h2>
     <p class="subtitle">Chaque section correspond à un bloc de la page publique. Les modifications sont enregistrées en base de données et visibles immédiatement.</p>
 
     <!-- Message de confirmation après enregistrement -->
