@@ -464,7 +464,6 @@ ul {
 /* ======================================= FAQ ================================ */
 
 /* Bouton accordion cliquable pour ouvrir/fermer une question */
-
 .accordion {
   background-color: #eee;
   color: #444;
@@ -1110,9 +1109,13 @@ footer {
 /* ======================================= PAGE PUBLIER ================================ */
 /* Styles utilisés par : Publier.html */
 
-/* Fond légèrement grisé pour toute la page */
-.publier-page {
+/* Fond grisé appliqué au body entier sur la page Publier */
+body.page-publier {
   background-color: #f4f6fb;
+}
+
+/* Zone de contenu principal centrée */
+.publier-page {
   padding: 50px 20px 80px;
 }
 
