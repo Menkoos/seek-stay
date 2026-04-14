@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Admin – Dashboard</title>
+  <link rel="icon" type="image/x-icon" href="../img/flavicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="../styles/styles.css" />
+</head>
+<body>
+
+<div class="admin-header">
+  <div class="admin-header-left">
+    <img src="../img/iconSite_WhiteText.png" alt="logo" />
+    <h1>Backoffice – Seek & Stay</h1>
+  </div>
+  <a href="../Authentification.html">← Retour au site</a>
+</div>
+
+<div class="admin-container">
+  <h2>Dashboard Admin</h2>
+  <p class="subtitle">Bienvenue dans l'interface d'administration. Choisissez une section à gérer.</p>
+
+  <div class="dashboard-grid">
+
+    <!-- Gestion des Mentions légales -->
+    <a href="gestion_mentions.php" class="dashboard-card">
+      <div class="card-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+      <div>
+        <div class="card-title">Mentions légales</div>
+        <div class="card-desc">Modifier les sections de la page Mentions légales</div>
+      </div>
+    </a>
+
+    <!-- Gestion des CGU -->
+    <a href="gestion_cgu.php" class="dashboard-card">
+      <div class="card-icon"><i class="fa-solid fa-file-contract"></i></div>
+      <div>
+        <div class="card-title">CGU</div>
+        <div class="card-desc">Modifier les Conditions Générales d'Utilisation</div>
+      </div>
+    </a>
+
+    <!-- Gestion des utilisateurs (à venir) -->
+    <div class="dashboard-card disabled">
+      <div class="card-icon"><i class="fa-solid fa-users"></i></div>
+      <div>
+        <div class="card-title">Utilisateurs</div>
+        <div class="card-desc">Gérer les comptes utilisateurs</div>
+        <span class="badge-soon">Bientôt disponible</span>
+      </div>
+    </div>
+
+    <!-- Gestion de la FAQ (à venir) -->
+    <div class="dashboard-card disabled">
+      <div class="card-icon"><i class="fa-solid fa-circle-question"></i></div>
+      <div>
+        <div class="card-title">FAQ</div>
+        <div class="card-desc">Modifier les questions fréquentes</div>
+        <span class="badge-soon">Bientôt disponible</span>
+      </div>
+    </div>
+
+    <!-- Gestion des annonces (à venir) -->
+    <div class="dashboard-card disabled">
+      <div class="card-icon"><i class="fa-solid fa-house"></i></div>
+      <div>
+        <div class="card-title">Annonces</div>
+        <div class="card-desc">Modérer et gérer les annonces de logement</div>
+        <span class="badge-soon">Bientôt disponible</span>
+      </div>
+    </div>
+
+    <!-- Gestion des signalements (à venir) -->
+    <div class="dashboard-card disabled">
+      <div class="card-icon"><i class="fa-solid fa-flag"></i></div>
+      <div>
+        <div class="card-title">Signalements</div>
+        <div class="card-desc">Traiter les signalements d'annonces</div>
+        <span class="badge-soon">Bientôt disponible</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
