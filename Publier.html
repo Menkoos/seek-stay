@@ -8,327 +8,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
   <link rel="stylesheet" href="styles/styles.css" />
-  <style>
-    /* ===== PAGE PUBLIER ===== */
-
-    /* Fond légèrement grisé pour toute la page */
-    .publier-page {
-      background-color: #f4f6fb;
-      padding: 50px 20px 80px;
-    }
-
-    /* Conteneur principal centré */
-    .publier-container {
-      max-width: 820px;
-      margin: 0 auto;
-    }
-
-    /* En-tête de la page avec titre et sous-titre */
-    .publier-header {
-      margin-bottom: 36px;
-    }
-    .publier-header h2 {
-      font-size: 2rem;
-      font-weight: 800;
-      color: #0f1c2e;
-      margin-bottom: 8px;
-    }
-    .publier-header p {
-      color: #666;
-      font-size: 0.95rem;
-    }
-
-    /* ===== BLOCS DU FORMULAIRE ===== */
-
-    /* Carte regroupant une partie du formulaire (localisation, prix, etc.) */
-    .form-card {
-      background-color: white;
-      border-radius: 16px;
-      padding: 32px 36px;
-      margin-bottom: 24px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
-    }
-
-    /* Titre de chaque carte (ex: "Localisation", "Prix & surface") */
-    .form-card h3 {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: #0f1c2e;
-      margin: 0 0 22px 0;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    /* Icône colorée à côté du titre */
-    .form-card h3 i {
-      color: #30bae6;
-      font-size: 1rem;
-    }
-
-    /* Grille 2 colonnes pour les champs côte à côte */
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-    }
-    /* Champ pleine largeur dans une form-row */
-    .form-row.full { grid-template-columns: 1fr; }
-
-    /* Groupe label + input */
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-    }
-
-    .form-group label {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: #333;
-    }
-    /* Astérisque rouge pour les champs obligatoires */
-    .form-group label span.required {
-      color: #e74c3c;
-      margin-left: 3px;
-    }
-
-    /* Style commun : input, select, textarea */
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      padding: 12px 16px;
-      border: 1.5px solid #dde1ee;
-      border-radius: 10px;
-      font-family: "Inter", sans-serif;
-      font-size: 0.92rem;
-      color: #0f1c2e;
-      background-color: #fafbff;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      border-color: #30bae6;
-    }
-
-    /* Champ avec icône de symbole à droite (€, m²) */
-    .input-with-symbol {
-      position: relative;
-    }
-    .input-with-symbol input {
-      padding-right: 50px;
-      width: 100%;
-    }
-    .input-with-symbol .symbol {
-      position: absolute;
-      right: 14px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: #888;
-      pointer-events: none;
-    }
-
-    /* Zone de description */
-    .form-group textarea {
-      min-height: 140px;
-      resize: vertical;
-      line-height: 1.6;
-    }
-
-    /* Compteur de caractères sous la description */
-    .char-counter {
-      font-size: 0.78rem;
-      color: #aaa;
-      text-align: right;
-      margin-top: -2px;
-    }
-
-    /* ===== TYPE D'IMMEUBLE & TYPE D'OFFRE (boutons radio visuels) ===== */
-    .type-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    /* Chaque option est un label qui cache le vrai radio */
-    .type-option input[type="radio"] {
-      display: none;
-    }
-    .type-option label {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 20px;
-      border: 2px solid #dde1ee;
-      border-radius: 30px;
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: #555;
-      cursor: pointer;
-      transition: all 0.2s;
-      background-color: #fafbff;
-      user-select: none;
-    }
-    .type-option label i {
-      font-size: 0.9rem;
-    }
-    /* Quand le radio est coché → style actif bleu */
-    .type-option input[type="radio"]:checked + label {
-      background-color: #244676;
-      border-color: #244676;
-      color: white;
-    }
-    .type-option label:hover {
-      border-color: #30bae6;
-      color: #30bae6;
-    }
-    .type-option input[type="radio"]:checked + label:hover {
-      color: white;
-    }
-
-    /* ===== SECTION IMAGES ===== */
-
-    /* Zone de dépôt de fichiers (drag & drop visuel) */
-    .upload-zone {
-      border: 2px dashed #c5cce0;
-      border-radius: 14px;
-      background-color: #f8f9ff;
-      padding: 36px 20px;
-      text-align: center;
-      cursor: pointer;
-      transition: border-color 0.2s, background-color 0.2s;
-    }
-    .upload-zone:hover {
-      border-color: #30bae6;
-      background-color: #eef8fd;
-    }
-    .upload-zone i {
-      font-size: 2rem;
-      color: #30bae6;
-      margin-bottom: 10px;
-    }
-    .upload-zone p {
-      font-size: 0.88rem;
-      color: #777;
-      margin: 4px 0;
-    }
-    .upload-zone .upload-hint {
-      font-size: 0.78rem;
-      color: #aaa;
-    }
-    /* Input file caché, déclenché par le clic sur la zone */
-    #input-images {
-      display: none;
-    }
-
-    /* Grille des aperçus des images sélectionnées */
-    .preview-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      gap: 14px;
-      margin-top: 20px;
-    }
-
-    /* Carte d'aperçu d'une image */
-    .preview-item {
-      position: relative;
-      border-radius: 12px;
-      overflow: hidden;
-      border: 2.5px solid #dde1ee;
-      aspect-ratio: 4/3;
-      background-color: #eee;
-      cursor: pointer;
-      transition: border-color 0.2s;
-    }
-    .preview-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    /* Bouton croix pour supprimer une image */
-    .preview-item .btn-remove {
-      position: absolute;
-      top: 6px;
-      right: 6px;
-      background-color: rgba(0,0,0,0.6);
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 24px;
-      height: 24px;
-      font-size: 0.75rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background-color 0.2s;
-    }
-    .preview-item .btn-remove:hover {
-      background-color: #e74c3c;
-    }
-
-    /* Badge "Principale" sur l'image choisie comme couverture */
-    .preview-item .badge-principale {
-      position: absolute;
-      bottom: 6px;
-      left: 6px;
-      background-color: #244676;
-      color: white;
-      font-size: 0.68rem;
-      font-weight: 700;
-      padding: 3px 8px;
-      border-radius: 20px;
-      display: none; /* caché par défaut, affiché via JS */
-    }
-
-    /* Bordure bleue sur l'image principale sélectionnée */
-    .preview-item.is-principale {
-      border-color: #244676;
-    }
-    .preview-item.is-principale .badge-principale {
-      display: block;
-    }
-
-    /* Texte d'aide sous la grille d'images */
-    .upload-tip {
-      font-size: 0.8rem;
-      color: #999;
-      margin-top: 10px;
-    }
-
-    /* ===== BOUTON PUBLIER ===== */
-    .btn-publier {
-      display: block;
-      width: 100%;
-      padding: 18px;
-      background-color: #244676;
-      color: white;
-      font-size: 1.05rem;
-      font-weight: 700;
-      border: none;
-      border-radius: 14px;
-      cursor: pointer;
-      transition: background-color 0.2s, transform 0.15s;
-      margin-top: 10px;
-      letter-spacing: 0.02em;
-    }
-    .btn-publier:hover {
-      background-color: #1a3358;
-      transform: translateY(-2px);
-    }
-
-    /* Responsive : 1 colonne sur mobile */
-    @media (max-width: 600px) {
-      .form-row { grid-template-columns: 1fr; }
-      .form-card { padding: 22px 18px; }
-      .publier-header h2 { font-size: 1.5rem; }
-    }
-  </style>
 </head>
 
 <body>
@@ -355,7 +34,6 @@
 <div class="publier-page">
   <div class="publier-container">
 
-    <!-- Titre de la page -->
     <div class="publier-header">
       <h2>Publier une annonce</h2>
       <p>Remplissez les informations ci-dessous pour mettre votre logement en ligne.</p>
@@ -390,10 +68,9 @@
       <div class="form-card">
         <h3><i class="fa-solid fa-building"></i> Type de logement</h3>
 
-        <!-- Type d'immeuble -->
         <div class="form-group" style="margin-bottom: 24px;">
           <label>Type d'immeuble <span class="required">*</span></label>
-          <div class="type-grid" id="type-immeuble">
+          <div class="type-grid">
             <div class="type-option">
               <input type="radio" name="type_immeuble" id="ti-appartement" value="appartement" required />
               <label for="ti-appartement"><i class="fa-solid fa-building"></i> Appartement</label>
@@ -417,10 +94,9 @@
           </div>
         </div>
 
-        <!-- Type d'offre -->
         <div class="form-group">
           <label>Type d'offre <span class="required">*</span></label>
-          <div class="type-grid" id="type-offre">
+          <div class="type-grid">
             <div class="type-option">
               <input type="radio" name="type_offre" id="to-location" value="location" required />
               <label for="to-location"><i class="fa-solid fa-key"></i> Location</label>
@@ -468,7 +144,6 @@
                   maxlength="1000"
                   required
           ></textarea>
-          <!-- Compteur mis à jour par JS -->
           <div class="char-counter"><span id="nb-chars">0</span> / 1000 caractères</div>
         </div>
       </div>
@@ -477,19 +152,14 @@
       <div class="form-card">
         <h3><i class="fa-solid fa-images"></i> Photos du logement</h3>
 
-        <!-- Zone de clic pour choisir les images -->
         <div class="upload-zone" id="upload-zone" onclick="document.getElementById('input-images').click()">
           <i class="fa-solid fa-cloud-arrow-up"></i>
           <p><strong>Cliquez pour ajouter des photos</strong></p>
-          <p class="upload-hint">JPG, PNG ou WEBP — 5 Mo max par image</p>
+          <p class="upload-hint">JPG, PNG ou WEBP </p>
         </div>
 
-        <!-- Input file caché (multiple = plusieurs images) -->
         <input type="file" id="input-images" name="images[]" accept="image/*" multiple />
-
-        <!-- Grille des aperçus — remplie par JS -->
         <div class="preview-grid" id="preview-grid"></div>
-
         <p class="upload-tip">Cliquez sur une photo pour la définir comme image principale (affichée sur les annonces).</p>
       </div>
 
@@ -523,100 +193,7 @@
   </div>
 </footer>
 
-<script>
-  // ===== COMPTEUR DE CARACTÈRES (description) =====
-  const textarea = document.getElementById("description");
-  const nbChars  = document.getElementById("nb-chars");
-
-  textarea.addEventListener("input", () => {
-    nbChars.textContent = textarea.value.length;
-  });
-
-  // ===== GESTION DES IMAGES =====
-  const inputImages  = document.getElementById("input-images");
-  const previewGrid  = document.getElementById("preview-grid");
-
-  // Tableau des fichiers sélectionnés + index de l'image principale
-  let fichiers       = [];
-  let indexPrincipale = 0;
-
-  // Quand l'utilisateur choisit des fichiers
-  inputImages.addEventListener("change", (e) => {
-    const nouveaux = Array.from(e.target.files);
-    fichiers = fichiers.concat(nouveaux);
-    renderPreviews();
-    // Remet l'input à zéro pour permettre de rajouter les mêmes fichiers
-    inputImages.value = "";
-  });
-
-  // Affiche toutes les aperçus dans la grille
-  function renderPreviews() {
-    previewGrid.innerHTML = "";
-
-    fichiers.forEach((fichier, index) => {
-      const reader = new FileReader();
-
-      reader.onload = (e) => {
-        const item = document.createElement("div");
-        item.className = "preview-item" + (index === indexPrincipale ? " is-principale" : "");
-        item.title = "Cliquez pour définir comme image principale";
-
-        item.innerHTML = `
-              <img src="${e.target.result}" alt="Aperçu image ${index + 1}" />
-              <button class="btn-remove" title="Supprimer cette image">
-                <i class="fa-solid fa-xmark"></i>
-              </button>
-              <span class="badge-principale">Principale</span>
-            `;
-
-        // Clic sur la carte → définir comme image principale
-        item.addEventListener("click", (ev) => {
-          if (ev.target.closest(".btn-remove")) return; // ignore si c'est le bouton supprimer
-          indexPrincipale = index;
-          renderPreviews();
-        });
-
-        // Clic sur le bouton supprimer
-        item.querySelector(".btn-remove").addEventListener("click", (ev) => {
-          ev.stopPropagation();
-          fichiers.splice(index, 1);
-          // Si on supprime l'image principale, on remet l'index à 0
-          if (indexPrincipale >= fichiers.length) indexPrincipale = 0;
-          renderPreviews();
-        });
-
-        previewGrid.appendChild(item);
-      };
-
-      reader.readAsDataURL(fichier);
-    });
-  }
-
-  // ===== VALIDATION À LA SOUMISSION =====
-  document.getElementById("form-publier").addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    // Vérifie que les radios obligatoires sont cochés
-    const typeImmeuble = document.querySelector('input[name="type_immeuble"]:checked');
-    const typeOffre    = document.querySelector('input[name="type_offre"]:checked');
-
-    if (!typeImmeuble) {
-      alert("Veuillez sélectionner un type d'immeuble.");
-      return;
-    }
-    if (!typeOffre) {
-      alert("Veuillez sélectionner un type d'offre.");
-      return;
-    }
-    if (fichiers.length === 0) {
-      alert("Veuillez ajouter au moins une photo.");
-      return;
-    }
-
-    // Tout est valide → ici on enverra les données au serveur (PHP à connecter plus tard)
-    alert("Annonce prête à être publiée ! (connexion BDD à implémenter)");
-  });
-</script>
+<script src="js/publier.js"></script>
 
 </body>
 </html>
