@@ -167,7 +167,7 @@ $sections = $stmt->fetchAll();
   <!-- En-tête de l'interface admin -->
   <div class="admin-header">
     <h1>⚙️ Backoffice – Mentions légales</h1>
-    <a href="../Mentionlegales.php" target="_blank">👁 Voir la page publique</a>
+    <a href="../Mentionlegales.php" target="_blank"> Retour au site </a>
   </div>
 
   <div class="admin-container">
@@ -200,12 +200,9 @@ $sections = $stmt->fetchAll();
       <?php endforeach; ?>
 
       <!-- Bouton d'enregistrement global -->
-      <button type="submit" class="btn-save">💾 Enregistrer toutes les modifications</button>
+      <button type="submit" class="btn-save">Enregistrer toutes les modifications</button>
     </form>
 
-    <a href="../Mentionlegales.php" target="_blank" class="preview-link">
-      → Voir le résultat sur la page publique
-    </a>
   </div>
 
 </body>
