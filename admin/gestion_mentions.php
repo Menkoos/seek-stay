@@ -167,7 +167,7 @@ $sections = $stmt->fetchAll();
   <!-- En-tête de l'interface admin -->
   <div class="admin-header">
     <h1>⚙️ Backoffice – Mentions légales</h1>
-    <a href="../Mentionlegales.php" target="_blank"> Retour au site </a>
+    <a href="../Mentionlegales.php" target="_blank">← Retour au site </a>
   </div>
 
   <div class="admin-container">
