@@ -1,3 +1,7 @@
+CREATE DATABASE IF NOT EXISTS `bddtest`
+  CHARACTER SET utf8mb4
+  COLLATE utf8mb4_general_ci;
+USE `bddtest`;
 -- phpMyAdmin SQL Dump
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
