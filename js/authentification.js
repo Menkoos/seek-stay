@@ -1,8 +1,3 @@
-/* ============================================================
-   authentification.js — Logique de la page Authentification.html
-   Gère : bascule connexion/inscription + accès admin secret
-   ============================================================ */
-
 /* Bascule entre le formulaire Connexion et Inscription
    - type : "loginForm" ou "registerForm"
    - Active le bon formulaire et le bon bouton */

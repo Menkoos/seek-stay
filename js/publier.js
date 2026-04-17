@@ -1,9 +1,4 @@
-/* ============================================================
-   publier.js — Logique de la page Publier.html
-   Gère : compteur de caractères, aperçu des images, validation
-   ============================================================ */
-
-// ===== COMPTEUR DE CARACTÈRES (description) =====
+// Compteurs de caractères (description)
 const textarea = document.getElementById("description");
 const nbChars  = document.getElementById("nb-chars");
 
@@ -11,7 +6,7 @@ textarea.addEventListener("input", () => {
   nbChars.textContent = textarea.value.length;
 });
 
-// ===== GESTION DES IMAGES =====
+// Gestion des images
 const inputImages   = document.getElementById("input-images");
 const previewGrid   = document.getElementById("preview-grid");
 
@@ -69,7 +64,7 @@ function renderPreviews() {
   });
 }
 
-// ===== VALIDATION À LA SOUMISSION =====
+// Validation à la soumission
 document.getElementById("form-publier").addEventListener("submit", (e) => {
   e.preventDefault();
 
