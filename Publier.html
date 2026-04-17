@@ -12,14 +12,14 @@
 
 <body class="page-publier">
 
-<!-- Header -->
+<!-- ===== HEADER ===== -->
 <header>
   <div class="flex">
-    <a href="Accueil.html" class="header-logo">
+    <a href="Accueil.php" class="header-logo">
       <img src="img/iconSite.png" class="header-logo" alt="logo" />
     </a>
     <ul class="header-menu">
-      <li><a href="Accueil.html">Accueil</a></li>
+      <li><a href="Accueil.php">Accueil</a></li>
       <li><a href="Offres.html">Offres</a></li>
       <li><a href="Publier.html" class="active">Publier</a></li>
       <li><a href="FAQ.html">FAQ</a></li>
@@ -30,7 +30,7 @@
   </div>
 </header>
 
-<!-- Contenu principal -->
+<!-- ===== CONTENU PRINCIPAL ===== -->
 <div class="publier-page">
   <div class="publier-container">
 
@@ -39,9 +39,16 @@
       <p>Remplissez les informations ci-dessous pour mettre votre logement en ligne.</p>
     </div>
 
-    <form id="form-publier" novalidate>
+    <!-- Bandeau de confirmation (visible après redirection ?succes=1) -->
+    <div id="banner-succes" style="display:none; background:#e6f9ee; border:1px solid #2a9d5c; color:#2a9d5c; padding:16px 20px; border-radius:12px; font-weight:600; margin-bottom:24px;">
+      ✅ Votre annonce a bien été publiée !
+    </div>
 
-      <!-- Bloc 1 : Localisation -->
+    <form id="form-publier" action="traitement_annonce.php" method="POST" enctype="multipart/form-data" novalidate>
+      <!-- Champ caché : index de l'image principale (mis à jour par JS avant l'envoi) -->
+      <input type="hidden" id="index-principale" name="image_principale_index" value="0" />
+
+      <!-- ===== BLOC 1 : LOCALISATION ===== -->
       <div class="form-card">
         <h3><i class="fa-solid fa-location-dot"></i> Localisation</h3>
 
@@ -64,7 +71,7 @@
         </div>
       </div>
 
-      <!-- Bloc 2 : Type de logement et offre -->
+      <!-- ===== BLOC 2 : TYPE DE LOGEMENT & OFFRE ===== -->
       <div class="form-card">
         <h3><i class="fa-solid fa-building"></i> Type de logement</h3>
 
@@ -109,7 +116,7 @@
         </div>
       </div>
 
-      <!-- Bloc 3 : Prix et Surface -->
+      <!-- ===== BLOC 3 : PRIX & SURFACE ===== -->
       <div class="form-card">
         <h3><i class="fa-solid fa-euro-sign"></i> Prix & Surface</h3>
 
@@ -131,7 +138,7 @@
         </div>
       </div>
 
-      <!-- Bloc 4 : Description -->
+      <!-- ===== BLOC 4 : DESCRIPTION ===== -->
       <div class="form-card">
         <h3><i class="fa-solid fa-align-left"></i> Description</h3>
 
@@ -148,7 +155,7 @@
         </div>
       </div>
 
-      <!-- Bloc 5 : Images -->
+      <!-- ===== BLOC 5 : IMAGES ===== -->
       <div class="form-card">
         <h3><i class="fa-solid fa-images"></i> Photos du logement</h3>
 
@@ -173,7 +180,7 @@
   </div>
 </div>
 
-<!-- Footer -->
+<!-- ===== FOOTER ===== -->
 <footer>
   <div class="footer-top">
     <div class="footer-left">
