@@ -2,42 +2,326 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Seek & Stay | Location de Logements pour étudiants</title>
+    <title>Seek & Stay | Publier une annonce</title>
     <meta
       name="description"
-      content="Ceci est notre projet APP - site de location de logements pour étudiants"
+      content="Publiez votre annonce de logement étudiant sur Seek & Stay"
     />
     <link rel="icon" type="image/x-icon" href="img/flavicon.png" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles/styles.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
+    <link rel="stylesheet" href="styles/styles.css" />
   </head>
 
-  <body>
+  <body class="page-publier">
+    <!-- ===== HEADER ===== -->
     <header>
       <div class="flex">
-        <a href="Accueil.html" class="header-logo">
+        <a href="Accueil.php" class="header-logo">
           <img src="img/iconSite.png" class="header-logo" alt="logo" />
         </a>
         <ul class="header-menu">
-          <li><a href="Accueil.html" class="active">Accueil</a></li>
-          <li><a href="Annonces.html">Annonces</a></li>
-          <li><a href="Publier.html">Publier</a></li>
+          <li><a href="Accueil.php">Accueil</a></li>
+          <li><a href="Offres.html">Offres</a></li>
+          <li><a href="Publier.html" class="active">Publier</a></li>
           <li><a href="FAQ.html">FAQ</a></li>
           <li><a href="Favoris.html">Favoris</a></li>
           <li><a href="Contact.html">Contact</a></li>
-          <li><a href="Authentification.html">Inscription / Connexion </a></li>
+          <li><a href="Authentification.html">Inscription / Connexion</a></li>
         </ul>
       </div>
     </header>
 
+    <!-- ===== CONTENU PRINCIPAL ===== -->
+    <div class="publier-page">
+      <div class="publier-container">
+        <div class="publier-header">
+          <h2>Publier une annonce</h2>
+          <p>
+            Remplissez les informations ci-dessous pour mettre votre logement en
+            ligne.
+          </p>
+        </div>
 
+        <!-- Bandeau de confirmation (visible après redirection ?succes=1) -->
+        <div
+          id="banner-succes"
+          style="
+            display: none;
+            background: #e6f9ee;
+            border: 1px solid #2a9d5c;
+            color: #2a9d5c;
+            padding: 16px 20px;
+            border-radius: 12px;
+            font-weight: 600;
+            margin-bottom: 24px;
+          "
+        >
+          ✅ Votre annonce a bien été publiée !
+        </div>
+
+        <form
+          id="form-publier"
+          action="traitement_annonce.php"
+          method="POST"
+          enctype="multipart/form-data"
+          novalidate
+        >
+          <!-- Champ caché : index de l'image principale (mis à jour par JS avant l'envoi) -->
+          <input
+            type="hidden"
+            id="index-principale"
+            name="image_principale_index"
+            value="0"
+          />
+
+          <!-- ===== BLOC 1 : LOCALISATION ===== -->
+          <div class="form-card">
+            <h3><i class="fa-solid fa-location-dot"></i> Localisation</h3>
+
+            <div class="form-row full">
+              <div class="form-group">
+                <label for="adresse"
+                  >Adresse <span class="required">*</span></label
+                >
+                <input
+                  type="text"
+                  id="adresse"
+                  name="adresse"
+                  placeholder="Ex : 12 rue des Étudiants"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-row" style="margin-top: 18px">
+              <div class="form-group">
+                <label for="ville">Ville <span class="required">*</span></label>
+                <input
+                  type="text"
+                  id="ville"
+                  name="ville"
+                  placeholder="Ex : Paris"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="code-postal"
+                  >Code postal <span class="required">*</span></label
+                >
+                <input
+                  type="text"
+                  id="code-postal"
+                  name="code_postal"
+                  placeholder="Ex : 75001"
+                  maxlength="5"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- ===== BLOC 2 : TYPE DE LOGEMENT & OFFRE ===== -->
+          <div class="form-card">
+            <h3><i class="fa-solid fa-building"></i> Type de logement</h3>
+
+            <div class="form-group" style="margin-bottom: 24px">
+              <label>Type d'immeuble <span class="required">*</span></label>
+              <div class="type-grid">
+                <div class="type-option">
+                  <input
+                    type="radio"
+                    name="type_immeuble"
+                    id="ti-appartement"
+                    value="appartement"
+                    required
+                  />
+                  <label for="ti-appartement"
+                    ><i class="fa-solid fa-building"></i> Appartement</label
+                  >
+                </div>
+                <div class="type-option">
+                  <input
+                    type="radio"
+                    name="type_immeuble"
+                    id="ti-maison"
+                    value="maison"
+                  />
+                  <label for="ti-maison"
+                    ><i class="fa-solid fa-house"></i> Maison</label
+                  >
+                </div>
+                <div class="type-option">
+                  <input
+                    type="radio"
+                    name="type_immeuble"
+                    id="ti-chambre"
+                    value="chambre"
+                  />
+                  <label for="ti-chambre"
+                    ><i class="fa-solid fa-bed"></i> Chambre</label
+                  >
+                </div>
+                <div class="type-option">
+                  <input
+                    type="radio"
+                    name="type_immeuble"
+                    id="ti-residence"
+                    value="residence"
+                  />
+                  <label for="ti-residence"
+                    ><i class="fa-solid fa-city"></i> Résidence</label
+                  >
+                </div>
+                <div class="type-option">
+                  <input
+                    type="radio"
+                    name="type_immeuble"
+                    id="ti-studio"
+                    value="studio"
+                  />
+                  <label for="ti-studio"
+                    ><i class="fa-solid fa-door-closed"></i> Studio</label
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Type d'offre <span class="required">*</span></label>
+              <div class="type-grid">
+                <div class="type-option">
+                  <input
+                    type="radio"
+                    name="type_offre"
+                    id="to-location"
+                    value="location"
+                    required
+                  />
+                  <label for="to-location"
+                    ><i class="fa-solid fa-key"></i> Location</label
+                  >
+                </div>
+                <div class="type-option">
+                  <input
+                    type="radio"
+                    name="type_offre"
+                    id="to-colocation"
+                    value="colocation"
+                  />
+                  <label for="to-colocation"
+                    ><i class="fa-solid fa-people-group"></i> Colocation</label
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ===== BLOC 3 : PRIX & SURFACE ===== -->
+          <div class="form-card">
+            <h3><i class="fa-solid fa-euro-sign"></i> Prix & Surface</h3>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="prix"
+                  >Loyer mensuel <span class="required">*</span></label
+                >
+                <div class="input-with-symbol">
+                  <input
+                    type="number"
+                    id="prix"
+                    name="prix"
+                    placeholder="Ex : 650"
+                    min="0"
+                    required
+                  />
+                  <span class="symbol">€</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="superficie"
+                  >Superficie <span class="required">*</span></label
+                >
+                <div class="input-with-symbol">
+                  <input
+                    type="number"
+                    id="superficie"
+                    name="superficie"
+                    placeholder="Ex : 28"
+                    min="1"
+                    required
+                  />
+                  <span class="symbol">m²</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ===== BLOC 4 : DESCRIPTION ===== -->
+          <div class="form-card">
+            <h3><i class="fa-solid fa-align-left"></i> Description</h3>
+
+            <div class="form-group">
+              <label for="description"
+                >Description de l'annonce <span class="required">*</span></label
+              >
+              <textarea
+                id="description"
+                name="description"
+                placeholder="Décrivez votre logement : équipements, proximité des transports, état général, règles de vie…"
+                maxlength="1000"
+                required
+              ></textarea>
+              <div class="char-counter">
+                <span id="nb-chars">0</span> / 1000 caractères
+              </div>
+            </div>
+          </div>
+
+          <!-- ===== BLOC 5 : IMAGES ===== -->
+          <div class="form-card">
+            <h3><i class="fa-solid fa-images"></i> Photos du logement</h3>
+
+            <div
+              class="upload-zone"
+              id="upload-zone"
+              onclick="document.getElementById('input-images').click()"
+            >
+              <i class="fa-solid fa-cloud-arrow-up"></i>
+              <p><strong>Cliquez pour ajouter des photos</strong></p>
+              <p class="upload-hint">JPG, PNG ou WEBP — 5 Mo max par image</p>
+            </div>
+
+            <input
+              type="file"
+              id="input-images"
+              name="images[]"
+              accept="image/*"
+              multiple
+            />
+            <div class="preview-grid" id="preview-grid"></div>
+            <p class="upload-tip">
+              Cliquez sur une photo pour la définir comme image principale
+              (affichée sur les annonces).
+            </p>
+          </div>
+
+          <!-- ===== BOUTON PUBLIER ===== -->
+          <button type="submit" class="btn-publier">
+            <i class="fa-solid fa-paper-plane" style="margin-right: 8px"></i>
+            Publier l'annonce
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
     <footer>
       <div class="footer-top">
         <div class="footer-left">
@@ -47,21 +331,21 @@
             alt="Icône du site internet"
           />
         </div>
-
         <div class="footer-center">
           <p class="footer-text">
             Ce site a été conçu et développé par les élèves de l'ISEP du groupe
-            G9A 2025/2026 en utilisant HTML, CSS, JavaScript et PHP - Tous
+            G9A 2025/2026 en utilisant HTML, CSS, JavaScript et PHP — Tous
             droits réservés
           </p>
         </div>
       </div>
-
       <div class="footer-bottom">
         <a href="Mentionlegales.php">Mentions légales et CGU</a>
         <p>-</p>
         <a href="GestionCookies.html">Gestion des cookies</a>
       </div>
     </footer>
+
+    <script src="js/publier.js"></script>
   </body>
 </html>

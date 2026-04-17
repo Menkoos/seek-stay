@@ -18,14 +18,12 @@
   <body>
     <header>
       <div class="flex">
-        <a href="Accueil.html" class="header-logo">
+        <a href="Accueil.php" class="header-logo">
           <img src="img/iconSite.png" class="header-logo" alt="logo" />
         </a>
         <ul class="header-menu">
-          <li><a href="Accueil.html" class="active">Accueil</a></li>
-          <!-- PAS ENCORE FAIT -->
-          <!--<li><a href="Colocation.html">Colocation</a></li>-->
-               <li><a href="Annonces.html">Annonces</a></li>
+          <li><a href="Accueil.php" class="active">Accueil</a></li>
+          <li><a href="Offres.html">Offres</a></li>
           <li><a href="Publier.html">Publier</a></li>
           <li><a href="FAQ.html">FAQ</a></li>
           <li><a href="Favoris.html">Favoris</a></li>
@@ -36,36 +34,77 @@
       </div>
     </header>
 
-    <h2>Accordion</h2>
+    <div style="max-width: 1000px; margin: 2rem auto">
+      <!--Limite la largeur à 600 px et centre horizontalement-->
+      <h2>Foire Aux Questions</h2>
 
-    <button class="accordion">Section 1</button>
-    <div class="panel">
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat.
-      </p>
-    </div>
+      <button class="accordion">
+        Le dépont d'une annonce est-il gratuit ?
+      </button>
+      <div class="panel">
+        <p>Le dépos d'une annonce est entièrement gratuit.</p>
+      </div>
 
-    <button class="accordion">Section 2</button>
-    <div class="panel">
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat.
-      </p>
-    </div>
+      <button class="accordion">
+        Peut-on louer un bien directement sur Seek&Stay ?
+      </button>
+      <div class="panel">
+        <p>
+          Non, Seek&Stay est une plateforme de mise en relation entre les
+          locataires et les propriétaires. Aucune transaction ne peut être
+          effectuée.
+        </p>
+      </div>
 
-    <button class="accordion">Section 3</button>
-    <div class="panel">
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat.
-      </p>
+      <button class="accordion">Question 3</button>
+      <div class="panel">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat.
+        </p>
+      </div>
+
+      <button class="accordion">Question 4</button>
+      <div class="panel">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat.
+        </p>
+      </div>
+
+      <button class="accordion">Question 5</button>
+      <div class="panel">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat.
+        </p>
+      </div>
+
+      <button class="accordion">Question 6</button>
+      <div class="panel">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat.
+        </p>
+      </div>
+
+      <button class="accordion">Question 7</button>
+      <div class="panel">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat.
+        </p>
+      </div>
     </div>
 
     <footer>
@@ -93,5 +132,20 @@
         <a href="GestionCookies.html">Gestion des cookies</a>
       </div>
     </footer>
+    <script>
+      const accordions = document.querySelectorAll(".accordion");
+
+      accordions.forEach((button) => {
+        button.addEventListener("click", function () {
+          this.classList.toggle("active");
+          const panel = this.nextElementSibling;
+          if (panel.style.maxHeight) {
+            panel.style.maxHeight = null;
+          } else {
+            panel.style.maxHeight = panel.scrollHeight + "px";
+          }
+        });
+      });
+    </script>
   </body>
 </html>
