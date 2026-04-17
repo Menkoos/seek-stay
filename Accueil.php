@@ -48,7 +48,7 @@ $annonces = $stmt->fetchAll();
 
 <!-- ===== BANNIÈRE ===== -->
 <div class="slider" id="home">
-  <img src="img/banniere.png" class="slider-background" alt="bannière du site Seek & Stay" />
+  <img src="img/banniere3.jpg" class="slider-background" alt="bannière du site Seek & Stay" />
 </div>
 
 <!-- ===== FILTRES + RÉSULTATS ===== -->
