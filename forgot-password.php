@@ -3,14 +3,14 @@ session_start();
 require 'config.php';
 
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-    header("Location: Authentification.php?tab=forgot");
+    header("Location: Authentification.html?tab=forgot");
     exit;
 }
 
 $email = filter_var(trim($_POST['email'] ?? ''), FILTER_SANITIZE_EMAIL);
 
 if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    header("Location: Authentification.php?tab=forgot&error=" . urlencode("Adresse email invalide."));
+    header("Location: Authentification.html?tab=forgot&error=" . urlencode("Adresse email invalide."));
     exit;
 }
 
@@ -28,5 +28,5 @@ if ($stmt->fetch()) {
     // mail($email, "Réinitialisation de mot de passe", "Cliquez ici : " . $lien);
 }
 
-header("Location: Authentification.php?tab=forgot&success=" . urlencode("Si cette adresse est connue, un lien de réinitialisation vous a été envoyé."));
+header("Location: Authentification.html?tab=forgot&success=" . urlencode("Si cette adresse est connue, un lien de réinitialisation vous a été envoyé."));
 exit;

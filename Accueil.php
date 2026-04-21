@@ -1,5 +1,5 @@
 <?php
-require 'config.php';
+require 'session.php';
 try {
     $stmt = $pdo->query("SELECT * FROM annonces WHERE statut = 'actif' ORDER BY date_publication DESC");
     $annonces = $stmt->fetchAll();
@@ -39,7 +39,6 @@ try {
     </a>
     <ul class="header-menu">
       <li><a href="Accueil.php" class="active">Accueil</a></li>
-      <li><a href="Offres.html">Offres</a></li>
       <li><a href="Publier.html">Publier</a></li>
       <li><a href="FAQ.html">FAQ</a></li>
       <li><a href="Favoris.html">Favoris</a></li>

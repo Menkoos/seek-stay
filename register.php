@@ -3,7 +3,7 @@ session_start();
 require 'config.php';
 
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-    header("Location: Authentification.php?tab=register");
+    header("Location: Authentification.html?tab=register");
     exit;
 }
 
@@ -15,22 +15,22 @@ $confirm   = $_POST['confirm']   ?? '';
 $telephone = trim($_POST['telephone'] ?? '');
 
 if (empty($nom) || empty($lastname) || empty($email) || empty($password) || empty($confirm)) {
-    header("Location: Authentification.php?tab=register&error=" . urlencode("Veuillez remplir tous les champs obligatoires."));
+    header("Location: Authentification.html?tab=register&error=" . urlencode("Veuillez remplir tous les champs obligatoires."));
     exit;
 }
 
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    header("Location: Authentification.php?tab=register&error=" . urlencode("Adresse email invalide."));
+    header("Location: Authentification.html?tab=register&error=" . urlencode("Adresse email invalide."));
     exit;
 }
 
 if (strlen($password) < 8) {
-    header("Location: Authentification.php?tab=register&error=" . urlencode("Le mot de passe doit contenir au moins 8 caractères."));
+    header("Location: Authentification.html?tab=register&error=" . urlencode("Le mot de passe doit contenir au moins 8 caractères."));
     exit;
 }
 
 if ($password !== $confirm) {
-    header("Location: Authentification.php?tab=register&error=" . urlencode("Les mots de passe ne correspondent pas."));
+    header("Location: Authentification.html?tab=register&error=" . urlencode("Les mots de passe ne correspondent pas."));
     exit;
 }
 
@@ -59,6 +59,6 @@ try {
     header("Location: Accueil.php");
     exit;
 } catch (PDOException $e) {
-    header("Location: Authentification.php?tab=register&error=" . urlencode("Cette adresse email est déjà utilisée."));
+    header("Location: Authentification.html?tab=register&error=" . urlencode("Cette adresse email est déjà utilisée."));
     exit;
 }

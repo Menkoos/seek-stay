@@ -1,126 +1,336 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <title>Authentification à votre compte</title>
-    <meta
-      name="description"
-      content="Ceci est notre projet APP - site de location de logements pour étudiants"
-    />
-    <link rel="icon" type="image/x-icon" href="img/flavicon.png" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles/styles.css" />
-    <script src="js/authentification.js"></script>
-  </head>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Connexion — Seek &amp; Stay</title>
+  <meta name="description" content="Connexion et inscription à votre compte Seek &amp; Stay" />
+  <link rel="icon" type="image/x-icon" href="img/flavicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <link rel="stylesheet" href="styles/styles.css" />
+  <style>
+    :root {
+      --ss-primary: #244676; --ss-primary-hover: #1a3459; --ss-accent: #30bae6;
+      --text: #1e293b; --text-muted: #64748b; --border: #e2e8f0;
+      --bg: #f1f5f9; --white: #ffffff; --radius: 8px;
+      --error-bg: #fef2f2; --error-color: #dc2626; --error-border: #fecaca;
+      --success-bg: #f0fdf4; --success-color: #16a34a; --success-border: #bbf7d0;
+    }
 
-  <body>
-    <!-- Header -->
-    <header>
-      <div class="flex">
-        <a href="Accueil.php" class="header-logo">
-          <img src="img/iconSite.png" class="header-logo" alt="logo" />
-        </a>
-        <ul class="header-menu">
-          <li><a href="Accueil.php">Accueil</a></li>
-          <li><a href="Offres.html">Offres</a></li>
-          <li><a href="Publier.html">Publier</a></li>
-          <li><a href="FAQ.html">FAQ</a></li>
-          <li><a href="Favoris.html">Favoris</a></li>
-          <li><a href="Contact.html">Contact</a></li>
-          <li><a href="Authentification.html">Inscription / Connexion</a></li>
-        </ul>
+    .auth-section {
+      background: var(--bg);
+      min-height: calc(100vh - 120px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 48px 20px;
+    }
+
+    .auth-card {
+      background: var(--white);
+      border-radius: 14px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.07), 0 6px 24px rgba(0,0,0,0.09);
+      padding: 44px 40px; width: 100%; max-width: 440px;
+    }
+
+    .auth-logo { text-align: center; margin-bottom: 32px; }
+
+    .auth-logo-icon {
+      width: 52px; height: 52px; background: var(--ss-primary);
+      border-radius: 14px; display: inline-flex; align-items: center;
+      justify-content: center; margin-bottom: 14px;
+    }
+    .auth-logo-icon svg { width: 28px; height: 28px; fill: white; }
+    .auth-logo h2 { font-size: 22px; font-weight: 700; color: var(--text); margin: 0; }
+    .auth-logo p { color: var(--text-muted); font-size: 14px; margin-top: 5px; }
+
+    .auth-tabs {
+      display: flex; border-bottom: 1px solid var(--border); margin-bottom: 28px;
+    }
+    .auth-tab {
+      flex: 1; padding: 10px 4px; text-align: center; font-size: 14px;
+      font-weight: 500; color: var(--text-muted); background: none; border: none;
+      border-bottom: 2px solid transparent; margin-bottom: -1px; cursor: pointer;
+      font-family: inherit; transition: color 0.2s, border-color 0.2s;
+    }
+    .auth-tab.active { color: var(--ss-primary); border-bottom-color: var(--ss-primary); }
+    .auth-tab:hover:not(.active) { color: var(--text); }
+
+    .auth-panel { display: none; }
+    .auth-panel.active { display: block; }
+
+    .auth-form-group { margin-bottom: 16px; }
+    .auth-form-group label {
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 7px;
+    }
+    .auth-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    .auth-forgot-link {
+      font-size: 12px; font-weight: 400; color: var(--ss-accent);
+      text-decoration: none; background: none; border: none;
+      cursor: pointer; font-family: inherit; padding: 0;
+    }
+    .auth-forgot-link:hover { text-decoration: underline; }
+
+    .auth-card input[type="text"],
+    .auth-card input[type="email"],
+    .auth-card input[type="password"],
+    .auth-card input[type="tel"] {
+      width: 100%; padding: 10px 13px; border: 1px solid var(--border);
+      border-radius: var(--radius); font-size: 14px; color: var(--text);
+      background: var(--white); font-family: inherit;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      box-sizing: border-box;
+    }
+    .auth-card input::placeholder { color: #b0bec5; }
+    .auth-card input:focus {
+      outline: none; border-color: var(--ss-primary);
+      box-shadow: 0 0 0 3px rgba(36,70,118,0.1);
+    }
+
+    .auth-btn {
+      width: 100%; padding: 11px; background: var(--ss-primary); color: white;
+      border: none; border-radius: var(--radius); font-size: 14px; font-weight: 600;
+      cursor: pointer; margin-top: 6px; font-family: inherit;
+      transition: background 0.2s;
+    }
+    .auth-btn:hover { background: var(--ss-primary-hover); }
+
+    .auth-message {
+      display: flex; align-items: flex-start; gap: 9px;
+      padding: 11px 13px; border-radius: var(--radius);
+      font-size: 13px; margin-bottom: 20px; line-height: 1.5;
+    }
+    .auth-message.hidden { display: none; }
+    .auth-message svg { flex-shrink: 0; margin-top: 1px; }
+    .auth-message.error { background: var(--error-bg); color: var(--error-color); border: 1px solid var(--error-border); }
+    .auth-message.success { background: var(--success-bg); color: var(--success-color); border: 1px solid var(--success-border); }
+
+    .auth-forgot-header { margin-bottom: 22px; }
+    .auth-back-btn {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 13px; color: var(--text-muted); background: none;
+      border: none; cursor: pointer; font-family: inherit; padding: 0;
+      margin-bottom: 16px; transition: color 0.2s;
+    }
+    .auth-back-btn:hover { color: var(--text); }
+    .auth-forgot-header h3 { font-size: 18px; font-weight: 700; color: var(--text); margin: 0 0 6px 0; }
+    .auth-forgot-header p { font-size: 13px; color: var(--text-muted); line-height: 1.55; margin: 0; }
+
+    .auth-optional { font-size: 12px; color: var(--text-muted); font-weight: 400; }
+    .auth-remember { margin-bottom: 14px; }
+    .auth-remember label {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13px; color: var(--text-muted); cursor: pointer; font-weight: 400;
+    }
+    .auth-remember input[type="checkbox"] { width: 15px; height: 15px; accent-color: var(--ss-primary); cursor: pointer; }
+
+    @media (max-width: 500px) {
+      .auth-card { padding: 30px 20px; }
+      .auth-form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="flex">
+      <a href="Accueil.php" class="header-logo">
+        <img src="img/iconSite.png" class="header-logo" alt="logo Seek &amp; Stay" />
+      </a>
+      <ul class="header-menu">
+        <li><a href="Accueil.php">Accueil</a></li>
+        <li><a href="Offres.html">Offres</a></li>
+        <li><a href="Publier.html">Publier</a></li>
+        <li><a href="FAQ.html">FAQ</a></li>
+        <li><a href="Favoris.html">Favoris</a></li>
+        <li><a href="Contact.html">Contact</a></li>
+        <li><a href="Authentification.html" class="active">Inscription / Connexion</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <section class="auth-section">
+    <div class="auth-card">
+
+      <div class="auth-logo">
+        <div class="auth-logo-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/>
+            <path d="M9 21V12h6v9" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <h2>Seek &amp; Stay</h2>
+        <p id="auth-subtitle">Accédez à votre espace personnel</p>
       </div>
-    </header>
 
-    <!-- Formulaire Connexion / Inscription -->
-    <div class="auth-container">
-      <!-- Boutons de bascule entre les deux formulaires -->
-      <div class="auth-switch">
-        <button
-          id="btn-loginForm"
-          class="active"
-          onclick="showForm('loginForm')"
-        >
-          Connexion
-        </button>
-        <button id="btn-registerForm" onclick="showForm('registerForm')">
-          Inscription
-        </button>
+      <!-- Onglets -->
+      <div class="auth-tabs" id="auth-tabs">
+        <button class="auth-tab active" onclick="showPanel('login')">Connexion</button>
+        <button class="auth-tab"        onclick="showPanel('register')">Inscription</button>
       </div>
 
-      <!-- Formulaire de connexion -->
-      <form id="loginForm" class="active" action="login.php" method="POST">
-        <label>Email :</label>
-        <input type="email" name="email" required />
-
-        <label>Mot de passe :</label>
-        <input type="password" name="password" required />
-
-        <input type="submit" value="Se connecter" />
-      </form>
-
-      <!-- Formulaire d'inscription -->
-      <form id="registerForm" action="register.php" method="POST">
-        <label>Email :</label>
-        <input type="email" name="email" required />
-
-        <label>Mot de passe :</label>
-        <input type="password" name="password" required />
-
-        <input type="submit" value="Créer un compte" />
-      </form>
-
-      <!-- Lien discret pour accéder à l'espace admin -->
-      <div class="admin-link">
-        <a
-          href="#"
-          onclick="
-            toggleAdmin();
-            return false;
-          "
-          >Espace Admin</a
-        >
+      <!-- Message erreur / succès -->
+      <div class="auth-message hidden" id="auth-msg">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" id="auth-msg-icon"></svg>
+        <span id="auth-msg-text"></span>
       </div>
 
-      <!-- Panneau de saisie du code secret admin (caché par défaut) -->
-      <div class="admin-panel" id="admin-panel">
-        <input
-          type="password"
-          id="admin-code"
-          placeholder="Code secret"
-          onkeydown="if (event.key === 'Enter') verifierAdmin();"
-        />
-        <button onclick="verifierAdmin()">Accéder</button>
-        <p class="admin-error" id="admin-error">Code incorrect. Réessayez.</p>
+      <!-- CONNEXION -->
+      <div class="auth-panel active" id="panel-login">
+        <form action="login.php" method="POST" novalidate>
+          <div class="auth-form-group">
+            <label for="login-email">Adresse email</label>
+            <input type="email" id="login-email" name="email"
+                   placeholder="vous@exemple.com" autocomplete="email" required>
+          </div>
+          <div class="auth-form-group">
+            <label for="login-password">
+              Mot de passe
+              <button type="button" class="auth-forgot-link" onclick="showPanel('forgot')">Oublié ?</button>
+            </label>
+            <input type="password" id="login-password" name="password"
+                   placeholder="••••••••" autocomplete="current-password" required>
+          </div>
+          <div class="auth-remember">
+            <label>
+              <input type="checkbox" name="remember" value="1">
+              Se souvenir de moi (30 jours)
+            </label>
+          </div>
+          <button type="submit" class="auth-btn">Se connecter</button>
+        </form>
+      </div>
+
+      <!-- INSCRIPTION -->
+      <div class="auth-panel" id="panel-register">
+        <form action="register.php" method="POST" novalidate>
+          <div class="auth-form-row">
+            <div class="auth-form-group">
+              <label for="reg-nom">Nom</label>
+              <input type="text" id="reg-nom" name="nom"
+                     placeholder="Dupont" autocomplete="family-name" required>
+            </div>
+            <div class="auth-form-group">
+              <label for="reg-lastname">Prénom</label>
+              <input type="text" id="reg-lastname" name="lastname"
+                     placeholder="Jean" autocomplete="given-name" required>
+            </div>
+          </div>
+          <div class="auth-form-group">
+            <label for="reg-email">Adresse email</label>
+            <input type="email" id="reg-email" name="email"
+                   placeholder="vous@exemple.com" autocomplete="email" required>
+          </div>
+          <div class="auth-form-group">
+            <label for="reg-password">Mot de passe</label>
+            <input type="password" id="reg-password" name="password"
+                   placeholder="Min. 8 caractères" autocomplete="new-password" required>
+          </div>
+          <div class="auth-form-group">
+            <label for="reg-confirm">Confirmer le mot de passe</label>
+            <input type="password" id="reg-confirm" name="confirm"
+                   placeholder="••••••••" autocomplete="new-password" required>
+          </div>
+          <div class="auth-form-group">
+            <label for="reg-tel">
+              Téléphone <span class="auth-optional">(facultatif)</span>
+            </label>
+            <input type="tel" id="reg-tel" name="telephone"
+                   placeholder="06 00 00 00 00" autocomplete="tel">
+          </div>
+          <button type="submit" class="auth-btn">Créer mon compte</button>
+        </form>
+      </div>
+
+      <!-- MOT DE PASSE OUBLIÉ -->
+      <div class="auth-panel" id="panel-forgot">
+        <div class="auth-forgot-header">
+          <button type="button" class="auth-back-btn" onclick="showPanel('login')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"/>
+            </svg>
+            Retour à la connexion
+          </button>
+          <h3>Mot de passe oublié ?</h3>
+          <p>Indiquez votre email, nous vous enverrons un lien de réinitialisation.</p>
+        </div>
+        <form action="forgot-password.php" method="POST" novalidate>
+          <div class="auth-form-group">
+            <label for="forgot-email">Adresse email</label>
+            <input type="email" id="forgot-email" name="email"
+                   placeholder="vous@exemple.com" autocomplete="email" required>
+          </div>
+          <button type="submit" class="auth-btn">Envoyer le lien</button>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-top">
+      <div class="footer-left">
+        <img src="img/iconSite_WhiteText.png" class="logo-footer" alt="Icône du site internet" />
+      </div>
+      <div class="footer-center">
+        <p class="footer-text">
+          Ce site a été conçu et développé par les élèves de l'ISEP du groupe
+          G9A 2025/2026 en utilisant HTML, CSS, JavaScript et PHP - Tous droits réservés
+        </p>
       </div>
     </div>
+    <div class="footer-bottom">
+      <a href="Mentionlegales.php">Mentions légales et CGU</a>
+      <p>-</p>
+      <a href="GestionCookies.html">Gestion des cookies</a>
+    </div>
+  </footer>
 
-    <!-- Footer -->
-    <footer>
-      <div class="footer-top">
-        <div class="footer-left">
-          <img
-            src="img/iconSite_WhiteText.png"
-            class="logo-footer"
-            alt="Icône du site internet"
-          />
-        </div>
-        <div class="footer-center">
-          <p class="footer-text">
-            Ce site a été conçu et développé par les élèves de l'ISEP du groupe
-            G9A 2025/2026 en utilisant HTML, CSS, JavaScript et PHP - Tous
-            droits réservés
-          </p>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <a href="Mentionlegales.php">Mentions légales et CGU</a>
-        <p>-</p>
-        <a href="GestionCookies.html">Gestion des cookies</a>
-      </div>
-    </footer>
-  </body>
+  <script>
+    const subtitles = {
+      login:    'Accédez à votre espace personnel',
+      register: 'Créez votre compte étudiant',
+      forgot:   'Réinitialisez votre mot de passe'
+    };
+
+    function showPanel(name) {
+      document.querySelectorAll('.auth-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('panel-' + name).classList.add('active');
+
+      const tabs = document.querySelectorAll('.auth-tab');
+      tabs.forEach(t => t.classList.remove('active'));
+      if (name === 'login')    tabs[0].classList.add('active');
+      if (name === 'register') tabs[1].classList.add('active');
+
+      document.getElementById('auth-tabs').style.display = name === 'forgot' ? 'none' : '';
+      document.getElementById('auth-subtitle').textContent = subtitles[name] || '';
+      document.getElementById('auth-msg').classList.add('hidden');
+    }
+
+    // Lire les paramètres URL (redirections depuis login.php / register.php)
+    (function () {
+      const params  = new URLSearchParams(window.location.search);
+      const tab     = params.get('tab')     || 'login';
+      const error   = params.get('error');
+      const success = params.get('success');
+
+      showPanel(tab);
+
+      const msgEl   = document.getElementById('auth-msg');
+      const msgText = document.getElementById('auth-msg-text');
+      const msgIcon = document.getElementById('auth-msg-icon');
+
+      if (error) {
+        msgEl.classList.remove('hidden', 'success');
+        msgEl.classList.add('error');
+        msgIcon.innerHTML = '<circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>';
+        msgText.textContent = decodeURIComponent(error);
+      } else if (success) {
+        msgEl.classList.remove('hidden', 'error');
+        msgEl.classList.add('success');
+        msgIcon.innerHTML = '<polyline points="20 6 9 17 4 12"/>';
+        msgText.textContent = decodeURIComponent(success);
+      }
+    })();
+  </script>
+</body>
 </html>
