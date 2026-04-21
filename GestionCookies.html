@@ -27,7 +27,7 @@
           <li><a href="FAQ.html">FAQ</a></li>
           <li><a href="Favoris.html">Favoris</a></li>
           <li><a href="Contact.html">Contact</a></li>
-          <li><a href="Authentification.php">Inscription / Connexion</a></li>
+          <li><a href="Authentification.html">Inscription / Connexion</a></li>
         </ul>
       </div>
     </header>
@@ -123,7 +123,7 @@
             Enregistrer mes préférences
           </button>
         </div>
-        <p class="save-confirmation" id="save-msg">
+        <p class="save-confirmation" id="save-msg" style="display:none;">
           ✅ Vos préférences ont bien été enregistrées.
         </p>
       </div>
@@ -211,28 +211,44 @@
     </footer>
 
     <script>
+      // Charger les préférences sauvegardées au chargement de la page
+      (function () {
+        const prefs = JSON.parse(localStorage.getItem('ss_cookie_prefs') || '{}');
+        if (prefs.fonctionnels === false)
+          document.getElementById('cookie-fonctionnels').checked = false;
+        if (prefs.analytiques === true)
+          document.getElementById('cookie-analytiques').checked = true;
+      })();
+
       function acceptAll() {
-        document.getElementById("cookie-fonctionnels").checked = true;
-        document.getElementById("cookie-analytiques").checked = true;
-        showConfirmation();
+        document.getElementById('cookie-fonctionnels').checked = true;
+        document.getElementById('cookie-analytiques').checked = true;
+        save();
       }
 
       function refuseAll() {
-        document.getElementById("cookie-fonctionnels").checked = false;
-        document.getElementById("cookie-analytiques").checked = false;
-        showConfirmation();
+        document.getElementById('cookie-fonctionnels').checked = false;
+        document.getElementById('cookie-analytiques').checked = false;
+        save();
       }
 
       function savePreferences() {
+        save();
+      }
+
+      function save() {
+        const prefs = {
+          fonctionnels: document.getElementById('cookie-fonctionnels').checked,
+          analytiques:  document.getElementById('cookie-analytiques').checked
+        };
+        localStorage.setItem('ss_cookie_prefs', JSON.stringify(prefs));
         showConfirmation();
       }
 
       function showConfirmation() {
-        const msg = document.getElementById("save-msg");
-        msg.style.display = "block";
-        setTimeout(() => {
-          msg.style.display = "none";
-        }, 3000);
+        const msg = document.getElementById('save-msg');
+        msg.style.display = 'block';
+        setTimeout(() => { msg.style.display = 'none'; }, 3000);
       }
     </script>
   </body>

@@ -43,7 +43,12 @@ try {
       <li><a href="FAQ.html">FAQ</a></li>
       <li><a href="Favoris.html">Favoris</a></li>
       <li><a href="Contact.html">Contact</a></li>
-      <li><a href="Authentification.php">Inscription / Connexion</a></li>
+      <?php if (isset($_SESSION['user_id'])): ?>
+      <li><a href="Accueil.php" style="font-weight:600;">Bonjour, <?php echo htmlspecialchars($_SESSION['nom']); ?></a></li>
+      <li><a href="logout.php">Déconnexion</a></li>
+      <?php else: ?>
+      <li><a href="Authentification.html">Inscription / Connexion</a></li>
+      <?php endif; ?>
     </ul>
   </div>
 </header>
