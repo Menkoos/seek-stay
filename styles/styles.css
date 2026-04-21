@@ -36,8 +36,8 @@ h1 {
 
 /* Titre de section noir (utilisé pour les titres de cartes, filtres, etc.) */
 h2 {
-  color: #000000;
-  font-size: 2rem;
+    color: #0f1c2e;
+  font-size: 30px;
   font-weight: 700;
 }
 
