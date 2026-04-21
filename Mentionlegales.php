@@ -41,17 +41,17 @@ function contenu($sections, $key) {
   <body>
     <header>
       <div class="flex">
-        <a href="Accueil.html" class="header-logo">
+        <a href="Accueil.php" class="header-logo">
           <img src="img/iconSite.png" class="header-logo" alt="logo" />
         </a>
         <ul class="header-menu">
-          <li><a href="Accueil.html">Accueil</a></li>
+          <li><a href="Accueil.php">Accueil</a></li>
           <li><a href="Offres.html">Offres</a></li>
           <li><a href="Publier.html">Publier</a></li>
           <li><a href="FAQ.html">FAQ</a></li>
           <li><a href="Favoris.html">Favoris</a></li>
           <li><a href="Contact.html">Contact</a></li>
-          <li><a href="Authentification.html">Inscription / Connexion</a></li>
+          <li><a href="Authentification.php">Inscription / Connexion</a></li>
         </ul>
       </div>
     </header>
