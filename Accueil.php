@@ -1,8 +1,11 @@
 <?php
-// Connexion à la BDD et récupération des annonces actives
 require 'config.php';
-$stmt = $pdo->query("SELECT * FROM annonces WHERE statut = 'actif' ORDER BY date_publication DESC");
-$annonces = $stmt->fetchAll();
+try {
+    $stmt = $pdo->query("SELECT * FROM annonces WHERE statut = 'actif' ORDER BY date_publication DESC");
+    $annonces = $stmt->fetchAll();
+} catch (PDOException $e) {
+    $annonces = [];
+}
 ?>
 <!doctype html>
 <html>
