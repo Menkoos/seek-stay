@@ -1,7 +1,6 @@
 <?php
 // Paramètres de connexion à la base de données MySQL (XAMPP local)
 define('DB_HOST', '127.0.0.1');
-define('DB_PORT', '3307');
 define('DB_NAME', 'bddtest');
 define('DB_USER', 'root');
 define('DB_PASS', ''); // Mot de passe vide par défaut sur XAMPP
