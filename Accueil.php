@@ -43,6 +43,10 @@ try {
       <li><a href="FAQ.html">FAQ</a></li>
       <li><a href="Favoris.html">Favoris</a></li>
       <li><a href="Contact.html">Contact</a></li>
+<<<<<<< HEAD
+=======
+      <li><a href="HUB.html">HUB</a></li>
+>>>>>>> 6c6cde2f3ac389d173966a62b52070b19ffce2af
       <li><a href="Authentification.html">Inscription / Connexion</a></li>
     </ul>
   </div>
