@@ -36,8 +36,8 @@ h1 {
 
 /* Titre de section noir (utilisé pour les titres de cartes, filtres, etc.) */
 h2 {
-  color: #000000;
-  font-size: 2rem;
+    color: #0f1c2e;
+  font-size: 30px;
   font-weight: 700;
 }
 
@@ -49,6 +49,14 @@ h3 {
   margin-top: 20px;
 }
 
+
+h4 {
+  color: #0f1c2e;
+  font-size: 18px;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom : 10px;
+}
 /* ======================================= HEADER ================================ */
 
 /* Barre de navigation fixe en haut de l'écran, toujours visible au scroll */
