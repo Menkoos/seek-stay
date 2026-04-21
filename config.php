@@ -5,8 +5,8 @@
 
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'bddtest');
-define('DB_USER', 'seekstay');   // utilisateur commun au groupe
-define('DB_PASS', 'SeekStay2025!');
+define('DB_USER', 'root');   // utilisateur commun au groupe
+define('DB_PASS', '');
 
 // Fallback : si seekstay n'existe pas encore, on essaie root sans mot de passe
 try {
