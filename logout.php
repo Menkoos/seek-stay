@@ -1,6 +1,6 @@
 <?php
 session_start();
 session_destroy();
-header("Location: login.php");
+setcookie('ss_user', '', time() - 3600, '/');
+header("Location: Authentification.php");
 exit;
-?>
