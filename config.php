@@ -1,4 +1,8 @@
 <?php
+// Cacher toutes les erreurs PHP à l'utilisateur (les erreurs restent dans les logs XAMPP)
+ini_set('display_errors', 0);
+error_reporting(E_ALL);
+
 // ── Identifiants de connexion ─────────────────────────────────────────────
 // Si tu as un mot de passe root MySQL, crée l'utilisateur seekstay
 // en important create_user.sql dans phpMyAdmin, puis utilise ces identifiants.

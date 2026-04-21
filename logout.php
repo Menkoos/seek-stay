@@ -12,5 +12,5 @@ if (isset($_SESSION['user_id'])) {
 session_destroy();
 setcookie('ss_user',     '', time() - 3600, '/');
 setcookie('ss_remember', '', time() - 3600, '/');
-header("Location: Authentification.php");
+header("Location: Authentification.html");
 exit;

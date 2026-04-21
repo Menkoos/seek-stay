@@ -1,4 +1,7 @@
 <?php
+// Session valide 8 heures (au lieu de 24 minutes par défaut)
+ini_set('session.gc_maxlifetime', 28800);
+session_set_cookie_params(28800);
 if (session_status() === PHP_SESSION_NONE) session_start();
 require_once __DIR__ . '/config.php';
 
