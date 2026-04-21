@@ -36,11 +36,11 @@ $annonces = $stmt->fetchAll();
     </a>
     <ul class="header-menu">
       <li><a href="Accueil.php" class="active">Accueil</a></li>
-      <li><a href="Offres.html">Offres</a></li>
       <li><a href="Publier.html">Publier</a></li>
       <li><a href="FAQ.html">FAQ</a></li>
       <li><a href="Favoris.html">Favoris</a></li>
       <li><a href="Contact.html">Contact</a></li>
+      <li><a href="HUB.html">HUB</a></li>
       <li><a href="Authentification.html">Inscription / Connexion</a></li>
     </ul>
   </div>
