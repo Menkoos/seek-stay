@@ -2,7 +2,8 @@
 header('Content-Type: application/json');
 require_once __DIR__ . '/../config.php';
 
-$conditions = [];
+// Base : seulement les annonces actives (ni masquées, ni archivées)
+$conditions = ["statut = 'actif'"];
 $params     = [];
 
 if (!empty($_GET['search'])) {
@@ -40,10 +41,7 @@ if (!empty($_GET['surface_min']) && is_numeric($_GET['surface_min'])) {
     $params[':surface_min'] = (float)$_GET['surface_min'];
 }
 
-$sql = "SELECT * FROM annonces";
-if ($conditions) {
-    $sql .= " WHERE " . implode(" AND ", $conditions);
-}
+$sql = "SELECT * FROM annonces WHERE " . implode(" AND ", $conditions);
 $sql .= " ORDER BY nb_vues DESC";
 
 $stmt = $pdo->prepare($sql);

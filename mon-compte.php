@@ -17,10 +17,23 @@ try {
 }
 
 try {
-    $nbAnnonces = $pdo->prepare("SELECT COUNT(*) FROM annonces WHERE utilisateur_id = ?");
+    $nbAnnonces = $pdo->prepare("SELECT COUNT(*) FROM annonces WHERE utilisateur_id = ? AND statut != 'archive'");
     $nbAnnonces->execute([$uid]);
     $countAnnonces = (int)$nbAnnonces->fetchColumn();
 } catch (PDOException $e) { $countAnnonces = 0; }
+
+// Liste des annonces du propriétaire (actives + masquées, mais pas archivées)
+try {
+    $stmtA = $pdo->prepare("
+        SELECT id_annonce, ville, code_postal, prix, image_principale, statut,
+               date_publication, type_immeuble, type_offre, superficie, nb_vues
+        FROM annonces
+        WHERE utilisateur_id = ? AND statut != 'archive'
+        ORDER BY date_publication DESC
+    ");
+    $stmtA->execute([$uid]);
+    $mesAnnonces = $stmtA->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) { $mesAnnonces = []; }
 
 try {
     $nbCandidatures = $pdo->prepare("SELECT COUNT(*) FROM candidatures WHERE utilisateur_id = ?");
@@ -255,6 +268,74 @@ $dateInscription = $user['date_inscription'] ? date('d/m/Y', strtotime($user['da
       border: none; border-top: 1px solid var(--border); margin: 28px 0;
     }
 
+    /* ── Liste "Mes annonces" ── */
+    .annonces-empty {
+      text-align: center; padding: 40px 20px; color: var(--text-muted);
+    }
+    .annonces-empty p { font-size: 14px; margin-bottom: 14px; }
+    .annonces-grid {
+      display: flex; flex-direction: column; gap: 14px;
+    }
+    .annonce-card {
+      display: flex; gap: 16px; padding: 14px;
+      border: 1px solid var(--border); border-radius: 10px;
+      background: var(--white); transition: box-shadow 0.2s;
+    }
+    .annonce-card:hover { box-shadow: 0 2px 10px rgba(0,0,0,0.06); }
+    .annonce-card.is-inactif { opacity: 0.75; background: #fafafa; }
+
+    .annonce-thumb {
+      width: 110px; height: 90px; flex-shrink: 0;
+      border-radius: 8px; background: var(--bg);
+      overflow: hidden; display: flex; align-items: center; justify-content: center;
+    }
+    .annonce-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .annonce-thumb .no-img { color: var(--text-muted); font-size: 11px; }
+
+    .annonce-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+    .annonce-title {
+      font-size: 15px; font-weight: 600; color: var(--text);
+      display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    }
+    .annonce-meta {
+      font-size: 12px; color: var(--text-muted);
+      display: flex; gap: 12px; flex-wrap: wrap;
+    }
+    .annonce-meta strong { color: var(--ss-primary); font-weight: 600; }
+
+    .annonce-badge {
+      display: inline-block; padding: 2px 8px; border-radius: 10px;
+      font-size: 11px; font-weight: 600;
+    }
+    .badge-actif   { background: #dcfce7; color: #166534; }
+    .badge-inactif { background: #fef3c7; color: #92400e; }
+
+    .annonce-actions {
+      display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px;
+    }
+    .btn-action {
+      padding: 5px 10px; border-radius: 6px; font-size: 12px; font-weight: 500;
+      border: 1px solid var(--border); background: var(--white);
+      color: var(--text); cursor: pointer; font-family: inherit;
+      display: inline-flex; align-items: center; gap: 4px;
+      text-decoration: none; transition: all 0.15s;
+    }
+    .btn-action:hover { border-color: var(--ss-primary); color: var(--ss-primary); }
+    .btn-action.btn-hide   { background: #fef3c7; border-color: #fcd34d; color: #92400e; }
+    .btn-action.btn-hide:hover   { background: #fcd34d; }
+    .btn-action.btn-show   { background: #dcfce7; border-color: #86efac; color: #166534; }
+    .btn-action.btn-show:hover   { background: #86efac; }
+    .btn-action.btn-del    { background: var(--danger-bg); border-color: #fecaca; color: var(--danger); }
+    .btn-action.btn-del:hover    { background: #fecaca; }
+    .btn-action svg { width: 13px; height: 13px; }
+
+    .annonce-form { display: inline; margin: 0; padding: 0; }
+
+    @media (max-width: 500px) {
+      .annonce-card { flex-direction: column; }
+      .annonce-thumb { width: 100%; height: 140px; }
+    }
+
     @media (max-width: 600px) {
       .profil-header { flex-direction: column; text-align: center; }
       .profil-meta   { justify-content: center; }
@@ -328,6 +409,12 @@ $dateInscription = $user['date_inscription'] ? date('d/m/Y', strtotime($user['da
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         Mon profil
       </button>
+      <?php if ($roleActuel === 'proprietaire'): ?>
+      <button class="compte-tab <?php echo $tab === 'annonces' ? 'active' : ''; ?>" onclick="switchTab('annonces')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Mes annonces
+      </button>
+      <?php endif; ?>
       <button class="compte-tab <?php echo $tab === 'securite' ? 'active' : ''; ?>" onclick="switchTab('securite')">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
         Sécurité
@@ -436,6 +523,103 @@ $dateInscription = $user['date_inscription'] ? date('d/m/Y', strtotime($user['da
         </form>
       </div>
 
+      <!-- ── Onglet Mes annonces ── -->
+      <?php if ($roleActuel === 'proprietaire'): ?>
+      <div class="compte-panel <?php echo $tab === 'annonces' ? 'active' : ''; ?>" id="panel-annonces">
+        <h2>Mes annonces</h2>
+        <p class="section-desc">
+          Gérez vos annonces publiées : modifiez-les, masquez-les le temps d'une location, puis republiez-les quand le logement se libère.
+        </p>
+
+        <?php if (empty($mesAnnonces)): ?>
+          <div class="annonces-empty">
+            <p>Vous n'avez pas encore publié d'annonce.</p>
+            <a href="Publier.php" class="btn-primary" style="text-decoration:none;display:inline-block;">Publier ma première annonce</a>
+          </div>
+        <?php else: ?>
+          <div class="annonces-grid">
+            <?php foreach ($mesAnnonces as $a): ?>
+              <?php
+                $img = $a['image_principale'] ?? '';
+                $imgExists = $img && file_exists(__DIR__ . '/' . $img);
+                $isInactif = $a['statut'] === 'inactif';
+                $statutLabel = $isInactif ? 'Masquée' : 'Active';
+                $statutClass = $isInactif ? 'badge-inactif' : 'badge-actif';
+                $datePub = $a['date_publication'] ? date('d/m/Y', strtotime($a['date_publication'])) : '—';
+              ?>
+              <div class="annonce-card <?php echo $isInactif ? 'is-inactif' : ''; ?>">
+                <div class="annonce-thumb">
+                  <?php if ($imgExists): ?>
+                    <img src="<?php echo htmlspecialchars($img); ?>" alt="Miniature annonce" />
+                  <?php else: ?>
+                    <span class="no-img">Pas d'image</span>
+                  <?php endif; ?>
+                </div>
+                <div class="annonce-body">
+                  <div class="annonce-title">
+                    <?php echo htmlspecialchars(($a['type_immeuble'] ?? 'Logement') . ' — ' . ($a['ville'] ?? '')); ?>
+                    <span class="annonce-badge <?php echo $statutClass; ?>"><?php echo $statutLabel; ?></span>
+                  </div>
+                  <div class="annonce-meta">
+                    <span><strong><?php echo number_format((float)$a['prix'], 0, ',', ' '); ?> €</strong>/mois</span>
+                    <?php if (!empty($a['superficie'])): ?>
+                      <span><?php echo (int)$a['superficie']; ?> m²</span>
+                    <?php endif; ?>
+                    <span><?php echo (int)($a['nb_vues'] ?? 0); ?> vue<?php echo ($a['nb_vues'] ?? 0) > 1 ? 's' : ''; ?></span>
+                    <span>Publiée le <?php echo $datePub; ?></span>
+                  </div>
+                  <div class="annonce-actions">
+                    <a href="annonce.php?id=<?php echo urlencode($a['id_annonce']); ?>" class="btn-action" title="Voir l'annonce">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                      Voir
+                    </a>
+                    <a href="Publier.php?id=<?php echo urlencode($a['id_annonce']); ?>" class="btn-action" title="Modifier l'annonce">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                      Modifier
+                    </a>
+                    <?php if ($isInactif): ?>
+                      <form action="gestion_annonce.php" method="POST" class="annonce-form">
+                        <input type="hidden" name="action" value="republier">
+                        <input type="hidden" name="id_annonce" value="<?php echo htmlspecialchars($a['id_annonce']); ?>">
+                        <button type="submit" class="btn-action btn-show" title="Remettre l'annonce en ligne">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                          Republier
+                        </button>
+                      </form>
+                    <?php else: ?>
+                      <form action="gestion_annonce.php" method="POST" class="annonce-form">
+                        <input type="hidden" name="action" value="masquer">
+                        <input type="hidden" name="id_annonce" value="<?php echo htmlspecialchars($a['id_annonce']); ?>">
+                        <button type="submit" class="btn-action btn-hide" title="Masquer temporairement (ex: locataire trouvé)">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                          Masquer
+                        </button>
+                      </form>
+                    <?php endif; ?>
+                    <form action="gestion_annonce.php" method="POST" class="annonce-form" onsubmit="return confirmSupprAnnonce();">
+                      <input type="hidden" name="action" value="supprimer">
+                      <input type="hidden" name="id_annonce" value="<?php echo htmlspecialchars($a['id_annonce']); ?>">
+                      <button type="submit" class="btn-action btn-del" title="Supprimer l'annonce">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg>
+                        Supprimer
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            <?php endforeach; ?>
+          </div>
+
+          <hr class="section-sep">
+          <div style="text-align:center;">
+            <a href="Publier.php" class="btn-primary" style="text-decoration:none;display:inline-block;">
+              + Publier une nouvelle annonce
+            </a>
+          </div>
+        <?php endif; ?>
+      </div>
+      <?php endif; ?>
+
       <!-- ── Onglet Sécurité ── -->
       <div class="compte-panel <?php echo $tab === 'securite' ? 'active' : ''; ?>" id="panel-securite">
         <h2>Mot de passe</h2>
@@ -529,13 +713,23 @@ $dateInscription = $user['date_inscription'] ? date('d/m/Y', strtotime($user['da
   function switchTab(name) {
     document.querySelectorAll('.compte-panel').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.compte-tab').forEach(t => t.classList.remove('active'));
-    document.getElementById('panel-' + name).classList.add('active');
-    document.querySelectorAll('.compte-tab')[['profil','securite','danger'].indexOf(name)].classList.add('active');
+    const panel = document.getElementById('panel-' + name);
+    if (panel) panel.classList.add('active');
+    // Trouve le bouton d'onglet correspondant via son onclick attribute
+    document.querySelectorAll('.compte-tab').forEach(btn => {
+      if (btn.getAttribute('onclick') === "switchTab('" + name + "')") {
+        btn.classList.add('active');
+      }
+    });
     const url = new URL(window.location);
     url.searchParams.set('tab', name);
     url.searchParams.delete('error');
     url.searchParams.delete('success');
     window.history.replaceState({}, '', url);
+  }
+
+  function confirmSupprAnnonce() {
+    return confirm("Êtes-vous sûr(e) de vouloir supprimer définitivement cette annonce ? Cette action ne peut pas être annulée.");
   }
 
   function previewPhoto(input) {
