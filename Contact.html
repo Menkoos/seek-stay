@@ -33,66 +33,115 @@
       </div>
     </header>
 
-<h2>Un problème ? Contacter notre équipe ! </h2>
 
-<p><span class="error">* champ obligatoire</span></p>
+  <div class="contact-page">
+    <div class="contact-container">
 
-<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+      <div class="contact-header">
+        <h2>Un problème ? Contacter notre équipe !</h2>
+        <p><span class="error">* champ obligatoire</span></p>
+      </div>
 
-  Name:
-  <input type="text" name="nom">
-  <span class="error">* <?php echo $nomErr;?></span>
-  <br><br>
+      <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
 
-  E-mail:
-  <input type="text" name="email">
-  <span class="error">* <?php echo $emailErr;?></span>
-  <br><br>
+        <div class="form-card">
+          <h3>Vos informations</h3>
 
-  Telephone:
-  <input type="text" name="telephone" id="telephone" maxlength="20">
-  <span class="error">* <?php echo $telephoneErr;?></span>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="nom">Nom <span class="required">*</span></label>
+              <input type="text" name="nom" id="nom">
+              <span class="error"><?php echo $nomErr;?></span>
+            </div>
+            <div class="form-group">
+              <label for="email">E-mail <span class="required">*</span></label>
+              <input type="text" name="email" id="email">
+              <span class="error"><?php echo $emailErr;?></span>
+            </div>
+          </div>
+
+          <div class="form-row full">
+            <div class="form-group">
+              <label for="telephone">Téléphone <span class="required">*</span></label>
+              <input type="text" name="telephone" id="telephone" maxlength="20">
+              <span class="error"><?php echo $telephoneErr;?></span>
+            </div>
+          </div>
+
+          <div class="form-row full">
+            <div class="form-group">
+              <label>Genre <span class="required">*</span></label>
+              <div class="type-grid">
+                <div class="type-option">
+                  <input type="radio" name="gender" id="madame" value="madame">
+                  <label for="madame">Madame</label>
+                </div>
+                <div class="type-option">
+                  <input type="radio" name="gender" id="monsieur" value="monsieur">
+                  <label for="monsieur">Monsieur</label>
+                </div>
+                <div class="type-option">
+                  <input type="radio" name="gender" id="autre" value="autre">
+                  <label for="autre">Autre</label>
+                </div>
+              </div>
+              <span class="error"><?php echo $genderErr;?></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-card">
+          <h3>Votre demande</h3>
+
+          <div class="form-row full">
+            <div class="form-group">
+              <label>Type de demande <span class="required">*</span></label>
+              <div class="type-grid">
+                <div class="type-option">
+                  <input type="radio" name="typeDemande" id="demandeInformation" value="demandeInformation">
+                  <label for="demandeInformation">Demande d'information</label>
+                </div>
+                <div class="type-option">
+                  <input type="radio" name="typeDemande" id="supportClient" value="supportClient">
+                  <label for="supportClient">Support client</label>
+                </div>
+                <div class="type-option">
+                  <input type="radio" name="typeDemande" id="partenariat" value="partenariat">
+                  <label for="partenariat">Partenariat</label>
+                </div>
+                <div class="type-option">
+                  <input type="radio" name="typeDemande" id="reclamation" value="reclamation">
+                  <label for="reclamation">Réclamation</label>
+                </div>
+                <div class="type-option">
+                  <input type="radio" name="typeDemande" id="signalerProbleme" value="signalerProbleme">
+                  <label for="signalerProbleme">Signaler un problème</label>
+                </div>
+              </div>
+              <span class="error"><?php echo $typeErr;?></span>
+            </div>
+          </div>
+
+          <div class="form-row full">
+            <div class="form-group">
+              <label for="message">Message <span class="required">*</span></label>
+              <textarea name="message" id="message" rows="5" maxlength="1000"
+                placeholder="Votre message (1000 caractères max)"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" name="submit" class="btn-contact-submit">Envoyer le message</button>
+
+      </form>
+    </div>
+  </div>
 
   <script>
   document.getElementById("telephone").addEventListener("input", function () {
     this.value = this.value.replace(/[^0-9]/g, '');
   });
   </script>
-
-  <br><br>
-
-  Message:
-  <textarea name="message" rows="5" cols="40" maxlength="1000"
-    placeholder="Votre message (1000 caractères max)"></textarea>
-  <br><br>
-
-  Genre:
-  <input type="radio" name="gender" value="madame">Madame
-  <input type="radio" name="gender" value="monsieur">Monsieur
-  <input type="radio" name="gender" value="autre">Autre
-  <span class="error">* <?php echo $genderErr;?></span>
-
-  <br><br>
-
-  Type de demande:<br>
-
-  <input type="radio" name="typeDemande" value="demandeInformation">Demande d'information
-  <br>
-  <input type="radio" name="typeDemande" value="supportClient">Support client
-  <br>
-  <input type="radio" name="typeDemande" value="partenariat">Partenariat
-  <br>
-  <input type="radio" name="typeDemande" value="reclamation">Réclamation
-  <br>
-  <input type="radio" name="typeDemande" value="signalerProbleme">Signaler un problème
-
-  <span class="error">* <?php echo $typeErr;?></span>
-
-  <br><br>
-
-  <input type="submit" name="submit" value="Submit">
-
-</form>
 
 
   <script src="js/nav-auth.js"></script>
