@@ -11,9 +11,67 @@ if (($_SESSION['role_type'] ?? '') !== 'proprietaire') {
 $succes = isset($_GET['succes']);
 $erreur = $_GET['erreur'] ?? '';
 
+// ── Mode édition ─────────────────────────────────────────────
+// Si ?id=XXX est passé, on vérifie que l'utilisateur est bien propriétaire
+// de l'annonce, puis on charge ses données pour pré-remplir le formulaire.
+$idEdit       = trim($_GET['id'] ?? '');
+$annonceEdit  = null;
+
+if ($idEdit !== '') {
+    try {
+        $stmt = $pdo->prepare("
+            SELECT * FROM annonces
+            WHERE id_annonce = ? AND utilisateur_id = ? AND statut != 'archive'
+            LIMIT 1
+        ");
+        $stmt->execute([$idEdit, $_SESSION['user_id']]);
+        $annonceEdit = $stmt->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) { $annonceEdit = null; }
+
+    if (!$annonceEdit) {
+        header("Location: mon-compte.php?tab=annonces&error=" . urlencode("Annonce introuvable ou vous n'en êtes pas propriétaire."));
+        exit;
+    }
+}
+$isEdit = (bool)$annonceEdit;
+
 // Récupérer les données saisies précédemment (si erreur de validation)
 $old = $_SESSION['form_data_annonce'] ?? [];
 unset($_SESSION['form_data_annonce']);
+
+// En mode édition : pré-remplir avec les données de l'annonce si pas de données
+// de session (pas d'erreur de validation récente).
+if ($isEdit && empty($old)) {
+    $old = [
+        'adresse'          => $annonceEdit['adresse'] ?? '',
+        'ville'            => $annonceEdit['ville'] ?? '',
+        'code_postal'      => $annonceEdit['code_postal'] ?? '',
+        'prix'             => $annonceEdit['prix'] ?? '',
+        'superficie'       => $annonceEdit['superficie'] ?? '',
+        'description'      => $annonceEdit['description'] ?? '',
+        'type_immeuble'    => $annonceEdit['type_immeuble'] ?? '',
+        'type_offre'       => $annonceEdit['type_offre'] ?? '',
+        'date_disponible'  => $annonceEdit['date_disponible'] ?? '',
+        'duree_min'        => $annonceEdit['duree_min'] ?? '',
+        'lat'              => $annonceEdit['lat'] ?? '',
+        'lng'              => $annonceEdit['lng'] ?? '',
+        'meuble'           => (string)($annonceEdit['meuble'] ?? '1'),
+        'nb_pieces'        => $annonceEdit['nb_pieces'] ?? '',
+        'charges_incluses' => $annonceEdit['charges_incluses'] ? '1' : '',
+        'animaux_acceptes' => $annonceEdit['animaux_acceptes'] ? '1' : '',
+        'fumeur_autorise'  => $annonceEdit['fumeur_autorise']  ? '1' : '',
+        'accessible_pmr'   => $annonceEdit['accessible_pmr']   ? '1' : '',
+        'apl_accepte'      => $annonceEdit['apl_accepte']      ? '1' : '',
+        'type_proprio'     => $annonceEdit['type_proprio'] ?? 'particulier',
+        'equipements'      => json_decode($annonceEdit['equipements'] ?? '[]', true) ?: [],
+    ];
+}
+
+// Images existantes (mode édition uniquement)
+$imagesExistantes = [];
+if ($isEdit) {
+    $imagesExistantes = json_decode($annonceEdit['liste_images'] ?? '[]', true) ?: [];
+}
 
 // Helpers pour pré-remplir
 function oldVal($key, $default = '') {
@@ -83,13 +141,18 @@ function oldEquip($slug) {
     <div class="publier-page">
       <div class="publier-container">
         <div class="publier-header">
-          <h2>Publier une annonce</h2>
-          <p>Remplissez les informations ci-dessous pour mettre votre logement en ligne.</p>
+          <?php if ($isEdit): ?>
+            <h2>Modifier l'annonce</h2>
+            <p>Mettez à jour les informations de votre annonce. Les modifications seront visibles immédiatement.</p>
+          <?php else: ?>
+            <h2>Publier une annonce</h2>
+            <p>Remplissez les informations ci-dessous pour mettre votre logement en ligne.</p>
+          <?php endif; ?>
         </div>
 
         <?php if ($succes): ?>
         <div style="background:#e6f9ee;border:1px solid #2a9d5c;color:#2a9d5c;padding:16px 20px;border-radius:12px;font-weight:600;margin-bottom:24px;">
-          ✅ Votre annonce a bien été publiée !
+          <?php echo $isEdit ? '✅ Votre annonce a bien été modifiée !' : '✅ Votre annonce a bien été publiée !'; ?>
         </div>
         <?php endif; ?>
 
@@ -113,6 +176,9 @@ function oldEquip($slug) {
 
         <form id="form-publier" action="traitement_annonce.php" method="POST" enctype="multipart/form-data" novalidate>
           <input type="hidden" id="index-principale" name="image_principale_index" value="0" />
+          <?php if ($isEdit): ?>
+            <input type="hidden" name="id_annonce" value="<?php echo htmlspecialchars($annonceEdit['id_annonce']); ?>" />
+          <?php endif; ?>
 
           <!-- LOCALISATION -->
           <div class="form-card">
@@ -361,11 +427,37 @@ function oldEquip($slug) {
           <!-- IMAGES -->
           <div class="form-card">
             <h3><i class="fa-solid fa-images"></i> Photos du logement</h3>
+
+            <?php if ($isEdit && !empty($imagesExistantes)): ?>
+              <div style="margin-bottom:16px;padding:14px;background:#f1f5f9;border-radius:8px;border-left:3px solid #244676;">
+                <p style="font-size:13px;margin:0 0 10px 0;color:#1e293b;">
+                  <i class="fa-solid fa-circle-info"></i>
+                  <strong>Photos actuelles</strong> (<?php echo count($imagesExistantes); ?>) :
+                </p>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;">
+                  <?php foreach ($imagesExistantes as $imgPath): ?>
+                    <?php if (file_exists(__DIR__ . '/' . $imgPath)): ?>
+                      <img src="<?php echo htmlspecialchars($imgPath); ?>" alt=""
+                           style="width:90px;height:90px;object-fit:cover;border-radius:6px;border:1px solid #e2e8f0;" />
+                    <?php endif; ?>
+                  <?php endforeach; ?>
+                </div>
+                <p style="font-size:12px;color:#64748b;margin:10px 0 0 0;">
+                  Uploadez de nouvelles photos ci-dessous pour les <strong>remplacer</strong>,
+                  ou laissez vide pour <strong>garder</strong> les photos actuelles.
+                </p>
+              </div>
+            <?php endif; ?>
+
             <div class="upload-zone" id="upload-zone" onclick="document.getElementById('input-images').click()">
               <i class="fa-solid fa-cloud-arrow-up"></i>
               <p><strong>Cliquez pour ajouter des photos</strong></p>
               <p class="upload-hint">
-                <strong style="color:#dc2626;">Minimum 3 photos</strong> — JPG, PNG ou WEBP — 5 Mo max par image
+                <?php if ($isEdit): ?>
+                  <strong style="color:#244676;">Optionnel en modification</strong> — si vous ajoutez des photos, minimum 3 — JPG, PNG ou WEBP — 5 Mo max
+                <?php else: ?>
+                  <strong style="color:#dc2626;">Minimum 3 photos</strong> — JPG, PNG ou WEBP — 5 Mo max par image
+                <?php endif; ?>
               </p>
             </div>
             <input type="file" id="input-images" name="images[]" accept="image/*" multiple />
@@ -374,9 +466,20 @@ function oldEquip($slug) {
           </div>
 
           <button type="submit" class="btn-publier">
-            <i class="fa-solid fa-paper-plane" style="margin-right:8px"></i>
-            Publier l'annonce
+            <?php if ($isEdit): ?>
+              <i class="fa-solid fa-floppy-disk" style="margin-right:8px"></i>
+              Enregistrer les modifications
+            <?php else: ?>
+              <i class="fa-solid fa-paper-plane" style="margin-right:8px"></i>
+              Publier l'annonce
+            <?php endif; ?>
           </button>
+
+          <?php if ($isEdit): ?>
+            <a href="mon-compte.php?tab=annonces" style="display:inline-block;margin-left:12px;padding:10px 20px;color:#64748b;text-decoration:none;font-size:14px;">
+              Annuler
+            </a>
+          <?php endif; ?>
         </form>
       </div>
     </div>
