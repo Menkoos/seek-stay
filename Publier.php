@@ -69,7 +69,7 @@ function oldEquip($slug) {
         </a>
         <ul class="header-menu">
           <li><a href="Accueil.php">Accueil</a></li>
-          <li><a href="Annonces.html">Annonces</a></li>
+          <li><a href="Annonces.php">Annonces</a></li>
           <li><a href="Favoris.php">Favoris</a></li>
           <li><a href="Publier.php" class="active">Publier</a></li>
           <li><a href="Contact.html">Contact</a></li>

@@ -212,7 +212,7 @@ $nbAnnonces = count($annonces);
     </a>
     <ul class="header-menu">
       <li><a href="Accueil.php">Accueil</a></li>
-      <li><a href="Annonces.html">Annonces</a></li>
+      <li><a href="Annonces.php">Annonces</a></li>
       <?php if (!isset($_SESSION['user_id']) || ($_SESSION['role_type'] ?? '') === 'proprietaire'): ?>
       <li><a href="Publier.php">Publier</a></li>
       <?php endif; ?>
