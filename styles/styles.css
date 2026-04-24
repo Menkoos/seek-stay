@@ -1404,3 +1404,64 @@ body.page-publier {
     .contact-page { padding: 30px 14px 60px; }
     .contact-header h2 { font-size: 1.5rem; }
   }
+
+  
+  /* ======================================= FAQ ================================ */
+
+  .accordion {
+    background-color: white;
+    color: #0f1c2e;
+    cursor: pointer;
+    padding: 18px 24px;
+    width: 100%;
+    border: none;
+    border-left: 4px solid #30bae6;
+    border-radius: 12px;
+    text-align: left;
+    outline: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: "Inter", sans-serif;
+    transition: background-color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .accordion::after {
+    content: "+";
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: #30bae6;
+  }
+
+  .accordion.active::after {
+    content: "−";
+  }
+
+  .accordion:hover,
+  .accordion.active {
+    background-color: #e9f6fd;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  }
+
+  .panel {
+    padding: 0 24px;
+    display: none;
+    background-color: #fafbff;
+    border-left: 4px solid #dde1ee;
+    border-radius: 0 0 12px 12px;
+    overflow: hidden;
+    margin-bottom: 8px;
+    margin-top: -8px;
+  }
+
+  .panel p {
+    padding: 16px 0;
+    font-size: 0.92rem;
+    color: #444;
+    line-height: 1.75;
+    margin: 0;
+  }
