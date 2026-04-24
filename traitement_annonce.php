@@ -1,10 +1,31 @@
 <?php
-// Connexion à la BDD
-require 'config.php';
+require 'session.php';
 
-// Accepte uniquement les soumissions POST
+if (!isset($_SESSION['user_id'])) {
+    header("Location: Authentification.html?error=" . urlencode("Connectez-vous pour publier une annonce."));
+    exit;
+}
+if (($_SESSION['role_type'] ?? '') !== 'proprietaire') {
+    header("Location: Accueil.php");
+    exit;
+}
+
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: Publier.html');
+    header('Location: Publier.php');
+    exit;
+}
+
+$utilisateur_id = $_SESSION['user_id'];
+
+/**
+ * Redirige vers Publier.php en préservant les données saisies.
+ * Exclut les fichiers et l'index image principale.
+ */
+function redirigerAvecFormulaire(array $params): void {
+    $save = $_POST;
+    unset($save['image_principale_index']);
+    $_SESSION['form_data_annonce'] = $save;
+    header('Location: Publier.php?' . http_build_query($params));
     exit;
 }
 
@@ -12,9 +33,15 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $champs = ['adresse', 'ville', 'code_postal', 'prix', 'description', 'superficie', 'type_immeuble', 'type_offre'];
 foreach ($champs as $champ) {
     if (empty(trim($_POST[$champ] ?? ''))) {
-        header('Location: Publier.html?erreur=champ_manquant&champ=' . $champ);
-        exit;
+        redirigerAvecFormulaire(['erreur' => 'champ_manquant', 'champ' => $champ]);
     }
+}
+
+// Description : 100 mots minimum
+$descriptionTxt = trim($_POST['description']);
+$nbMots = $descriptionTxt === '' ? 0 : count(preg_split('/\s+/', $descriptionTxt));
+if ($nbMots < 100) {
+    redirigerAvecFormulaire(['erreur' => 'description_trop_courte', 'mots' => $nbMots]);
 }
 
 // ===== DOSSIER DE STOCKAGE DES IMAGES =====
@@ -62,16 +89,54 @@ if (!empty($_FILES['images']['name'][0])) {
     }
 }
 
+// Minimum 3 photos
+if (count($listeImages) < 3) {
+    $nbUp = count($listeImages);
+    // Supprimer les images déjà uploadées pour ne pas polluer le dossier
+    foreach ($listeImages as $img) {
+        $p = __DIR__ . '/' . $img;
+        if (file_exists($p)) @unlink($p);
+    }
+    redirigerAvecFormulaire(['erreur' => 'photos_insuffisantes', 'nb' => $nbUp]);
+}
+
 // ===== INSERTION EN BASE DE DONNÉES =====
 // liste_images est stocké en JSON (tableau de chemins)
+$equipements  = $_POST['equipements'] ?? [];
+$type_proprio = in_array($_POST['type_proprio'] ?? '', ['particulier','agence']) ? $_POST['type_proprio'] : 'particulier';
+$apl_accepte  = !empty($_POST['apl_accepte']) ? 1 : 0;
+
+// Disponibilité & durée
+$dureesValides   = ['1 mois','3 mois','6 mois','9 mois','1 an','2 ans'];
+$duree_min       = in_array($_POST['duree_min'] ?? '', $dureesValides) ? $_POST['duree_min'] : null;
+$date_disponible = trim($_POST['date_disponible'] ?? '');
+$date_disponible = ($date_disponible && strtotime($date_disponible)) ? $date_disponible : null;
+
+// Coordonnées GPS (géocodage Mapbox côté client)
+$lat = is_numeric($_POST['lat'] ?? null) ? floatval($_POST['lat']) : null;
+$lng = is_numeric($_POST['lng'] ?? null) ? floatval($_POST['lng']) : null;
+
+// Caractéristiques (inspiré Studapart)
+$meuble           = (string)($_POST['meuble'] ?? '1') === '0' ? 0 : 1;
+$nb_pieces        = !empty($_POST['nb_pieces']) ? intval($_POST['nb_pieces']) : null;
+$charges_incluses = !empty($_POST['charges_incluses']) ? 1 : 0;
+$animaux_acceptes = !empty($_POST['animaux_acceptes']) ? 1 : 0;
+$fumeur_autorise  = !empty($_POST['fumeur_autorise'])  ? 1 : 0;
+$accessible_pmr   = !empty($_POST['accessible_pmr'])   ? 1 : 0;
+
 $stmt = $pdo->prepare("
     INSERT INTO annonces
-        (id_annonce, adresse, ville, code_postal, prix, description, superficie, type_immeuble, type_offre, image_principale, liste_images, date_publication, statut)
+        (id_annonce, utilisateur_id, adresse, ville, code_postal, prix, description, superficie,
+         type_immeuble, type_offre, equipements, type_proprio, apl_accepte,
+         date_disponible, duree_min, lat, lng,
+         meuble, nb_pieces, charges_incluses, animaux_acceptes, fumeur_autorise, accessible_pmr,
+         image_principale, liste_images, date_publication, statut)
     VALUES
-        (UUID(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), 'actif')
+        (UUID(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), 'actif')
 ");
 
 $stmt->execute([
+    $utilisateur_id,
     trim($_POST['adresse']),
     trim($_POST['ville']),
     trim($_POST['code_postal']),
@@ -80,11 +145,25 @@ $stmt->execute([
     floatval($_POST['superficie']),
     $_POST['type_immeuble'],
     $_POST['type_offre'],
+    json_encode($equipements),
+    $type_proprio,
+    $apl_accepte,
+    $date_disponible,
+    $duree_min,
+    $lat,
+    $lng,
+    $meuble,
+    $nb_pieces,
+    $charges_incluses,
+    $animaux_acceptes,
+    $fumeur_autorise,
+    $accessible_pmr,
     $imagePrincipale,
     json_encode($listeImages)
 ]);
 
 // ===== REDIRECTION APRÈS SUCCÈS =====
-header('Location: Publier.html?succes=1');
+unset($_SESSION['form_data_annonce']); // nettoyage
+header('Location: Publier.php?succes=1');
 exit;
 ?>

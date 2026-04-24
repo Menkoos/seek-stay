@@ -1,0 +1,52 @@
+# ═══════════════════════════════════════════════════════════════════
+#  Seek & Stay — sécurité & réécriture d'URL
+# ═══════════════════════════════════════════════════════════════════
+
+# Pas de listing de répertoires
+Options -Indexes
+
+# ── Headers de sécurité ────────────────────────────────────────────
+<IfModule mod_headers.c>
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(self)"
+    Header always unset X-Powered-By
+</IfModule>
+
+# ── Bloquer l'accès direct aux fichiers sensibles ──────────────────
+<FilesMatch "\.(sql|log|md|ini|env|bak|swp|dist)$">
+    Require all denied
+</FilesMatch>
+
+<Files "config.php">
+    Require all denied
+</Files>
+<Files "session.php">
+    Require all denied
+</Files>
+<Files "security.php">
+    Require all denied
+</Files>
+<Files ".htaccess">
+    Require all denied
+</Files>
+
+# ── Réécriture d'URL : masquer les extensions .php et .html ────────
+RewriteEngine On
+
+# Redirection externe (GET uniquement, pour préserver les POST)
+RewriteCond %{REQUEST_METHOD} =GET
+RewriteCond %{THE_REQUEST} \s/+(.+?)\.(php|html)[\s?] [NC]
+RewriteRule ^ /%1 [R=301,L]
+
+# Réécriture interne : /Xxx -> Xxx.php (.html en secours)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI}.php -f
+RewriteRule ^(.+?)/?$ $1.php [L]
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI}.html -f
+RewriteRule ^(.+?)/?$ $1.html [L]

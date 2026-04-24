@@ -1,0 +1,7 @@
+USE bddtest;
+
+ALTER TABLE `annonces`
+    ADD COLUMN IF NOT EXISTS `date_disponible` DATE          DEFAULT NULL,
+    ADD COLUMN IF NOT EXISTS `duree_min`       VARCHAR(30)   DEFAULT NULL,
+    ADD COLUMN IF NOT EXISTS `lat`             DECIMAL(10,7) DEFAULT NULL,
+    ADD COLUMN IF NOT EXISTS `lng`             DECIMAL(10,7) DEFAULT NULL;

@@ -15,13 +15,40 @@ if (new URLSearchParams(window.location.search).get("succes") === "1") {
   }
 }
 
-// ===== COMPTEUR DE CARACTÈRES (description) =====
-const textarea = document.getElementById("description");
-const nbChars  = document.getElementById("nb-chars");
+// ===== COMPTEUR DE MOTS & CARACTÈRES (description) =====
+const textarea    = document.getElementById("description");
+const nbChars     = document.getElementById("nb-chars");
+const wordsEl     = document.getElementById("desc-words");
+const wordsInfoEl = document.getElementById("desc-words-info");
+const MIN_WORDS   = 100;
 
-textarea.addEventListener("input", () => {
-  nbChars.textContent = textarea.value.length;
-});
+function countWords(str) {
+  const trimmed = str.trim();
+  if (!trimmed) return 0;
+  return trimmed.split(/\s+/).length;
+}
+
+function updateDescCounter() {
+  const txt   = textarea.value;
+  const chars = txt.length;
+  const words = countWords(txt);
+
+  nbChars.textContent = chars;
+  wordsEl.textContent = words;
+
+  if (words >= MIN_WORDS) {
+    wordsInfoEl.style.color = '#059669';
+    wordsInfoEl.innerHTML = '<i class="fa-solid fa-circle-check"></i> '
+                          + words + ' / ' + MIN_WORDS + ' mots';
+  } else {
+    wordsInfoEl.style.color = '#dc2626';
+    wordsInfoEl.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i> '
+                          + words + ' / ' + MIN_WORDS + ' mots';
+  }
+}
+
+textarea.addEventListener("input", updateDescCounter);
+updateDescCounter();
 
 // ===== GESTION DES IMAGES =====
 const inputImages   = document.getElementById("input-images");
@@ -97,8 +124,22 @@ document.getElementById("form-publier").addEventListener("submit", (e) => {
     alert("Veuillez sélectionner un type d'offre.");
     return;
   }
-  if (fichiers.length === 0) {
-    alert("Veuillez ajouter au moins une photo.");
+
+  // Vérifie que la description contient au moins 100 mots
+  const nbMots = countWords(textarea.value);
+  if (nbMots < MIN_WORDS) {
+    alert("La description doit contenir au moins " + MIN_WORDS + " mots "
+          + "(actuellement " + nbMots + "). Soyez plus précis sur le logement, "
+          + "le quartier et les conditions de location.");
+    textarea.focus();
+    textarea.scrollIntoView({ behavior: "smooth", block: "center" });
+    return;
+  }
+
+  if (fichiers.length < 3) {
+    alert("Veuillez ajouter au moins 3 photos du logement "
+          + "(actuellement " + fichiers.length + ").");
+    document.getElementById("upload-zone")?.scrollIntoView({ behavior: "smooth", block: "center" });
     return;
   }
 

@@ -15,6 +15,8 @@ $email     = filter_var(trim($_POST['email'] ?? ''), FILTER_SANITIZE_EMAIL);
 $password  = $_POST['password']  ?? '';
 $confirm   = $_POST['confirm']   ?? '';
 $telephone = trim($_POST['telephone'] ?? '');
+$role_type = in_array($_POST['role_type'] ?? '', ['proprietaire','loueur'])
+             ? $_POST['role_type'] : 'loueur';
 
 if (empty($nom) || empty($lastname) || empty($email) || empty($password) || empty($confirm)) {
     header("Location: Authentification.html?tab=register&error=" . urlencode("Veuillez remplir tous les champs obligatoires."));
@@ -47,16 +49,18 @@ try {
 
     $hashed = password_hash($password, PASSWORD_DEFAULT);
     $stmt = $pdo->prepare("
-        INSERT INTO utilisateur_ (id_utilisateur, nom, lastname, email, mot_de_passe, telephone, date_inscription)
-        VALUES (?, ?, ?, ?, ?, ?, NOW())
+        INSERT INTO utilisateur_ (id_utilisateur, nom, lastname, email, mot_de_passe, telephone, role_type, date_inscription)
+        VALUES (?, ?, ?, ?, ?, ?, ?, NOW())
     ");
-    $stmt->execute([$uuid, $nom, $lastname, $email, $hashed, $telephone]);
+    $stmt->execute([$uuid, $nom, $lastname, $email, $hashed, $telephone, $role_type]);
 
-    $_SESSION['user_id']  = $uuid;
-    $_SESSION['email']    = $email;
-    $_SESSION['nom']      = $nom;
-    $_SESSION['lastname'] = $lastname;
-    setcookie('ss_user', $lastname, time() + 86400 * 7, '/');
+    $_SESSION['user_id']   = $uuid;
+    $_SESSION['email']     = $email;
+    $_SESSION['nom']       = $nom;
+    $_SESSION['lastname']  = $lastname;
+    $_SESSION['role_type'] = $role_type;
+    setcookie('ss_user', $nom, time() + 86400 * 7, '/');
+    setcookie('ss_role', $role_type, time() + 86400 * 7, '/');
 
     header("Location: Accueil.php");
     exit;

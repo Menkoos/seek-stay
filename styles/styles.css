@@ -117,16 +117,21 @@ ul {
   text-underline-offset: 4px;
 }
 
-/* Pousse le dernier élément (bouton Connexion) complètement à droite */
-.header-menu li:last-child {
-  margin-left: auto;
-}
-
-/* Bouton "Inscription / Connexion" : fond bleu foncé, texte blanc, coins arrondis */
-.header-menu li:last-child a {
+/* Bouton "Inscription / Connexion" & "Mon compte" : fond bleu foncé, texte blanc, arrondi */
+.header-menu a[href="Authentification.html"],
+.header-menu a[href="Authentification.php"],
+.header-menu a[href="mon-compte.php"] {
   background-color: #244676;
   color: #fff;
   border-radius: 15px;
+  padding: 10px 22px;
+}
+.header-menu a[href="Authentification.html"]:hover,
+.header-menu a[href="Authentification.php"]:hover,
+.header-menu a[href="mon-compte.php"]:hover {
+  background-color: #1a3459;
+  color: #fff;
+  text-decoration: none;
 }
 
 /* Conteneur du logo (lien cliquable vers l'accueil) */

@@ -24,13 +24,20 @@ try {
     $user = $stmt->fetch();
 
     if ($user && password_verify($password, $user['mot_de_passe'])) {
-        $_SESSION['user_id']  = $user['id_utilisateur'];
-        $_SESSION['email']    = $user['email'];
-        $_SESSION['nom']      = $user['nom'];
-        $_SESSION['lastname'] = $user['lastname'];
+        $role = $user['role_type'] ?? 'loueur';
+
+        $_SESSION['user_id']   = $user['id_utilisateur'];
+        $_SESSION['email']     = $user['email'];
+        $_SESSION['nom']       = $user['nom'];
+        $_SESSION['lastname']  = $user['lastname'];
+        $_SESSION['role_type'] = $role;
+
+        // Cookies lisibles en JS pour les pages HTML statiques
+        $cookieExpire = $remember ? time() + 86400 * 30 : 0;
+        setcookie('ss_user', $user['nom'], $cookieExpire, '/');
+        setcookie('ss_role', $role, $cookieExpire, '/');
 
         if ($remember) {
-            // Générer un token sécurisé et le stocker haché en BDD
             $token   = bin2hex(random_bytes(32));
             $expires = date('Y-m-d H:i:s', strtotime('+30 days'));
             $pdo->prepare(

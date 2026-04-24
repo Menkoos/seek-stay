@@ -183,10 +183,10 @@ $icon_alert = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" strok
       </a>
       <ul class="header-menu">
         <li><a href="Accueil.php">Accueil</a></li>
-        <li><a href="Offres.html">Offres</a></li>
-        <li><a href="Publier.html">Publier</a></li>
+        <li><a href="Annonces.html">Annonces</a></li>
+        <li><a href="Publier.php">Publier</a></li>
         <li><a href="FAQ.html">FAQ</a></li>
-        <li><a href="Favoris.html">Favoris</a></li>
+        <li><a href="Favoris.php">Favoris</a></li>
         <li><a href="Contact.html">Contact</a></li>
         <li><a href="Authentification.php">Inscription / Connexion</a></li>
       </ul>

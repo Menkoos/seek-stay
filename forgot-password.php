@@ -23,9 +23,9 @@ if ($stmt->fetch()) {
     $pdo->prepare("UPDATE utilisateur_ SET reset_token = ?, reset_expires = ? WHERE email = ?")
         ->execute([$token, $expires, $email]);
 
-    // TODO: envoyer l'email avec le lien ci-dessous
-    // $lien = "http://localhost/Seek-Stay-website/reset-password.php?token=" . $token;
-    // mail($email, "Réinitialisation de mot de passe", "Cliquez ici : " . $lien);
+    // Pour activer l'envoi d'email : configurer sendmail dans php.ini (XAMPP)
+    $lien = "http://localhost/Seek-Stay-website/reset-password.php?token=" . $token;
+    // mail($email, "Réinitialisation — Seek & Stay", "Cliquez ici pour réinitialiser : " . $lien);
 }
 
 header("Location: Authentification.html?tab=forgot&success=" . urlencode("Si cette adresse est connue, un lien de réinitialisation vous a été envoyé."));
