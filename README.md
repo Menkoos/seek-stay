@@ -21,7 +21,7 @@
 
 **Seek & Stay** est une plateforme web full-stack conçue dans le cadre d'un projet d'école à l'ISEP Paris. Elle permet aux étudiants de publier des annonces de logement, de rechercher des locations adaptées à leurs critères, de gérer leurs candidatures et d'échanger directement avec d'autres utilisateurs via une messagerie intégrée.
 
-Le projet a été développé en collaboration entre **Sofiane Lebdaoui** ([@Menkoos](https://github.com/Menkoos)) et **Kylian Enyegue** ([@kylian-enyegue](https://github.com/kylian-enyegue)). Le code source original est disponible sur le [repository d'origine](https://github.com/kylian-enyegue/Seek-Stay-website).
+Le projet a été développé par le groupe G9A A1 2025/2026 en collaboration 
 
 ---
 
