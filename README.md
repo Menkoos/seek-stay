@@ -184,9 +184,7 @@ seek-stay/
 - **Sofiane Lebdaoui** — [@Menkoos](https://github.com/Menkoos)
   Étudiant ingénieur à l'ISEP Paris (cycle ingénieur — Informatique & Réseaux)
   [LinkedIn](https://www.linkedin.com/in/sofiane-lebdaoui-a5b051369/)
-
-- **Kylian Enyegue** — [@kylian-enyegue](https://github.com/kylian-enyegue)
-  Étudiant ingénieur à l'ISEP Paris
+et Le groupe G9A
 
 Projet réalisé dans le cadre d'un projet d'école à l'ISEP Paris.
 
